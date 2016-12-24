@@ -1,14 +1,13 @@
 ﻿using System;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace AutoPatcher.Commands
 {
-    internal sealed class CloseRepoCommand : ICommand
+    internal sealed class EditPatchSchemeCommand : ICommand
     {
         private readonly AppModel model;
 
-        public CloseRepoCommand(AppModel model)
+        public EditPatchSchemeCommand(AppModel model)
         {
             this.model = model;
             this.model.PropertyChanged += Model_PropertyChanged;
@@ -23,7 +22,10 @@ namespace AutoPatcher.Commands
 
         public void Execute(object parameter)
         {
-            Task.Run(() => this.model.UnloadAppConfigurationAsync());
+            new PatchEditorWindow()
+            {
+                DataContext = new PatchEditorModel()
+            }.ShowDialog();
         }
 
         private void Model_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)

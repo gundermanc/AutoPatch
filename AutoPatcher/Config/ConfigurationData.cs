@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace AutoPatcher.Config
 {
@@ -6,6 +7,6 @@ namespace AutoPatcher.Config
     internal sealed class ConfigurationData
     {
         [DataMember]
-        public string RepositoryRoot { get; set; }
+        public List<BuildArtifactData> BuildArtifacts { get; }
     }
 }

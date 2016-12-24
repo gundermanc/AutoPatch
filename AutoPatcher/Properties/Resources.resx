@@ -126,6 +126,9 @@
   <data name="StringCloseRepoContent" xml:space="preserve">
     <value>Close Repo</value>
   </data>
+  <data name="StringConfigurationContent" xml:space="preserve">
+    <value>Configuration</value>
+  </data>
   <data name="StringConfigurationLoadFailure" xml:space="preserve">
     <value>Unable to initialize application from {0} due to error:
     
@@ -138,6 +141,9 @@ Please correct the configuration error, or delete the configuration file and res
 
 {1}
     </value>
+  </data>
+  <data name="StringEditPatchSchemeContent" xml:space="preserve">
+    <value>Edit Patch Scheme</value>
   </data>
   <data name="StringErrorDialogTitle" xml:space="preserve">
     <value>AutoPatcher Error</value>
@@ -169,6 +175,9 @@ Please correct the configuration error, or delete the configuration file and res
   </data>
   <data name="StringOpenRepoDialogTitle" xml:space="preserve">
     <value>Open Repo Configuration</value>
+  </data>
+  <data name="StringPatchEditorTitle" xml:space="preserve">
+    <value>AutoPatcher Editor</value>
   </data>
   <data name="StringRepoNewInvalidFileName" xml:space="preserve">
     <value>Unable to create configuration file. File name must be {0}.</value>

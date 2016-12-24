@@ -88,6 +88,15 @@ namespace AutoPatcher.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Configuration.
+        /// </summary>
+        public static string StringConfigurationContent {
+            get {
+                return ResourceManager.GetString("StringConfigurationContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unable to initialize application from {0} due to error:
         ///    
         ///{1}
@@ -109,6 +118,15 @@ namespace AutoPatcher.Properties {
         public static string StringConfigurationWriteFailure {
             get {
                 return ResourceManager.GetString("StringConfigurationWriteFailure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Patch Scheme.
+        /// </summary>
+        public static string StringEditPatchSchemeContent {
+            get {
+                return ResourceManager.GetString("StringEditPatchSchemeContent", resourceCulture);
             }
         }
         
@@ -199,6 +217,15 @@ namespace AutoPatcher.Properties {
         public static string StringOpenRepoDialogTitle {
             get {
                 return ResourceManager.GetString("StringOpenRepoDialogTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AutoPatcher Editor.
+        /// </summary>
+        public static string StringPatchEditorTitle {
+            get {
+                return ResourceManager.GetString("StringPatchEditorTitle", resourceCulture);
             }
         }
         

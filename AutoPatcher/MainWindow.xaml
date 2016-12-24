@@ -24,8 +24,11 @@
                 <Separator/>
                 <MenuItem Header="{x:Static p:Resources.StringExitContent}" Command="{Binding ExitCommand}"/>
             </MenuItem>
+            <MenuItem Header="{x:Static p:Resources.StringConfigurationContent}">
+                <MenuItem Header="{x:Static p:Resources.StringEditPatchSchemeContent}" Command="{Binding EditPatchSchemeCommand}"/>
+            </MenuItem>
             <MenuItem Header="{x:Static p:Resources.StringHelpContent}">
-                <MenuItem Header="About" Command="{Binding AboutCommand}"/>
+                <MenuItem Header="{x:Static p:Resources.StringAboutContent}" Command="{Binding AboutCommand}"/>
             </MenuItem>
         </Menu>
         <StatusBar DockPanel.Dock="Bottom"
@@ -40,7 +43,7 @@
                        VerticalAlignment="Center"
                        Width="50"/>
             <Separator Background="Gray" Width="2.0" HorizontalAlignment="Left"/>
-            <TextBlock Text="{Binding RepoPath}"
+            <TextBlock Text="{Binding RepoConfigPath}"
                        Padding="0"
                        TextTrimming="CharacterEllipsis"
                        VerticalAlignment="Center"/>

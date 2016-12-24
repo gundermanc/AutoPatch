@@ -39,7 +39,7 @@ namespace AutoPatcher
             }
         }
 
-        public string RepoPath
+        public string RepoConfigPath
         {
             get
             {
@@ -51,7 +51,7 @@ namespace AutoPatcher
                 if (value != this.repoPath)
                 {
                     this.repoPath = value;
-                    DispatchPropertyChanged(nameof(this.RepoPath));
+                    DispatchPropertyChanged(nameof(this.RepoConfigPath));
                 }
             }
         }

@@ -23,6 +23,7 @@ namespace AutoPatcher
             this.NewRepoCommand = new NewRepoCommand(this);
             this.CloseRepoCommand = new CloseRepoCommand(this);
             this.AboutCommand = new AboutCommand(this.ErrorDialogs);
+            this.EditPatchSchemeCommand = new EditPatchSchemeCommand(this);
         }
 
         #region App Submodels
@@ -48,6 +49,8 @@ namespace AutoPatcher
         public ICommand ExitCommand { get; } = new ExitCommand();
 
         public ICommand AboutCommand { get; }
+
+        public ICommand EditPatchSchemeCommand { get; }
 
         #endregion
 
@@ -106,7 +109,7 @@ namespace AutoPatcher
 
                 if (isLoaded)
                 {
-                    this.RepoPath = filePath;
+                    this.RepoConfigPath = filePath;
                 }
             });
         }
@@ -138,7 +141,7 @@ namespace AutoPatcher
 
                 if (isLoaded)
                 {
-                    this.RepoPath = filePath;
+                    this.RepoConfigPath = filePath;
                 }
             });
         }
@@ -164,7 +167,7 @@ namespace AutoPatcher
             Application.Current.Dispatcher.Invoke(() =>
             {
                 this.IsModifyingLoadedAppConfiguration = false;
-                this.RepoPath = null;
+                this.RepoConfigPath = null;
             });
         }
     }
