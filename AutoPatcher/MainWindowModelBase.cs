@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using AutoPatcher.Properties;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
@@ -9,8 +10,10 @@ namespace AutoPatcher
     {
         #region Privates 
 
+        private string repoPath = null;
         private bool isBusy = false;
         private Cursor cursor = Cursors.Arrow;
+        private string statusBarText = Resources.StringStatusBarReady;
 
         #endregion
 
@@ -29,9 +32,27 @@ namespace AutoPatcher
                 {
                     this.isBusy = value;
                     DispatchPropertyChanged(nameof(this.IsBusy));
-                }
 
-                this.Cursor = this.IsBusy ? Cursors.Wait : Cursors.Arrow;
+                    this.Cursor = this.IsBusy ? Cursors.Wait : Cursors.Arrow;
+                    this.StatusBarText = this.IsBusy ? Resources.StringStatusBarWorking : Resources.StringStatusBarReady;
+                }
+            }
+        }
+
+        public string RepoPath
+        {
+            get
+            {
+                return this.repoPath;
+            }
+
+            set
+            {
+                if (value != this.repoPath)
+                {
+                    this.repoPath = value;
+                    DispatchPropertyChanged(nameof(this.RepoPath));
+                }
             }
         }
 
@@ -58,7 +79,22 @@ namespace AutoPatcher
             }
         }
 
-        public abstract string Title { get; }
+        public string StatusBarText
+        {
+            get
+            {
+                return this.statusBarText;
+            }
+
+            set
+            {
+                if (this.statusBarText != value)
+                {
+                    this.statusBarText = value;
+                    DispatchPropertyChanged(nameof(this.StatusBarText));
+                }
+            }
+        }
 
         #endregion
 

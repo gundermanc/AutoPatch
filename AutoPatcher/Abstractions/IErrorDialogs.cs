@@ -1,4 +1,4 @@
-﻿namespace AutoPatcher
+﻿namespace AutoPatcher.Abstractions
 {
     internal interface IErrorDialogs
     {
@@ -6,6 +6,6 @@
 
         void ErrorDialog(string message);
 
-        void QueueExitAndErrorDialog(string message);
+        void InformationDialog(string message);
     }
 }

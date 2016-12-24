@@ -22,7 +22,7 @@ namespace AutoPatcher.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace AutoPatcher.Properties {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AutoPatcher.Properties.Resources", typeof(Resources).Assembly);
@@ -51,12 +51,39 @@ namespace AutoPatcher.Properties {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to About.
+        /// </summary>
+        public static string StringAboutContent {
+            get {
+                return ResourceManager.GetString("StringAboutContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AutoPatcher, by Christian Gunderman.
+        /// </summary>
+        public static string StringAboutMessage {
+            get {
+                return ResourceManager.GetString("StringAboutMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close Repo.
+        /// </summary>
+        public static string StringCloseRepoContent {
+            get {
+                return ResourceManager.GetString("StringCloseRepoContent", resourceCulture);
             }
         }
         
@@ -67,46 +94,165 @@ namespace AutoPatcher.Properties {
         ///    
         ///Please correct the configuration error, or delete the configuration file and restart to generate a new template..
         /// </summary>
-        internal static string StringConfigurationLoadFailure {
+        public static string StringConfigurationLoadFailure {
             get {
                 return ResourceManager.GetString("StringConfigurationLoadFailure", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unable to initialize application from {0} due to error:
-        ///    
+        ///   Looks up a localized string similar to Unable to write configuration to {0} due to error:
+        ///
         ///{1}
-        ///    
-        ///A configuration file template was written, you may need to manually fill it in..
+        ///    .
         /// </summary>
-        internal static string StringConfigurationLoadFailureTemplateGenerated {
+        public static string StringConfigurationWriteFailure {
             get {
-                return ResourceManager.GetString("StringConfigurationLoadFailureTemplateGenerated", resourceCulture);
+                return ResourceManager.GetString("StringConfigurationWriteFailure", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unable to initialize application from {0} due to error:
-        ///    
-        ///{1}
-        ///    
-        ///Unable to create new configuration template due to error:
-        ///    
-        ///{2}.
+        ///   Looks up a localized string similar to AutoPatcher Error.
         /// </summary>
-        internal static string StringConfigurationLoadFailureTemplateWriteFailure {
+        public static string StringErrorDialogTitle {
             get {
-                return ResourceManager.GetString("StringConfigurationLoadFailureTemplateWriteFailure", resourceCulture);
+                return ResourceManager.GetString("StringErrorDialogTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exit.
+        /// </summary>
+        public static string StringExitContent {
+            get {
+                return ResourceManager.GetString("StringExitContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File.
+        /// </summary>
+        public static string StringFileContent {
+            get {
+                return ResourceManager.GetString("StringFileContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Help.
+        /// </summary>
+        public static string StringHelpContent {
+            get {
+                return ResourceManager.GetString("StringHelpContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AutoPatcher Information.
+        /// </summary>
+        public static string StringInformationDialogTitle {
+            get {
+                return ResourceManager.GetString("StringInformationDialogTitle", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to AutoPatcher.
         /// </summary>
-        internal static string StringMainWindowTitle {
+        public static string StringMainWindowTitle {
             get {
                 return ResourceManager.GetString("StringMainWindowTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Repo.
+        /// </summary>
+        public static string StringNewRepoContent {
+            get {
+                return ResourceManager.GetString("StringNewRepoContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Repo Configuration.
+        /// </summary>
+        public static string StringNewRepoDialogTitle {
+            get {
+                return ResourceManager.GetString("StringNewRepoDialogTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open Repo.
+        /// </summary>
+        public static string StringOpenRepoContent {
+            get {
+                return ResourceManager.GetString("StringOpenRepoContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open Repo Configuration.
+        /// </summary>
+        public static string StringOpenRepoDialogTitle {
+            get {
+                return ResourceManager.GetString("StringOpenRepoDialogTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to create configuration file. File name must be {0}..
+        /// </summary>
+        public static string StringRepoNewInvalidFileName {
+            get {
+                return ResourceManager.GetString("StringRepoNewInvalidFileName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Repo Path: .
+        /// </summary>
+        public static string StringRepoPathLabelContent {
+            get {
+                return ResourceManager.GetString("StringRepoPathLabelContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No repo loaded.
+        /// </summary>
+        public static string StringRepoPathNoneContent {
+            get {
+                return ResourceManager.GetString("StringRepoPathNoneContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ready.
+        /// </summary>
+        public static string StringStatusBarReady {
+            get {
+                return ResourceManager.GetString("StringStatusBarReady", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Working.
+        /// </summary>
+        public static string StringStatusBarWorking {
+            get {
+                return ResourceManager.GetString("StringStatusBarWorking", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AutoPatcher Warning.
+        /// </summary>
+        public static string StringWarningDialogTitle {
+            get {
+                return ResourceManager.GetString("StringWarningDialogTitle", resourceCulture);
             }
         }
     }

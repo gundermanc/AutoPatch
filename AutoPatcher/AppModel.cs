@@ -1,74 +1,171 @@
-﻿using System.ComponentModel;
+﻿using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
+using AutoPatcher.Abstractions;
+using AutoPatcher.Commands;
 using AutoPatcher.Config;
+using AutoPatcher.Util;
 
 namespace AutoPatcher
 {
     internal sealed class AppModel : MainWindowModelBase
     {
+        #region Private fields
+
+        private bool isLoadingAppConfiguration = false;
+
+        #endregion
+
         public AppModel()
         {
-#if DEBUG
-            // Disallow model initialization in design view.
-            if (!DesignerProperties.GetIsInDesignMode(Application.Current.MainWindow))
-            {
-#endif
-                BeginInitialize();
-#if DEBUG
-            }
-#endif
+            this.OpenRepoCommand = new OpenRepoCommand(this);
+            this.NewRepoCommand = new NewRepoCommand(this);
+            this.CloseRepoCommand = new CloseRepoCommand(this);
+            this.AboutCommand = new AboutCommand(this.ErrorDialogs);
         }
 
         #region App Submodels
 
-        private AppConfiguration AppConfig { get; set; }
+        public IErrorDialogs ErrorDialogs { get; } = new ErrorDialogs();
 
-        private IErrorDialogs ErrorDialogs { get; } = new ErrorDialogs();
+        public IFileDialogs FileDialogs { get; } = new FileDialogs();
+
+        // Locked reference is my lazy solution to the concurrency issues that arise here..
+        // be sure not to allow the reference to escape the lambda.
+        private LockedReference<AppConfiguration> AppConfig { get; } = new LockedReference<AppConfiguration>();
 
         #endregion
 
-        #region Window Properties
+        #region Commands
 
-        public override string Title
+        public ICommand OpenRepoCommand { get; }
+
+        public ICommand NewRepoCommand { get; }
+
+        public ICommand CloseRepoCommand { get; }
+
+        public ICommand ExitCommand { get; } = new ExitCommand();
+
+        public ICommand AboutCommand { get; }
+
+        #endregion
+
+        #region App Model Concepts
+
+        public bool IsModifyingLoadedAppConfiguration
         {
             get
             {
-                return Properties.Resources.StringMainWindowTitle;
+                return this.isLoadingAppConfiguration;
+            }
+
+            set
+            {
+                if (this.isLoadingAppConfiguration != value)
+                {
+                    this.isLoadingAppConfiguration = value;
+                    DispatchPropertyChanged(nameof(this.IsModifyingLoadedAppConfiguration));
+
+                    this.IsBusy = value;
+                }
             }
         }
 
         #endregion
 
-        #region Initialization
-
-        private void BeginInitialize()
+        public async Task CreateAndLoadAppConfigurationAsync(string filePath)
         {
-            Task.Run(async () =>
+            // Assert only because this is verified by the command.
+            Debug.Assert(!this.IsModifyingLoadedAppConfiguration);
+
+            bool isLoaded = false;
+
+            Application.Current.Dispatcher.Invoke(() => this.IsModifyingLoadedAppConfiguration = true);
+
+            await UnloadAppConfigurationAsync();
+
+            await Task.Run(() =>
             {
-                this.IsBusy = true;
-
-                if (!await TryInitializeAsync())
+                this.AppConfig.AccessReference((config) =>
                 {
-                    Application.Current.Dispatcher.Invoke(() => Application.Current.Shutdown());
-                }
+                    var newConfig = AppConfiguration.Create(filePath);
 
-                this.IsBusy = false;
+                    AppConfigurationLoader.WriteAppConfiguration(this.ErrorDialogs, newConfig);
+
+                    isLoaded = newConfig != null;
+
+                    // Update reference to new app configuration.
+                    return newConfig;
+                });
+            });
+            
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                this.IsModifyingLoadedAppConfiguration = false;
+
+                if (isLoaded)
+                {
+                    this.RepoPath = filePath;
+                }
             });
         }
 
-        private async Task<bool> TryInitializeAsync()
+        public async Task LoadAppConfigurationAsync(string filePath)
         {
-            var appConfig = await Task.Run(() => AppConfigurationFactory.CreateAppConfiguration(this.ErrorDialogs));
+            // Assert only because this is verified by the command.
+            Debug.Assert(!this.IsModifyingLoadedAppConfiguration);
 
-            if ((this.AppConfig = appConfig) == null)
+            bool isLoaded = false;
+
+            Application.Current.Dispatcher.Invoke(() => this.IsModifyingLoadedAppConfiguration = true);
+
+            await Task.Run(() =>
             {
-                return false;
-            }
+                this.AppConfig.AccessReference((config) =>
+                {
+                    var newConfig = AppConfigurationLoader.CreateAppConfigurationFromFile(this.ErrorDialogs, filePath);
 
-            return true;
+                    isLoaded = newConfig != null;
+
+                    return newConfig;
+                });
+            });
+
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                this.IsModifyingLoadedAppConfiguration = false;
+
+                if (isLoaded)
+                {
+                    this.RepoPath = filePath;
+                }
+            });
         }
 
-        #endregion
+        public async Task UnloadAppConfigurationAsync()
+        {
+            Application.Current.Dispatcher.Invoke(() => this.IsModifyingLoadedAppConfiguration = true);
+
+            await Task.Run(() =>
+            {
+                this.AppConfig.AccessReference((config) =>
+                {
+                    if (config != null)
+                    {
+                        AppConfigurationLoader.WriteAppConfiguration(this.ErrorDialogs, config);
+                    }
+
+                    // Update reference to null.
+                    return null;
+                });
+            });
+
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                this.IsModifyingLoadedAppConfiguration = false;
+                this.RepoPath = null;
+            });
+        }
     }
 }

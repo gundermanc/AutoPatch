@@ -8,12 +8,20 @@ namespace AutoPatcher.Config
     {
         private static DataContractSerializer serializer;
 
-        private AppConfiguration() { }
+        private AppConfiguration(string filePath)
+        {
+            this.FilePath = filePath;
+        }
 
         public ConfigurationData Configuration
         {
             get;
             private set;
+        }
+
+        public string FilePath
+        {
+            get;
         }
 
         private static DataContractSerializer Serializer
@@ -24,23 +32,23 @@ namespace AutoPatcher.Config
             }
         }
 
-        public static AppConfiguration Create()
+        public static AppConfiguration Create(string filePath)
         {
-            return new AppConfiguration()
+            return new AppConfiguration(filePath)
             {
                 Configuration = new ConfigurationData()
             };
         }
 
-        public static AppConfiguration CreateFromFile(string fileName)
+        public static AppConfiguration OpenFromFile(string filePath)
         {
-            using (var file = File.OpenRead(fileName))
+            using (var file = File.OpenRead(filePath))
             {
                 var configData = Serializer.ReadObject(file) as ConfigurationData;
 
                 if (configData != null)
                 {
-                    return new AppConfiguration()
+                    return new AppConfiguration(filePath)
                     {
                         Configuration = configData
                     };
@@ -50,11 +58,11 @@ namespace AutoPatcher.Config
             return null;
         }
 
-        public void WriteToFile(string fileName)
+        public void WriteToFile()
         {
             Debug.Assert(this.Configuration != null);
 
-            using (var file = File.OpenWrite(fileName))
+            using (var file = File.OpenWrite(this.FilePath))
             {
                 Serializer.WriteObject(file, this.Configuration);
             }
