@@ -123,6 +123,15 @@
   <data name="StringAboutMessage" xml:space="preserve">
     <value>AutoPatcher, by Christian Gunderman</value>
   </data>
+  <data name="StringAddContent" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="StringBuildArtifactsContent" xml:space="preserve">
+    <value>Build Artifacts</value>
+  </data>
+  <data name="StringCancelContent" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
   <data name="StringCloseRepoContent" xml:space="preserve">
     <value>Close Repo</value>
   </data>
@@ -141,6 +150,9 @@ Please correct the configuration error, or delete the configuration file and res
 
 {1}
     </value>
+  </data>
+  <data name="StringEditContent" xml:space="preserve">
+    <value>Edit</value>
   </data>
   <data name="StringEditPatchSchemeContent" xml:space="preserve">
     <value>Edit Patch Scheme</value>
@@ -170,6 +182,9 @@ Please correct the configuration error, or delete the configuration file and res
   <data name="StringNewRepoDialogTitle" xml:space="preserve">
     <value>New Repo Configuration</value>
   </data>
+  <data name="StringOkContent" xml:space="preserve">
+    <value>Ok</value>
+  </data>
   <data name="StringOpenRepoContent" xml:space="preserve">
     <value>Open Repo</value>
   </data>
@@ -179,6 +194,9 @@ Please correct the configuration error, or delete the configuration file and res
   <data name="StringPatchEditorTitle" xml:space="preserve">
     <value>AutoPatcher Editor</value>
   </data>
+  <data name="StringRemoveContent" xml:space="preserve">
+    <value>Remove</value>
+  </data>
   <data name="StringRepoNewInvalidFileName" xml:space="preserve">
     <value>Unable to create configuration file. File name must be {0}.</value>
   </data>
@@ -187,6 +205,9 @@ Please correct the configuration error, or delete the configuration file and res
   </data>
   <data name="StringRepoPathNoneContent" xml:space="preserve">
     <value>No repo loaded</value>
+  </data>
+  <data name="StringSourceItemsContent" xml:space="preserve">
+    <value>Source Items</value>
   </data>
   <data name="StringStatusBarReady" xml:space="preserve">
     <value>Ready</value>

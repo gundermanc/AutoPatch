@@ -79,6 +79,33 @@ namespace AutoPatcher.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add.
+        /// </summary>
+        public static string StringAddContent {
+            get {
+                return ResourceManager.GetString("StringAddContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Build Artifacts.
+        /// </summary>
+        public static string StringBuildArtifactsContent {
+            get {
+                return ResourceManager.GetString("StringBuildArtifactsContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string StringCancelContent {
+            get {
+                return ResourceManager.GetString("StringCancelContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Close Repo.
         /// </summary>
         public static string StringCloseRepoContent {
@@ -118,6 +145,15 @@ namespace AutoPatcher.Properties {
         public static string StringConfigurationWriteFailure {
             get {
                 return ResourceManager.GetString("StringConfigurationWriteFailure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        public static string StringEditContent {
+            get {
+                return ResourceManager.GetString("StringEditContent", resourceCulture);
             }
         }
         
@@ -203,6 +239,15 @@ namespace AutoPatcher.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ok.
+        /// </summary>
+        public static string StringOkContent {
+            get {
+                return ResourceManager.GetString("StringOkContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Open Repo.
         /// </summary>
         public static string StringOpenRepoContent {
@@ -230,6 +275,15 @@ namespace AutoPatcher.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Remove.
+        /// </summary>
+        public static string StringRemoveContent {
+            get {
+                return ResourceManager.GetString("StringRemoveContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unable to create configuration file. File name must be {0}..
         /// </summary>
         public static string StringRepoNewInvalidFileName {
@@ -253,6 +307,15 @@ namespace AutoPatcher.Properties {
         public static string StringRepoPathNoneContent {
             get {
                 return ResourceManager.GetString("StringRepoPathNoneContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Source Items.
+        /// </summary>
+        public static string StringSourceItemsContent {
+            get {
+                return ResourceManager.GetString("StringSourceItemsContent", resourceCulture);
             }
         }
         

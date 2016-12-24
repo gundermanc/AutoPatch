@@ -8,8 +8,86 @@
         mc:Ignorable="d"
         Background="LightBlue"
         ResizeMode="NoResize"
-        Title="{x:Static p:Resources.StringPatchEditorTitle}" Height="300" Width="300">
-    <Grid>
-        
-    </Grid>
+        Title="{x:Static p:Resources.StringPatchEditorTitle}" Height="450" Width="650">
+    <DockPanel>
+        <Border DockPanel.Dock="Bottom" BorderBrush="Gray" BorderThickness="1.0">
+            <Grid Background="DarkGray">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Content="{x:Static p:Resources.StringOkContent}" Grid.Column="0" Margin="10" IsDefault="True"/>
+                <Button Content="{x:Static p:Resources.StringCancelContent}" Grid.Column="1" Margin="10" IsCancel="True"/>
+            </Grid>
+        </Border>
+        <Grid DockPanel.Dock="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Column="0"
+                  Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0"
+                           Grid.Row="0"
+                           Text="{x:Static p:Resources.StringBuildArtifactsContent}"
+                           VerticalAlignment="Center"
+                           Margin="10.0,10.0,0.0,0.0"/>
+                <ListBox Grid.Column="0"
+                         Grid.Row="1"
+                         Margin="10" />
+                <Grid Grid.Column="0"
+                      Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Button Content="{x:Static p:Resources.StringAddContent}" Margin="10" Grid.Column="0" />
+                    <Button Content="{x:Static p:Resources.StringEditContent}"  Margin="10" Grid.Column="1" />
+                    <Button Content="{x:Static p:Resources.StringRemoveContent}" Margin="10" Grid.Column="2" />
+                </Grid>
+            </Grid>
+            <Grid Grid.Column="1"
+                  Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0"
+                           Grid.Row="0"
+                           Text="{x:Static p:Resources.StringSourceItemsContent}"
+                           VerticalAlignment="Center"
+                           Margin="10.0,10.0,0.0,0.0"/>
+                <ListBox Grid.Column="0"
+                         Grid.Row="1"
+                         Margin="10" />
+                <Grid Grid.Column="0"
+                      Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Button Content="{x:Static p:Resources.StringAddContent}" Margin="10" Grid.Column="0" />
+                    <Button Content="{x:Static p:Resources.StringEditContent}" Margin="10" Grid.Column="1" />
+                    <Button Content="{x:Static p:Resources.StringRemoveContent}" Margin="10" Grid.Column="2" />
+                </Grid>
+            </Grid>
+        </Grid>
+    </DockPanel>
 </Window>
