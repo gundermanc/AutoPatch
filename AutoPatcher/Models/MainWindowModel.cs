@@ -1,4 +1,6 @@
 ﻿using System.Diagnostics;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -6,7 +8,6 @@ using AutoPatcher.Abstractions;
 using AutoPatcher.Commands;
 using AutoPatcher.Config;
 using AutoPatcher.Util;
-using System.Collections.ObjectModel;
 
 namespace AutoPatcher.Models
 {
@@ -26,6 +27,7 @@ namespace AutoPatcher.Models
             this.CloseRepoCommand = new CloseRepoCommand(this);
             this.AboutCommand = new AboutCommand(this.ErrorDialogs);
             this.EditPatchSchemeCommand = new EditPatchSchemeCommand(this.ErrorDialogs, this);
+            this.PatchSelectedCommand = new PatchSelectedCommand(this.ErrorDialogs, this);
         }
 
         #region App Submodels
@@ -54,6 +56,8 @@ namespace AutoPatcher.Models
 
         public ICommand EditPatchSchemeCommand { get; }
 
+        public ICommand PatchSelectedCommand { get; }
+
         #endregion
 
         #region App Model Concepts
@@ -74,6 +78,8 @@ namespace AutoPatcher.Models
                 }
             }
         }
+
+        public IList<BuildArtifactData> SelectedBuildArtifacts { get; } = new List<BuildArtifactData>();
 
         public bool IsModifyingLoadedAppConfiguration
         {

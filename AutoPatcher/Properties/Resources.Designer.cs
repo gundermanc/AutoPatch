@@ -212,6 +212,17 @@ namespace AutoPatcher.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unable to patch file {0} due to error:
+        ///    
+        ///{1}.
+        /// </summary>
+        public static string StringFilePatchFailure {
+            get {
+                return ResourceManager.GetString("StringFilePatchFailure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Help.
         /// </summary>
         public static string StringHelpContent {
@@ -298,6 +309,15 @@ namespace AutoPatcher.Properties {
         public static string StringPatchEditorTitle {
             get {
                 return ResourceManager.GetString("StringPatchEditorTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Patch Selected Files.
+        /// </summary>
+        public static string StringPatchSelectedContent {
+            get {
+                return ResourceManager.GetString("StringPatchSelectedContent", resourceCulture);
             }
         }
         

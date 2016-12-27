@@ -71,6 +71,7 @@
     </Compile>
     <Compile Include="Commands\CloseRepoCommand.cs" />
     <Compile Include="Commands\EditPatchSchemeCommand.cs" />
+    <Compile Include="Commands\PatchSelectedCommand.cs" />
     <Compile Include="Config\AppConfiguration.cs" />
     <Compile Include="Config\AppConfigurationLoader.cs" />
     <Compile Include="Config\BuildArtifactData.cs" />

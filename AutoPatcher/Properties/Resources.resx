@@ -172,6 +172,11 @@ Please correct the configuration error, or delete the configuration file and res
   <data name="StringFileContent" xml:space="preserve">
     <value>File</value>
   </data>
+  <data name="StringFilePatchFailure" xml:space="preserve">
+    <value>Unable to patch file {0} due to error:
+    
+{1}</value>
+  </data>
   <data name="StringHelpContent" xml:space="preserve">
     <value>Help</value>
   </data>
@@ -202,6 +207,9 @@ Please correct the configuration error, or delete the configuration file and res
   </data>
   <data name="StringPatchEditorTitle" xml:space="preserve">
     <value>AutoPatcher Editor</value>
+  </data>
+  <data name="StringPatchSelectedContent" xml:space="preserve">
+    <value>Patch Selected Files</value>
   </data>
   <data name="StringQuestionDialogTitle" xml:space="preserve">
     <value>AutoPatcher Prompt</value>
