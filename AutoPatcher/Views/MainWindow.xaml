@@ -48,5 +48,14 @@
                        TextTrimming="CharacterEllipsis"
                        VerticalAlignment="Center"/>
         </StatusBar>
+        <ListBox DockPanel.Dock="Left"
+                 ItemsSource="{Binding BuildArtifacts}"
+                 Margin="10">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding LocalPath}" ToolTip="{Binding RemotePath}" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </DockPanel>
 </Window>

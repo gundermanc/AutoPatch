@@ -6,6 +6,7 @@ using AutoPatcher.Abstractions;
 using AutoPatcher.Commands;
 using AutoPatcher.Config;
 using AutoPatcher.Util;
+using System.Collections.ObjectModel;
 
 namespace AutoPatcher.Models
 {
@@ -13,6 +14,7 @@ namespace AutoPatcher.Models
     {
         #region Private fields
 
+        private ObservableCollection<BuildArtifactData> buildArtifacts;
         private bool isLoadingAppConfiguration = false;
 
         #endregion
@@ -23,7 +25,7 @@ namespace AutoPatcher.Models
             this.NewRepoCommand = new NewRepoCommand(this);
             this.CloseRepoCommand = new CloseRepoCommand(this);
             this.AboutCommand = new AboutCommand(this.ErrorDialogs);
-            this.EditPatchSchemeCommand = new EditPatchSchemeCommand(this);
+            this.EditPatchSchemeCommand = new EditPatchSchemeCommand(this.ErrorDialogs, this);
         }
 
         #region App Submodels
@@ -55,6 +57,23 @@ namespace AutoPatcher.Models
         #endregion
 
         #region App Model Concepts
+
+        public ObservableCollection<BuildArtifactData> BuildArtifacts
+        {
+            get
+            {
+                return this.buildArtifacts;
+            }
+
+            set
+            {
+                if (this.buildArtifacts != value)
+                {
+                    buildArtifacts = value;
+                    DispatchPropertyChanged(nameof(this.BuildArtifacts));
+                }
+            }
+        }
 
         public bool IsModifyingLoadedAppConfiguration
         {
@@ -110,6 +129,7 @@ namespace AutoPatcher.Models
                 if (isLoaded)
                 {
                     this.RepoConfigPath = filePath;
+                    this.BuildArtifacts = new ObservableCollection<BuildArtifactData>();
                 }
             });
         }
@@ -130,6 +150,11 @@ namespace AutoPatcher.Models
                     var newConfig = AppConfigurationLoader.CreateAppConfigurationFromFile(this.ErrorDialogs, filePath);
 
                     isLoaded = newConfig != null;
+
+                    if (isLoaded)
+                    {
+                        this.BuildArtifacts = new ObservableCollection<BuildArtifactData>(newConfig.Configuration.BuildArtifacts);
+                    }
 
                     return newConfig;
                 });
@@ -168,6 +193,7 @@ namespace AutoPatcher.Models
             {
                 this.IsModifyingLoadedAppConfiguration = false;
                 this.RepoConfigPath = null;
+                this.BuildArtifacts = null;
             });
         }
     }

@@ -44,11 +44,14 @@ namespace AutoPatcher.Commands
             {
                 int index = this.model.BuildArtifacts.IndexOf(this.model.SelectedBuildArtifact);
 
-                this.model.BuildArtifacts[index] = new BuildArtifactData()
+                var newItem = new BuildArtifactData()
                 {
                     LocalPath = model.Input0Text,
                     RemotePath = model.Input1Text
                 };
+
+                newItem.SourceItems.AddRange(this.model.BuildArtifacts[index].SourceItems);
+                this.model.BuildArtifacts[index] = newItem;
             }
         }
 

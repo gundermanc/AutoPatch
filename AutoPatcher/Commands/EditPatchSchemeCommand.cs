@@ -1,17 +1,22 @@
 ﻿using System;
 using System.Windows.Input;
+using AutoPatcher.Abstractions;
+using AutoPatcher.Config;
 using AutoPatcher.Models;
 using AutoPatcher.Util;
 using AutoPatcher.Views;
+using System.Threading.Tasks;
 
 namespace AutoPatcher.Commands
 {
     internal sealed class EditPatchSchemeCommand : ICommand
     {
+        private readonly IErrorDialogs dialogs;
         private readonly MainWindowModel model;
 
-        public EditPatchSchemeCommand(MainWindowModel model)
+        public EditPatchSchemeCommand(IErrorDialogs dialogs, MainWindowModel model)
         {
+            this.dialogs = dialogs;
             this.model = model;
             this.model.PropertyChanged += Model_PropertyChanged;
         }
@@ -37,7 +42,14 @@ namespace AutoPatcher.Commands
                     config.Configuration.BuildArtifacts.AddRange(model.BuildArtifacts);
 
                     // Persist configuration changes.
-                    config.WriteToFile();
+                    AppConfigurationLoader.WriteAppConfiguration(this.dialogs, config);
+
+                    // Reload settings.
+                    Task.Run(async () =>
+                    {
+                        await this.model.UnloadAppConfigurationAsync();
+                        await this.model.LoadAppConfigurationAsync(config.FilePath);
+                    });
                 }
 
                 return config;
