@@ -1,12 +1,9 @@
-﻿using AutoPatcher.Properties;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Windows;
-using System.Windows.Input;
+﻿using System.Windows.Input;
+using AutoPatcher.Properties;
 
 namespace AutoPatcher
 {
-    internal abstract class MainWindowModelBase : INotifyPropertyChanged
+    internal abstract class MainWindowModelBase : ModelBase
     {
         #region Privates 
 
@@ -60,8 +57,6 @@ namespace AutoPatcher
 
         #region Window Properties and Events
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
         public Cursor Cursor
         {
             get
@@ -93,20 +88,6 @@ namespace AutoPatcher
                     this.statusBarText = value;
                     DispatchPropertyChanged(nameof(this.StatusBarText));
                 }
-            }
-        }
-
-        #endregion
-
-        #region Helpers
-
-        protected void DispatchPropertyChanged(string propertyName)
-        {
-            Debug.Assert(propertyName != null);
-
-            if (this.PropertyChanged != null)
-            {
-                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
 

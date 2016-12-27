@@ -79,11 +79,29 @@ namespace AutoPatcher.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to AutoPatcher Build Artifact.
+        /// </summary>
+        public static string StringAddBuildArtifactTitle {
+            get {
+                return ResourceManager.GetString("StringAddBuildArtifactTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add.
         /// </summary>
         public static string StringAddContent {
             get {
                 return ResourceManager.GetString("StringAddContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AutoPatcher Source Item.
+        /// </summary>
+        public static string StringAddSourceItemTitle {
+            get {
+                return ResourceManager.GetString("StringAddSourceItemTitle", resourceCulture);
             }
         }
         
@@ -212,6 +230,15 @@ namespace AutoPatcher.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Local Path.
+        /// </summary>
+        public static string StringLocalPathContent {
+            get {
+                return ResourceManager.GetString("StringLocalPathContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to AutoPatcher.
         /// </summary>
         public static string StringMainWindowTitle {
@@ -275,11 +302,38 @@ namespace AutoPatcher.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to AutoPatcher Prompt.
+        /// </summary>
+        public static string StringQuestionDialogTitle {
+            get {
+                return ResourceManager.GetString("StringQuestionDialogTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remote Path.
+        /// </summary>
+        public static string StringRemotePathContent {
+            get {
+                return ResourceManager.GetString("StringRemotePathContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Remove.
         /// </summary>
         public static string StringRemoveContent {
             get {
                 return ResourceManager.GetString("StringRemoveContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure that you want to remove the selected entry?.
+        /// </summary>
+        public static string StringRemoveEntryPrompt {
+            get {
+                return ResourceManager.GetString("StringRemoveEntryPrompt", resourceCulture);
             }
         }
         

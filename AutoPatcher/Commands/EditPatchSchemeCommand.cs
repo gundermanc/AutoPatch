@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Input;
+using AutoPatcher.Util;
 
 namespace AutoPatcher.Commands
 {
@@ -22,10 +23,23 @@ namespace AutoPatcher.Commands
 
         public void Execute(object parameter)
         {
-            new PatchEditorWindow()
+            this.model.AppConfig.AccessReference((config) =>
             {
-                DataContext = new PatchEditorModel()
-            }.ShowDialog();
+                var model = new PatchEditorModel(
+                    this.model.ErrorDialogs,
+                    config.Configuration.BuildArtifacts.Clone());
+
+                if (new PatchEditorWindow() { DataContext = model }.ShowDialog() ?? false)
+                {
+                    config.Configuration.BuildArtifacts.Clear();
+                    config.Configuration.BuildArtifacts.AddRange(model.BuildArtifacts);
+
+                    // Persist configuration changes.
+                    config.WriteToFile();
+                }
+
+                return config;
+            });
         }
 
         private void Model_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)

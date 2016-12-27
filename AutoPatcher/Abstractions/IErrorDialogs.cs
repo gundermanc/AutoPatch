@@ -7,5 +7,7 @@
         void ErrorDialog(string message);
 
         void InformationDialog(string message);
+
+        bool QuestionDialog(string message);
     }
 }

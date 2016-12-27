@@ -19,5 +19,14 @@ namespace AutoPatcher.Abstractions
         {
             MessageBox.Show(message, Resources.StringInformationDialogTitle, MessageBoxButton.OK, MessageBoxImage.Information);
         }
+
+        public bool QuestionDialog(string message)
+        {
+            return MessageBox.Show(
+                message,
+                Resources.StringQuestionDialogTitle,
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question) == MessageBoxResult.Yes;
+        }
     }
 }

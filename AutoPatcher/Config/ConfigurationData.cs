@@ -6,7 +6,15 @@ namespace AutoPatcher.Config
     [DataContract]
     internal sealed class ConfigurationData
     {
+        private List<BuildArtifactData> buildArtifactData;
+
         [DataMember]
-        public List<BuildArtifactData> BuildArtifacts { get; }
+        public List<BuildArtifactData> BuildArtifacts
+        {
+            get
+            {
+                return this.buildArtifactData ?? (buildArtifactData = new List<BuildArtifactData>());
+            }
+        }
     }
 }

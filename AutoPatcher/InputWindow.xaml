@@ -1,0 +1,51 @@
+﻿<Window x:Class="AutoPatcher.InputWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AutoPatcher"
+        xmlns:p="clr-namespace:AutoPatcher.Properties"
+        mc:Ignorable="d"
+        Background="LightBlue"
+        FocusManager.FocusedElement="{Binding ElementName=Input0TextBox}"
+        ResizeMode="NoResize"
+        Title="{Binding Title}" Height="150" Width="450">
+    <DockPanel>
+        <Grid DockPanel.Dock="Bottom">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Button Grid.Column="1"
+                    Grid.Row="0"
+                    Click="OkButton_Click"
+                    Content="{x:Static p:Resources.StringOkContent}"
+                    Margin="10"
+                    IsDefault="True"/>
+            <Button Grid.Column="2"
+                    Grid.Row="0"
+                    Content="{x:Static p:Resources.StringCancelContent}"
+                    Margin="10"
+                    IsCancel="True"/>
+        </Grid>
+        <Grid DockPanel.Dock="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Grid.Column="0" Margin="10" Text="{Binding Input0Label}"/>
+            <TextBox Name="Input0TextBox" Grid.Row="0" Grid.Column="1" Margin="10" Text="{Binding Input0Text, Mode=TwoWay}"/>
+            <TextBlock Grid.Row="1" Grid.Column="0" Margin="10" Text="{Binding Input1Label}"/>
+            <TextBox Grid.Row="1" Grid.Column="1" Margin="10" Text="{Binding Input1Text, Mode=TwoWay}" IsEnabled="{Binding IsInput1Enabled}"/>
+        </Grid>
+    </DockPanel>
+</Window>

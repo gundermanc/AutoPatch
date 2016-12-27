@@ -123,8 +123,14 @@
   <data name="StringAboutMessage" xml:space="preserve">
     <value>AutoPatcher, by Christian Gunderman</value>
   </data>
+  <data name="StringAddBuildArtifactTitle" xml:space="preserve">
+    <value>AutoPatcher Build Artifact</value>
+  </data>
   <data name="StringAddContent" xml:space="preserve">
     <value>Add</value>
+  </data>
+  <data name="StringAddSourceItemTitle" xml:space="preserve">
+    <value>AutoPatcher Source Item</value>
   </data>
   <data name="StringBuildArtifactsContent" xml:space="preserve">
     <value>Build Artifacts</value>
@@ -172,6 +178,9 @@ Please correct the configuration error, or delete the configuration file and res
   <data name="StringInformationDialogTitle" xml:space="preserve">
     <value>AutoPatcher Information</value>
   </data>
+  <data name="StringLocalPathContent" xml:space="preserve">
+    <value>Local Path</value>
+  </data>
   <data name="StringMainWindowTitle" xml:space="preserve">
     <value>AutoPatcher</value>
     <comment>String similar to 'AutoPatcher'</comment>
@@ -194,8 +203,17 @@ Please correct the configuration error, or delete the configuration file and res
   <data name="StringPatchEditorTitle" xml:space="preserve">
     <value>AutoPatcher Editor</value>
   </data>
+  <data name="StringQuestionDialogTitle" xml:space="preserve">
+    <value>AutoPatcher Prompt</value>
+  </data>
+  <data name="StringRemotePathContent" xml:space="preserve">
+    <value>Remote Path</value>
+  </data>
   <data name="StringRemoveContent" xml:space="preserve">
     <value>Remove</value>
+  </data>
+  <data name="StringRemoveEntryPrompt" xml:space="preserve">
+    <value>Are you sure that you want to remove the selected entry?</value>
   </data>
   <data name="StringRepoNewInvalidFileName" xml:space="preserve">
     <value>Unable to create configuration file. File name must be {0}.</value>

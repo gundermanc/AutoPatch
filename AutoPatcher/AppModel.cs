@@ -34,7 +34,7 @@ namespace AutoPatcher
 
         // Locked reference is my lazy solution to the concurrency issues that arise here..
         // be sure not to allow the reference to escape the lambda.
-        private LockedReference<AppConfiguration> AppConfig { get; } = new LockedReference<AppConfiguration>();
+        public LockedReference<AppConfiguration> AppConfig { get; } = new LockedReference<AppConfiguration>();
 
         #endregion
 

@@ -56,6 +56,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="InputWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -77,10 +81,22 @@
     <Compile Include="Abstractions\FileDialogs.cs" />
     <Compile Include="Abstractions\IFileDialogs.cs" />
     <Compile Include="Config\SourceItemData.cs" />
+    <Compile Include="ModelBase.cs" />
+    <Compile Include="InputModel.cs" />
+    <Compile Include="InputWindow.xaml.cs">
+      <DependentUpon>InputWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PatchEditorModel.cs" />
     <Compile Include="PatchEditorWindow.xaml.cs">
       <DependentUpon>PatchEditorWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PatchEditor\Commands\AddSourceItemCommand.cs" />
+    <Compile Include="PatchEditor\Commands\AddBuildArtifactCommand.cs" />
+    <Compile Include="PatchEditor\Commands\EditSourceItemCommand.cs" />
+    <Compile Include="PatchEditor\Commands\EditBuildArtifactCommand.cs" />
+    <Compile Include="PatchEditor\Commands\RemoveSourceItemCommand.cs" />
+    <Compile Include="PatchEditor\Commands\RemoveBuildArtifactCommand.cs" />
+    <Compile Include="Util\LinqExtensions.cs" />
     <Compile Include="Util\LockedReference.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -115,7 +131,10 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="InputDialog\Commands\" />
+    <Folder Include="Models\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
