@@ -1,14 +1,15 @@
-﻿using System.Threading.Tasks;
+﻿using System.IO;
+using System.Threading.Tasks;
 using System.Windows;
 using AutoPatcher.Config;
+using AutoPatcher.Models;
 using AutoPatcher.Properties;
-using System.IO;
 
 namespace AutoPatcher.Commands
 {
     internal sealed class NewRepoCommand : ModifyRepoStateCommandBase
     {
-        public NewRepoCommand(AppModel model) : base(model)
+        public NewRepoCommand(MainWindowModel model) : base(model)
         {
         }
 

@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Windows.Input;
+using AutoPatcher.Models;
 using AutoPatcher.Util;
+using AutoPatcher.Views;
 
 namespace AutoPatcher.Commands
 {
     internal sealed class EditPatchSchemeCommand : ICommand
     {
-        private readonly AppModel model;
+        private readonly MainWindowModel model;
 
-        public EditPatchSchemeCommand(AppModel model)
+        public EditPatchSchemeCommand(MainWindowModel model)
         {
             this.model = model;
             this.model.PropertyChanged += Model_PropertyChanged;

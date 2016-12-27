@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Windows.Input;
 using AutoPatcher.Abstractions;
+using AutoPatcher.Models;
 using AutoPatcher.Properties;
 
-namespace AutoPatcher.PatchEditor.Commands
+namespace AutoPatcher.Commands
 {
-    internal sealed class RemoveSourceItemCommand : ICommand
+    internal sealed class RemoveBuildArtifactCommand : ICommand
     {
         private readonly IErrorDialogs dialogs;
         private readonly PatchEditorModel model;
 
-        public RemoveSourceItemCommand(IErrorDialogs dialogs, PatchEditorModel model)
+        public RemoveBuildArtifactCommand(IErrorDialogs dialogs, PatchEditorModel model)
         {
             this.dialogs = dialogs;
             this.model = model;
@@ -21,23 +22,20 @@ namespace AutoPatcher.PatchEditor.Commands
 
         public bool CanExecute(object parameter)
         {
-            return this.model.SelectedBuildArtifact != null &&
-                this.model.SelectedSourceItem != null;
+            return this.model.SelectedBuildArtifact != null;
         }
 
         public void Execute(object parameter)
         {
             if (this.dialogs.QuestionDialog(Resources.StringRemoveEntryPrompt))
             {
-                this.model.SourceItems.Remove(this.model.SelectedSourceItem);
+                this.model.BuildArtifacts.Remove(this.model.SelectedBuildArtifact);
             }
         }
 
         private void Model_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (this.CanExecuteChanged != null &&
-                (e.PropertyName == nameof(PatchEditorModel.SelectedBuildArtifact)) ||
-                (e.PropertyName == nameof(PatchEditorModel.SelectedSourceItem)))
+            if (e.PropertyName == nameof(PatchEditorModel.SelectedBuildArtifact) && this.CanExecuteChanged != null)
             {
                 this.CanExecuteChanged(this, EventArgs.Empty);
             }

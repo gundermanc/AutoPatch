@@ -56,11 +56,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="InputWindow.xaml">
+    <Page Include="Views\InputWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainWindow.xaml">
+    <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -81,35 +81,35 @@
     <Compile Include="Abstractions\FileDialogs.cs" />
     <Compile Include="Abstractions\IFileDialogs.cs" />
     <Compile Include="Config\SourceItemData.cs" />
-    <Compile Include="ModelBase.cs" />
-    <Compile Include="InputModel.cs" />
-    <Compile Include="InputWindow.xaml.cs">
+    <Compile Include="Models\ModelBase.cs" />
+    <Compile Include="Models\InputModel.cs" />
+    <Compile Include="Views\InputWindow.xaml.cs">
       <DependentUpon>InputWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PatchEditorModel.cs" />
-    <Compile Include="PatchEditorWindow.xaml.cs">
+    <Compile Include="Models\PatchEditorModel.cs" />
+    <Compile Include="Views\PatchEditorWindow.xaml.cs">
       <DependentUpon>PatchEditorWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PatchEditor\Commands\AddSourceItemCommand.cs" />
-    <Compile Include="PatchEditor\Commands\AddBuildArtifactCommand.cs" />
-    <Compile Include="PatchEditor\Commands\EditSourceItemCommand.cs" />
-    <Compile Include="PatchEditor\Commands\EditBuildArtifactCommand.cs" />
-    <Compile Include="PatchEditor\Commands\RemoveSourceItemCommand.cs" />
-    <Compile Include="PatchEditor\Commands\RemoveBuildArtifactCommand.cs" />
+    <Compile Include="Commands\AddSourceItemCommand.cs" />
+    <Compile Include="Commands\AddBuildArtifactCommand.cs" />
+    <Compile Include="Commands\EditSourceItemCommand.cs" />
+    <Compile Include="Commands\EditBuildArtifactCommand.cs" />
+    <Compile Include="Commands\RemoveSourceItemCommand.cs" />
+    <Compile Include="Commands\RemoveBuildArtifactCommand.cs" />
     <Compile Include="Util\LinqExtensions.cs" />
     <Compile Include="Util\LockedReference.cs" />
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="PatchEditorWindow.xaml">
+    <Page Include="Views\PatchEditorWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppModel.cs" />
-    <Compile Include="MainWindowModelBase.cs" />
+    <Compile Include="Models\MainWindowModel.cs" />
+    <Compile Include="Models\MainWindowModelBase.cs" />
     <Compile Include="Commands\ModifyRepoStateCommandBase.cs" />
     <Compile Include="Commands\NewRepoCommand.cs" />
     <Compile Include="Commands\OpenRepoCommand.cs" />
@@ -131,10 +131,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="InputDialog\Commands\" />
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

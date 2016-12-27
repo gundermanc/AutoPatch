@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using AutoPatcher.Models;
 
 namespace AutoPatcher.Commands
 {
     internal sealed class CloseRepoCommand : ICommand
     {
-        private readonly AppModel model;
+        private readonly MainWindowModel model;
 
-        public CloseRepoCommand(AppModel model)
+        public CloseRepoCommand(MainWindowModel model)
         {
             this.model = model;
             this.model.PropertyChanged += Model_PropertyChanged;

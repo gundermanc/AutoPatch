@@ -1,12 +1,14 @@
 ﻿<Application x:Class="AutoPatcher.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:AutoPatcher">
+             xmlns:local="clr-namespace:AutoPatcher"
+             xmlns:m="clr-namespace:AutoPatcher.Models"
+             xmlns:v="clr-namespace:AutoPatcher.Views">
     <Application.MainWindow>
-        <local:MainWindow Visibility="Visible">
-            <local:MainWindow.DataContext>
-                <local:AppModel />
-            </local:MainWindow.DataContext>
-        </local:MainWindow>
+        <v:MainWindow Visibility="Visible">
+            <v:MainWindow.DataContext>
+                <m:MainWindowModel />
+            </v:MainWindow.DataContext>
+        </v:MainWindow>
     </Application.MainWindow>
 </Application>

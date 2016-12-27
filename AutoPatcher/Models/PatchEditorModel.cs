@@ -4,9 +4,10 @@ using System.ComponentModel;
 using System.Windows.Input;
 using AutoPatcher.Abstractions;
 using AutoPatcher.Config;
-using AutoPatcher.PatchEditor.Commands;
+using AutoPatcher.Commands;
+using AutoPatcher.Models;
 
-namespace AutoPatcher
+namespace AutoPatcher.Models
 {
     internal sealed class PatchEditorModel : ModelBase
     {

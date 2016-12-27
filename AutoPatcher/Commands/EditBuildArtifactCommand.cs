@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Windows.Input;
 using AutoPatcher.Config;
+using AutoPatcher.Models;
 using AutoPatcher.Properties;
+using AutoPatcher.Views;
 
-namespace AutoPatcher.PatchEditor.Commands
+namespace AutoPatcher.Commands
 {
     internal sealed class EditBuildArtifactCommand : ICommand
     {

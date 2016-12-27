@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Windows.Input;
+using AutoPatcher.Models;
 
 namespace AutoPatcher.Commands
 {
     internal abstract class ModifyRepoStateCommandBase : ICommand
     {
-        protected readonly AppModel model;
+        protected readonly MainWindowModel model;
 
-        public ModifyRepoStateCommandBase(AppModel model)
+        public ModifyRepoStateCommandBase(MainWindowModel model)
         {
             this.model = model;
             this.model.PropertyChanged += Model_PropertyChanged;
@@ -24,7 +25,7 @@ namespace AutoPatcher.Commands
 
         private void Model_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(AppModel.IsModifyingLoadedAppConfiguration) && this.CanExecuteChanged != null)
+            if (e.PropertyName == nameof(MainWindowModel.IsModifyingLoadedAppConfiguration) && this.CanExecuteChanged != null)
             {
                 this.CanExecuteChanged(this, EventArgs.Empty);
             }

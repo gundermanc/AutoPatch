@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Diagnostics;
 
-namespace AutoPatcher
+namespace AutoPatcher.Models
 {
     internal class ModelBase : INotifyPropertyChanged
     {

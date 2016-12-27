@@ -1,4 +1,4 @@
-﻿namespace AutoPatcher
+﻿namespace AutoPatcher.Models
 {
     internal sealed class InputModel : ModelBase
     {

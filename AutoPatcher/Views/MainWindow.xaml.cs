@@ -1,7 +1,6 @@
-﻿using System.ComponentModel;
-using System.Windows;
+﻿using System.Windows;
 
-namespace AutoPatcher
+namespace AutoPatcher.Views
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

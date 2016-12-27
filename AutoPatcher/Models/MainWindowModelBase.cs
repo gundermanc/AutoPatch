@@ -1,7 +1,7 @@
 ﻿using System.Windows.Input;
 using AutoPatcher.Properties;
 
-namespace AutoPatcher
+namespace AutoPatcher.Models
 {
     internal abstract class MainWindowModelBase : ModelBase
     {

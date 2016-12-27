@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace AutoPatcher
+namespace AutoPatcher.Views
 {
     /// <summary>
     /// Interaction logic for InputWindow.xaml

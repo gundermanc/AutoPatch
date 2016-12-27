@@ -7,9 +7,9 @@ using AutoPatcher.Commands;
 using AutoPatcher.Config;
 using AutoPatcher.Util;
 
-namespace AutoPatcher
+namespace AutoPatcher.Models
 {
-    internal sealed class AppModel : MainWindowModelBase
+    internal sealed class MainWindowModel : MainWindowModelBase
     {
         #region Private fields
 
@@ -17,7 +17,7 @@ namespace AutoPatcher
 
         #endregion
 
-        public AppModel()
+        public MainWindowModel()
         {
             this.OpenRepoCommand = new OpenRepoCommand(this);
             this.NewRepoCommand = new NewRepoCommand(this);

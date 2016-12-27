@@ -1,6 +1,7 @@
 ﻿using System.Windows;
+using AutoPatcher.Models;
 
-namespace AutoPatcher
+namespace AutoPatcher.Views
 {
     /// <summary>
     /// Interaction logic for PatchEditorWindow.xaml
