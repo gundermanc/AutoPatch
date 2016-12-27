@@ -62,7 +62,7 @@ namespace AutoPatcher.Config
         {
             Debug.Assert(this.Configuration != null);
 
-            using (var file = File.OpenWrite(this.FilePath))
+            using (var file = File.Open(this.FilePath, FileMode.Create))
             {
                 Serializer.WriteObject(file, this.Configuration);
             }
