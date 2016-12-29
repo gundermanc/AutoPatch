@@ -30,7 +30,6 @@ namespace AutoPatcher.Commands
         public void Execute(object parameter)
         {
             this.model.Input1Text = this.dialogs.OpenFileDialog(
-                Application.Current.MainWindow,
                 Resources.StringMainWindowTitle,
                 null);
         }

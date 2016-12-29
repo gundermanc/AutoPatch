@@ -16,7 +16,6 @@ namespace AutoPatcher.Commands
         public override void Execute(object parameter)
         {
             var configPath = model.FileDialogs.NewFileDialog(
-                Application.Current.MainWindow,
                 Resources.StringNewRepoDialogTitle,
                 AppConfigurationLoader.ConfigurationFileFilter,
                 AppConfigurationLoader.ConfigurationFileName);

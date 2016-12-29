@@ -5,7 +5,7 @@ namespace AutoPatcher.Abstractions
 {
     internal sealed class FileDialogs : IFileDialogs
     {
-        public string NewFileDialog(Window owner, string title, string filter, string fileName)
+        public string NewFileDialog(string title, string filter, string fileName)
         {
             var sfd = new SaveFileDialog()
             {
@@ -19,10 +19,10 @@ namespace AutoPatcher.Abstractions
             };
 
             // Why on earth is this Nullable<bool>?? Assume failure if null.
-            return (sfd.ShowDialog(owner) ?? false) ? sfd.FileName : null;
+            return (sfd.ShowDialog(null) ?? false) ? sfd.FileName : null;
         }
 
-        public string OpenFileDialog(Window owner, string title, string filter)
+        public string OpenFileDialog(string title, string filter)
         {
             var ofd = new OpenFileDialog()
             {
@@ -36,7 +36,7 @@ namespace AutoPatcher.Abstractions
             };
 
             // Why on earth is this Nullable<bool>?? Assume failure if null.
-            return (ofd.ShowDialog(owner) ?? false) ? ofd.FileName : null;
+            return (ofd.ShowDialog(null) ?? false) ? ofd.FileName : null;
         }
     }
 }

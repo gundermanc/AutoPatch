@@ -4,8 +4,8 @@ namespace AutoPatcher.Abstractions
 {
     internal interface IFileDialogs
     {
-        string NewFileDialog(Window owner, string title, string filter, string fileName);
+        string NewFileDialog(string title, string filter, string fileName);
 
-        string OpenFileDialog(Window owner, string title, string filter);
+        string OpenFileDialog(string title, string filter);
     }
 }
