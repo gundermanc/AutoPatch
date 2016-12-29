@@ -53,6 +53,10 @@ namespace AutoPatcher.Models
             }
         }
 
+        public string LocalBinRoot { get; protected set; }
+
+        public string RemoteBinRoot { get; protected set; }
+
         #endregion
 
         #region Window Properties and Events

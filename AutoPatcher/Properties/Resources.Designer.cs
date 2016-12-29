@@ -176,6 +176,24 @@ namespace AutoPatcher.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit Binary Directories.
+        /// </summary>
+        public static string StringEditBinaryDirectories {
+            get {
+                return ResourceManager.GetString("StringEditBinaryDirectories", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AutoPatcher Edit Binary Directories.
+        /// </summary>
+        public static string StringEditBinaryDirectoriesDialogTitle {
+            get {
+                return ResourceManager.GetString("StringEditBinaryDirectoriesDialogTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit.
         /// </summary>
         public static string StringEditContent {
@@ -246,6 +264,15 @@ namespace AutoPatcher.Properties {
         public static string StringInformationDialogTitle {
             get {
                 return ResourceManager.GetString("StringInformationDialogTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Local Binaries Directory.
+        /// </summary>
+        public static string StringLocalBinariesDirectoryContent {
+            get {
+                return ResourceManager.GetString("StringLocalBinariesDirectoryContent", resourceCulture);
             }
         }
         
@@ -345,6 +372,15 @@ namespace AutoPatcher.Properties {
         public static string StringQuestionDialogTitle {
             get {
                 return ResourceManager.GetString("StringQuestionDialogTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remote Binaries Directory.
+        /// </summary>
+        public static string StringRemoteBinariesDirectoryContent {
+            get {
+                return ResourceManager.GetString("StringRemoteBinariesDirectoryContent", resourceCulture);
             }
         }
         

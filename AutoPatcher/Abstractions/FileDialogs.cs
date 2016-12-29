@@ -1,5 +1,4 @@
-﻿using System.Windows;
-using Microsoft.Win32;
+﻿using Microsoft.Win32;
 
 namespace AutoPatcher.Abstractions
 {
@@ -37,6 +36,20 @@ namespace AutoPatcher.Abstractions
 
             // Why on earth is this Nullable<bool>?? Assume failure if null.
             return (ofd.ShowDialog(null) ?? false) ? ofd.FileName : null;
+        }
+
+        public string OpenFolderDialog()
+        {
+            var ofd = new System.Windows.Forms.FolderBrowserDialog();
+
+            if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                return ofd.SelectedPath;
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

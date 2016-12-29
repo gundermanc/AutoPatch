@@ -29,9 +29,16 @@ namespace AutoPatcher.Commands
 
         public void Execute(object parameter)
         {
-            this.model.Input0Text = this.dialogs.OpenFileDialog(
-                Resources.StringMainWindowTitle,
-                null);
+            if (this.model.OpenFolderInsteadOfFile)
+            {
+                this.model.Input0Text = this.dialogs.OpenFolderDialog() ?? this.model.Input0Text;
+            }
+            else
+            {
+                this.model.Input0Text = this.dialogs.OpenFileDialog(
+                    Resources.StringMainWindowTitle,
+                    null) ?? this.model.Input0Text;
+            }
         }
     }
 }

@@ -28,6 +28,7 @@ namespace AutoPatcher.Models
             this.AboutCommand = new AboutCommand(this.ErrorDialogs);
             this.EditPatchSchemeCommand = new EditPatchSchemeCommand(this.ErrorDialogs, this);
             this.PatchSelectedCommand = new PatchSelectedCommand(this.ErrorDialogs, this);
+            this.EditBinaryDirectoriesCommand = new EditBinaryDirectoriesCommand(this.ErrorDialogs, this.FileDialogs, this);
         }
 
         #region App Submodels
@@ -57,6 +58,8 @@ namespace AutoPatcher.Models
         public ICommand EditPatchSchemeCommand { get; }
 
         public ICommand PatchSelectedCommand { get; }
+
+        public ICommand EditBinaryDirectoriesCommand { get; }
 
         #endregion
 
@@ -160,6 +163,8 @@ namespace AutoPatcher.Models
                     if (isLoaded)
                     {
                         this.BuildArtifacts = new ObservableCollection<BuildArtifactData>(newConfig.Configuration.BuildArtifacts);
+                        this.LocalBinRoot = newConfig.Configuration.LocalBinRoot;
+                        this.RemoteBinRoot = newConfig.Configuration.RemoteBinRoot;
                     }
 
                     return newConfig;
@@ -200,6 +205,8 @@ namespace AutoPatcher.Models
                 this.IsModifyingLoadedAppConfiguration = false;
                 this.RepoConfigPath = null;
                 this.BuildArtifacts = null;
+                this.LocalBinRoot = null;
+                this.RemoteBinRoot = null;
             });
         }
     }

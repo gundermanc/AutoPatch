@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Windows.Input;
+using AutoPatcher.Abstractions;
 using AutoPatcher.Config;
 using AutoPatcher.Models;
 using AutoPatcher.Properties;
 using AutoPatcher.Views;
-using AutoPatcher.Abstractions;
 
 namespace AutoPatcher.Commands
 {
@@ -38,7 +38,7 @@ namespace AutoPatcher.Commands
                 Input0Text = this.model.SelectedSourceItem.LocalPath
             };
 
-            var result = new InputWindow()
+            var result = new PathInputWindow()
             {
                 DataContext = model
             }.ShowDialog();

@@ -11,11 +11,7 @@ namespace AutoPatcher.Models
         private string input0Text;
         private string input1Text;
 
-        public PathInputModel(IFileDialogs dialogs, string title, string input0Label) : this(dialogs, title, input0Label, null)
-        {
-        }
-
-        public PathInputModel(IFileDialogs dialogs, string title, string input0Label, string input1Label)
+        public PathInputModel(IFileDialogs dialogs, string title, string input0Label, string input1Label = null, bool openFolderInsteadOfFile = false)
         {
             Debug.Assert(dialogs != null);
 
@@ -25,6 +21,7 @@ namespace AutoPatcher.Models
             this.Input0Label = input0Label;
             this.Input1Label = input1Label;
             this.IsInput1Enabled = input1Label != null;
+            this.OpenFolderInsteadOfFile = openFolderInsteadOfFile;
 
             this.Input0PathCommand = new Input0PathCommand(this.dialogs, this);
             this.Input1PathCommand = new Input1PathCommand(this.dialogs, this);
@@ -71,6 +68,8 @@ namespace AutoPatcher.Models
                 }
             }
         }
+
+        public bool OpenFolderInsteadOfFile { get; }
 
         public ICommand Input0PathCommand { get; }
 

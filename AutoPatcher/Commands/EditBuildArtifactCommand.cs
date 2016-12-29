@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Windows.Input;
+using AutoPatcher.Abstractions;
 using AutoPatcher.Config;
 using AutoPatcher.Models;
 using AutoPatcher.Properties;
 using AutoPatcher.Views;
-using AutoPatcher.Abstractions;
 
 namespace AutoPatcher.Commands
 {
@@ -39,7 +39,7 @@ namespace AutoPatcher.Commands
                 Input1Text = this.model.SelectedBuildArtifact.RemotePath
             };
 
-            var result = new InputWindow()
+            var result = new PathInputWindow()
             {
                 DataContext = model
             }.ShowDialog();

@@ -34,16 +34,21 @@ namespace AutoPatcher.Commands
 
                 try
                 {
-                    string newOldFileName = file.RemotePath;
+                    string remoteFilePath = Path.Combine(this.model.RemoteBinRoot, file.RemotePath);
+                    string localFilePath = Path.Combine(this.model.LocalBinRoot, file.LocalPath);
 
-                    if (File.Exists(newOldFileName))
+                    if (File.Exists(remoteFilePath))
                     {
-                        newOldFileName = newOldFileName + ".old.ticks-" + DateTime.Now.Ticks;
-                        File.Move(file.RemotePath, newOldFileName);
-                        File.SetAttributes(newOldFileName, FileAttributes.Hidden);
+                        string revisionRemoteFileName = remoteFilePath + ".old.ticks-" + DateTime.Now.Ticks;
+                        File.Move(remoteFilePath, revisionRemoteFileName);
+                        File.SetAttributes(revisionRemoteFileName, FileAttributes.Hidden);
                     }
 
-                    File.Copy(file.LocalPath, file.RemotePath);
+                    File.Copy(localFilePath, remoteFilePath);
+                }
+                catch (ArgumentException ex)
+                {
+                    ioException = ex;
                 }
                 catch (IOException ex)
                 {

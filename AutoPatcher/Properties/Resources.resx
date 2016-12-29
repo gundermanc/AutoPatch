@@ -160,6 +160,12 @@ Please correct the configuration error, or delete the configuration file and res
 {1}
     </value>
   </data>
+  <data name="StringEditBinaryDirectoriesDialogTitle" xml:space="preserve">
+    <value>AutoPatcher Edit Binary Directories</value>
+  </data>
+  <data name="StringEditBinaryDirectories" xml:space="preserve">
+    <value>Edit Binary Directories</value>
+  </data>
   <data name="StringEditContent" xml:space="preserve">
     <value>Edit</value>
   </data>
@@ -249,5 +255,11 @@ Please correct the configuration error, or delete the configuration file and res
   </data>
   <data name="StringWarningDialogTitle" xml:space="preserve">
     <value>AutoPatcher Warning</value>
+  </data>
+  <data name="StringLocalBinariesDirectoryContent" xml:space="preserve">
+    <value>Local Binaries Directory</value>
+  </data>
+  <data name="StringRemoteBinariesDirectoryContent" xml:space="preserve">
+    <value>Remote Binaries Directory</value>
   </data>
 </root>

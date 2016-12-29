@@ -36,7 +36,7 @@ namespace AutoPatcher.Commands
                 Resources.StringLocalPathContent,
                 Resources.StringRemotePathContent);
 
-            var result = new InputWindow()
+            var result = new PathInputWindow()
             {
                 DataContext = model
             }.ShowDialog();

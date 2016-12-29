@@ -9,6 +9,16 @@ namespace AutoPatcher.Config
         private List<BuildArtifactData> buildArtifactData;
 
         [DataMember]
+        public string LocalBinRoot { get; set; }
+
+        [DataMember]
+        public string RemoteBinRoot { get; set; }
+
+        [DataMember]
+
+        public string SourceItemsRoot { get; set; }
+
+        [DataMember]
         public List<BuildArtifactData> BuildArtifacts
         {
             get
