@@ -211,6 +211,9 @@ Please correct the configuration error, or delete the configuration file and res
   <data name="StringPatchSelectedContent" xml:space="preserve">
     <value>Patch Selected Files</value>
   </data>
+  <data name="StringPathButtonContent" xml:space="preserve">
+    <value>. . .</value>
+  </data>
   <data name="StringQuestionDialogTitle" xml:space="preserve">
     <value>AutoPatcher Prompt</value>
   </data>

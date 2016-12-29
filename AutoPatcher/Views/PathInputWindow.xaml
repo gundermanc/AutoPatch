@@ -43,9 +43,27 @@
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" Grid.Column="0" Margin="10" Text="{Binding Input0Label}"/>
-            <TextBox Name="Input0TextBox" Grid.Row="0" Grid.Column="1" Margin="10" Text="{Binding Input0Text, Mode=TwoWay}"/>
+            <Grid Grid.Row="0" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBox Name="Input0TextBox" Grid.Column="0" Margin="10" Text="{Binding Input0Text, Mode=TwoWay}"/>
+                <Button Content="{x:Static p:Resources.StringPathButtonContent}"
+                        Grid.Column="1"
+                        Margin="0.0,10.0,10.0,10.0"
+                        Command="{Binding Input0PathCommand}"/>
+            </Grid>
+
             <TextBlock Grid.Row="1" Grid.Column="0" Margin="10" Text="{Binding Input1Label}"/>
-            <TextBox Grid.Row="1" Grid.Column="1" Margin="10" Text="{Binding Input1Text, Mode=TwoWay}" IsEnabled="{Binding IsInput1Enabled}"/>
+            <Grid Grid.Row="1" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBox Grid.Column="0" Margin="10" Text="{Binding Input1Text, Mode=TwoWay}" IsEnabled="{Binding IsInput1Enabled}"/>
+                <Button Content="{x:Static p:Resources.StringPathButtonContent}" Grid.Column="1" Margin="0.0,10.0,10.0,10.0" Command="{Binding Input1PathCommand}"/>
+            </Grid>
         </Grid>
     </DockPanel>
 </Window>

@@ -322,6 +322,15 @@ namespace AutoPatcher.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to . . ..
+        /// </summary>
+        public static string StringPathButtonContent {
+            get {
+                return ResourceManager.GetString("StringPathButtonContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to AutoPatcher Prompt.
         /// </summary>
         public static string StringQuestionDialogTitle {

@@ -56,7 +56,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Views\InputWindow.xaml">
+    <Page Include="Views\PathInputWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -71,6 +71,8 @@
     </Compile>
     <Compile Include="Commands\CloseRepoCommand.cs" />
     <Compile Include="Commands\EditPatchSchemeCommand.cs" />
+    <Compile Include="Commands\Input1PathCommand.cs" />
+    <Compile Include="Commands\Input0PathCommand.cs" />
     <Compile Include="Commands\PatchSelectedCommand.cs" />
     <Compile Include="Config\AppConfiguration.cs" />
     <Compile Include="Config\AppConfigurationLoader.cs" />
@@ -83,9 +85,9 @@
     <Compile Include="Abstractions\IFileDialogs.cs" />
     <Compile Include="Config\SourceItemData.cs" />
     <Compile Include="Models\ModelBase.cs" />
-    <Compile Include="Models\InputModel.cs" />
-    <Compile Include="Views\InputWindow.xaml.cs">
-      <DependentUpon>InputWindow.xaml</DependentUpon>
+    <Compile Include="Models\PathInputModel.cs" />
+    <Compile Include="Views\PathInputWindow.xaml.cs">
+      <DependentUpon>PathInputWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\PatchEditorModel.cs" />
     <Compile Include="Views\PatchEditorWindow.xaml.cs">

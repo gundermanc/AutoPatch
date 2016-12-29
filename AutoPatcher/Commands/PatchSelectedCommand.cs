@@ -36,12 +36,13 @@ namespace AutoPatcher.Commands
                 {
                     string newOldFileName = file.RemotePath;
 
-                    while (File.Exists(newOldFileName))
+                    if (File.Exists(newOldFileName))
                     {
-                        newOldFileName = newOldFileName + ".prev";
+                        newOldFileName = newOldFileName + ".old.ticks-" + DateTime.Now.Ticks;
+                        File.Move(file.RemotePath, newOldFileName);
+                        File.SetAttributes(newOldFileName, FileAttributes.Hidden);
                     }
 
-                    File.Move(file.RemotePath, newOldFileName);
                     File.Copy(file.LocalPath, file.RemotePath);
                 }
                 catch (IOException ex)

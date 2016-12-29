@@ -34,6 +34,7 @@ namespace AutoPatcher.Commands
             {
                 var model = new PatchEditorModel(
                     this.model.ErrorDialogs,
+                    this.model.FileDialogs,
                     config.Configuration.BuildArtifacts.Clone());
 
                 if (new PatchEditorWindow() { DataContext = model }.ShowDialog() ?? false)

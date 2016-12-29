@@ -5,32 +5,34 @@ using System.Windows.Input;
 using AutoPatcher.Abstractions;
 using AutoPatcher.Config;
 using AutoPatcher.Commands;
-using AutoPatcher.Models;
 
 namespace AutoPatcher.Models
 {
     internal sealed class PatchEditorModel : ModelBase
     {
-        private readonly IErrorDialogs dialogs;
+        private readonly IErrorDialogs errDialogs;
+        private readonly IFileDialogs dialogs;
         private ObservableCollection<SourceItemData> sourceItems;
         private BuildArtifactData previouslySelectedBuildArtifact;
         private BuildArtifactData selectedBuildArtifact;
         private SourceItemData selectedSourceItem;
 
         public PatchEditorModel(
-            IErrorDialogs dialogs,
+            IErrorDialogs errDialogs,
+            IFileDialogs dialogs,
             IEnumerable<BuildArtifactData> buildArtifacts)
         {
+            this.errDialogs = errDialogs;
             this.dialogs = dialogs;
             this.BuildArtifacts = new ObservableCollection<BuildArtifactData>(buildArtifacts);
 
-            this.AddBuildArtifactCommand = new AddBuildArtifactCommand(this);
-            this.EditBuildArtifactCommand = new EditBuildArtifactCommand(this);
-            this.RemoveBuildArtifactCommand = new RemoveBuildArtifactCommand(this.dialogs, this);
+            this.AddBuildArtifactCommand = new AddBuildArtifactCommand(this.dialogs, this);
+            this.EditBuildArtifactCommand = new EditBuildArtifactCommand(this.dialogs, this);
+            this.RemoveBuildArtifactCommand = new RemoveBuildArtifactCommand(this.errDialogs, this);
 
-            this.AddSourceItemCommand = new AddSourceItemCommand(this);
-            this.EditSourceItemCommand = new EditSourceItemCommand(this);
-            this.RemoveSourceItemCommand = new RemoveSourceItemCommand(this.dialogs, this);
+            this.AddSourceItemCommand = new AddSourceItemCommand(this.dialogs, this);
+            this.EditSourceItemCommand = new EditSourceItemCommand(this.dialogs, this);
+            this.RemoveSourceItemCommand = new RemoveSourceItemCommand(this.errDialogs, this);
 
             this.PropertyChanged += PatchEditorModel_PropertyChanged;
         }

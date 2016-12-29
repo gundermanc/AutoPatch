@@ -5,15 +5,18 @@ using AutoPatcher.Config;
 using AutoPatcher.Models;
 using AutoPatcher.Properties;
 using AutoPatcher.Views;
+using AutoPatcher.Abstractions;
 
 namespace AutoPatcher.Commands
 {
     internal sealed class AddSourceItemCommand : ICommand
     {
-        private PatchEditorModel model;
+        private readonly IFileDialogs dialogs;
+        private readonly PatchEditorModel model;
 
-        public AddSourceItemCommand(PatchEditorModel model)
+        public AddSourceItemCommand(IFileDialogs dialogs, PatchEditorModel model)
         {
+            this.dialogs = dialogs;
             this.model = model;
             this.model.PropertyChanged += Model_PropertyChanged;
         }
@@ -27,7 +30,8 @@ namespace AutoPatcher.Commands
 
         public void Execute(object parameter)
         {
-            var model = new InputModel(
+            var model = new PathInputModel(
+                this.dialogs,
                 Resources.StringAddBuildArtifactTitle,
                 Resources.StringLocalPathContent);
 
