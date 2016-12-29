@@ -132,6 +132,9 @@
   <data name="StringAddSourceItemTitle" xml:space="preserve">
     <value>AutoPatcher Source Item</value>
   </data>
+  <data name="StringBuildArtifactContent" xml:space="preserve">
+    <value>Build Artifact</value>
+  </data>
   <data name="StringBuildArtifactsContent" xml:space="preserve">
     <value>Build Artifacts</value>
   </data>

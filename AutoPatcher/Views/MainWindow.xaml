@@ -53,19 +53,20 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-            <ListBox Grid.Row="0"
-                     Name="BuildArtifactsListBox"
-                     DockPanel.Dock="Left"
-                     ItemsSource="{Binding BuildArtifacts}"
-                     Margin="10"
-                     SelectionChanged="BuildArtifactsListBox_SelectionChanged"
+            <DataGrid Grid.Row="0"
+                      Name="BuildArtifactsListBox"
+                      AutoGenerateColumns="False"
+                      DockPanel.Dock="Left"
+                      IsReadOnly="True"
+                      ItemsSource="{Binding BuildArtifacts}"
+                      Margin="10"
+                      SelectionChanged="BuildArtifactsListBox_SelectionChanged"
+                      SelectionUnit="FullRow"
                  SelectionMode="Extended">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding LocalPath}" ToolTip="{Binding RemotePath}" />
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="{x:Static p:Resources.StringBuildArtifactContent}" Binding="{Binding LocalPath}" />
+                </DataGrid.Columns>
+            </DataGrid>
             <Button Grid.Row="1"
                     HorizontalAlignment="Left"
                     Margin="10.0,0.0,10.0,10.0"

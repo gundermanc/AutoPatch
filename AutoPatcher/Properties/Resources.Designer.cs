@@ -106,6 +106,15 @@ namespace AutoPatcher.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Build Artifact.
+        /// </summary>
+        public static string StringBuildArtifactContent {
+            get {
+                return ResourceManager.GetString("StringBuildArtifactContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Build Artifacts.
         /// </summary>
         public static string StringBuildArtifactsContent {
