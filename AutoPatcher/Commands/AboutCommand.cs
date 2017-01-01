@@ -27,7 +27,10 @@ namespace AutoPatcher.Commands
         public void Execute(object parameter)
         {
             // TODO: better dialog and version info.
-            this.abstraction.ErrorDialogs.InformationDialog(Resources.StringAboutMessage);
+            this.abstraction.ErrorDialogs.InformationDialog(
+                string.Format(
+                    Resources.StringAboutMessage,
+                    typeof(AboutCommand).Assembly.GetName().Version));
         }
     }
 }

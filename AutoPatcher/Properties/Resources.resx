@@ -121,7 +121,7 @@
     <value>About</value>
   </data>
   <data name="StringAboutMessage" xml:space="preserve">
-    <value>AutoPatcher, by Christian Gunderman</value>
+    <value>AutoPatcher {0}, by Christian Gunderman</value>
   </data>
   <data name="StringAddBuildArtifactTitle" xml:space="preserve">
     <value>AutoPatcher Build Artifact</value>

@@ -70,7 +70,7 @@ namespace AutoPatcher.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AutoPatcher, by Christian Gunderman.
+        ///   Looks up a localized string similar to AutoPatcher {0}, by Christian Gunderman.
         /// </summary>
         public static string StringAboutMessage {
             get {
