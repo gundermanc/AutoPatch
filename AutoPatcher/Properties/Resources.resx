@@ -150,7 +150,7 @@
   <data name="StringEditBinaryDirectoriesDialogTitle" xml:space="preserve">
     <value>AutoPatcher Edit Binary Directories</value>
   </data>
-  <data name="StringEditBinaryDirectories" xml:space="preserve">
+  <data name="StringEditBinaryDirectoriesContent" xml:space="preserve">
     <value>Edit Binary Directories</value>
   </data>
   <data name="StringEditContent" xml:space="preserve">
@@ -248,6 +248,15 @@
     <value>Revert Selected Files</value>
   </data>
   <data name="StringPathInputPathMustBeRelative" xml:space="preserve">
-    <value>Invalid path, path must be relative to repo root.</value>
+    <value>Invalid path, path must be relative to local binary, remote binary, or source root, respectively.</value>
+  </data>
+  <data name="StringLocalSourcesDirectoryContent" xml:space="preserve">
+    <value>Local Sources Directory</value>
+  </data>
+  <data name="StringEditSourcesDirectoryDialogTitle" xml:space="preserve">
+    <value>AutoPatcher Edit Sources Directory</value>
+  </data>
+  <data name="StringEditSourceDirectoryContent" xml:space="preserve">
+    <value>Edit Source Directory</value>
   </data>
 </root>

@@ -34,7 +34,7 @@ namespace AutoPatcher.Commands
                 this.abstraction,
                 Resources.StringAddBuildArtifactTitle,
                 Resources.StringLocalPathContent,
-                input0RelativePathPrefix: null); // TODO: update to initially open to source directory root.
+                input0RelativePathPrefix: this.model.State.Repository.SourceItemsRoot);
 
             var result = new PathInputWindow() { DataContext = model }.ShowDialog();
 

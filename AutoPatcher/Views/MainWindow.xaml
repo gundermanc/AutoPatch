@@ -25,7 +25,8 @@
                 <MenuItem Header="{x:Static p:Resources.StringExitContent}" Command="{Binding ExitCommand}"/>
             </MenuItem>
             <MenuItem Header="{x:Static p:Resources.StringConfigurationContent}">
-                <MenuItem Header="{x:Static p:Resources.StringEditBinaryDirectories}" Command="{Binding EditBinaryDirectoriesCommand}"/>
+                <MenuItem Header="{x:Static p:Resources.StringEditBinaryDirectoriesContent}" Command="{Binding EditBinaryDirectoriesCommand}"/>
+                <MenuItem Header="{x:Static p:Resources.StringEditSourceDirectoryContent}" Command="{Binding EditSourceDirectoryCommand}"/>
                 <MenuItem Header="{x:Static p:Resources.StringEditPatchSchemeContent}" Command="{Binding EditPatchSchemeCommand}"/>
             </MenuItem>
             <MenuItem Header="{x:Static p:Resources.StringHelpContent}">

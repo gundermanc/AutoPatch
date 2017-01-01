@@ -32,6 +32,7 @@ namespace AutoPatcher.Models
             this.PatchSelectedCommand = new PatchSelectedCommand(this.Abstraction, this);
             this.RevertSelectedCommand = new RevertSelectedCommand(this.Abstraction, this);
             this.EditBinaryDirectoriesCommand = new EditBinaryDirectoriesCommand(this.Abstraction, this);
+            this.EditSourceDirectoryCommand = new EditSourceDirectoryCommand(this.Abstraction, this);
 
             this.State = new State(
                 this.Abstraction.ErrorDialogs,
@@ -66,6 +67,8 @@ namespace AutoPatcher.Models
         public ICommand RevertSelectedCommand { get; }
 
         public ICommand EditBinaryDirectoriesCommand { get; }
+
+        public ICommand EditSourceDirectoryCommand { get; }
 
         #endregion
 

@@ -153,9 +153,9 @@ namespace AutoPatcher.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Edit Binary Directories.
         /// </summary>
-        public static string StringEditBinaryDirectories {
+        public static string StringEditBinaryDirectoriesContent {
             get {
-                return ResourceManager.GetString("StringEditBinaryDirectories", resourceCulture);
+                return ResourceManager.GetString("StringEditBinaryDirectoriesContent", resourceCulture);
             }
         }
         
@@ -183,6 +183,24 @@ namespace AutoPatcher.Properties {
         public static string StringEditPatchSchemeContent {
             get {
                 return ResourceManager.GetString("StringEditPatchSchemeContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Source Directory.
+        /// </summary>
+        public static string StringEditSourceDirectoryContent {
+            get {
+                return ResourceManager.GetString("StringEditSourceDirectoryContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AutoPatcher Edit Sources Directory.
+        /// </summary>
+        public static string StringEditSourcesDirectoryDialogTitle {
+            get {
+                return ResourceManager.GetString("StringEditSourcesDirectoryDialogTitle", resourceCulture);
             }
         }
         
@@ -246,6 +264,15 @@ namespace AutoPatcher.Properties {
         public static string StringLocalPathContent {
             get {
                 return ResourceManager.GetString("StringLocalPathContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Local Sources Directory.
+        /// </summary>
+        public static string StringLocalSourcesDirectoryContent {
+            get {
+                return ResourceManager.GetString("StringLocalSourcesDirectoryContent", resourceCulture);
             }
         }
         
@@ -331,7 +358,7 @@ namespace AutoPatcher.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Invalid path, path must be relative to repo root..
+        ///   Looks up a localized string similar to Invalid path, path must be relative to local binary, remote binary, or source root, respectively..
         /// </summary>
         public static string StringPathInputPathMustBeRelative {
             get {
