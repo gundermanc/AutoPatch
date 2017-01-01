@@ -1,7 +1,4 @@
-﻿using System.IO;
-using System.Threading.Tasks;
-using System.Windows;
-using AutoPatcher.Config;
+﻿using AutoPatcher.Engine.Repository;
 using AutoPatcher.Models;
 using AutoPatcher.Properties;
 
@@ -15,23 +12,14 @@ namespace AutoPatcher.Commands
 
         public override void Execute(object parameter)
         {
-            var configPath = model.FileDialogs.NewFileDialog(
+            var configPath = model.Abstraction.FileDialogs.NewFileDialog(
                 Resources.StringNewRepoDialogTitle,
-                AppConfigurationLoader.ConfigurationFileFilter,
-                AppConfigurationLoader.ConfigurationFileName);
+                Repository.ConfigurationFileFilter,
+                null);
 
             if (!string.IsNullOrWhiteSpace(configPath))
             {
-                if (Path.GetFileName(configPath) != AppConfigurationLoader.ConfigurationFileName)
-                {
-                    this.model.ErrorDialogs.WarningDialog(
-                        string.Format(
-                            Resources.StringRepoNewInvalidFileName,
-                            AppConfigurationLoader.ConfigurationFileName));
-                    return;
-                }
-
-                Task.Run(() => this.model.CreateAndLoadAppConfigurationAsync(configPath));
+                this.model.CreateAndLoadRepository(configPath);
             }
         }
     }

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Windows;
 using System.Windows.Input;
 using AutoPatcher.Abstractions;
 using AutoPatcher.Models;
@@ -9,12 +8,12 @@ namespace AutoPatcher.Commands
 {
     internal sealed class Input1PathCommand : ICommand
     {
-        private readonly IFileDialogs dialogs;
+        private readonly IAbstraction abstraction;
         private readonly PathInputModel model;
 
-        public Input1PathCommand(IFileDialogs dialogs, PathInputModel model)
+        public Input1PathCommand(IAbstraction abstraction, PathInputModel model)
         {
-            this.dialogs = dialogs;
+            this.abstraction = abstraction;
             this.model = model;
         }
 
@@ -31,11 +30,11 @@ namespace AutoPatcher.Commands
         {
             if (this.model.OpenFolderInsteadOfFile)
             {
-                this.model.Input1Text = this.dialogs.OpenFolderDialog() ?? this.model.Input1Text;
+                this.model.Input1Text = this.abstraction.FileDialogs.OpenFolderDialog() ?? this.model.Input1Text;
             }
             else
             {
-                this.model.Input1Text = this.dialogs.OpenFileDialog(
+                this.model.Input1Text = this.abstraction.FileDialogs.OpenFileDialog(
                     Resources.StringMainWindowTitle,
                     null) ?? this.model.Input1Text;
             }

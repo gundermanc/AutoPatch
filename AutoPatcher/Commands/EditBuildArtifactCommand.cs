@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 using AutoPatcher.Abstractions;
-using AutoPatcher.Config;
+using AutoPatcher.Engine.Repository;
 using AutoPatcher.Models;
 using AutoPatcher.Properties;
 using AutoPatcher.Views;
@@ -10,12 +10,12 @@ namespace AutoPatcher.Commands
 {
     internal sealed class EditBuildArtifactCommand : ICommand
     {
-        private readonly IFileDialogs dialogs;
+        private readonly IAbstraction abstraction;
         private readonly PatchEditorModel model;
 
-        public EditBuildArtifactCommand(IFileDialogs dialogs, PatchEditorModel model)
+        public EditBuildArtifactCommand(IAbstraction abstraction, PatchEditorModel model)
         {
-            this.dialogs = dialogs;
+            this.abstraction = abstraction;
             this.model = model;
             this.model.PropertyChanged += Model_PropertyChanged;
         }
@@ -30,7 +30,7 @@ namespace AutoPatcher.Commands
         public void Execute(object parameter)
         {
             var model = new PathInputModel(
-                this.dialogs,
+                this.abstraction,
                 Resources.StringAddBuildArtifactTitle,
                 Resources.StringLocalPathContent,
                 Resources.StringRemotePathContent)
@@ -48,13 +48,11 @@ namespace AutoPatcher.Commands
             {
                 int index = this.model.BuildArtifacts.IndexOf(this.model.SelectedBuildArtifact);
 
-                var newItem = new BuildArtifactData()
-                {
-                    LocalPath = model.Input0Text,
-                    RemotePath = model.Input1Text
-                };
+                var newItem = new BuildArtifact(
+                    model.Input0Text,
+                    model.Input1Text,
+                    this.model.BuildArtifacts[index].SourceItems);
 
-                newItem.SourceItems.AddRange(this.model.BuildArtifacts[index].SourceItems);
                 this.model.BuildArtifacts[index] = newItem;
             }
         }

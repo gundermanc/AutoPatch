@@ -2,22 +2,21 @@
 using System.ComponentModel;
 using System.Windows.Input;
 using AutoPatcher.Abstractions;
-using AutoPatcher.Config;
+using AutoPatcher.Engine.Repository;
 using AutoPatcher.Models;
 using AutoPatcher.Properties;
 using AutoPatcher.Views;
-
 
 namespace AutoPatcher.Commands
 {
     internal sealed class AddSourceItemCommand : ICommand
     {
-        private readonly IFileDialogs dialogs;
+        private readonly IAbstraction abstraction;
         private readonly PatchEditorModel model;
 
-        public AddSourceItemCommand(IFileDialogs dialogs, PatchEditorModel model)
+        public AddSourceItemCommand(IAbstraction abstraction, PatchEditorModel model)
         {
-            this.dialogs = dialogs;
+            this.abstraction = abstraction;
             this.model = model;
             this.model.PropertyChanged += Model_PropertyChanged;
         }
@@ -32,7 +31,7 @@ namespace AutoPatcher.Commands
         public void Execute(object parameter)
         {
             var model = new PathInputModel(
-                this.dialogs,
+                this.abstraction,
                 Resources.StringAddBuildArtifactTitle,
                 Resources.StringLocalPathContent);
 
@@ -40,7 +39,7 @@ namespace AutoPatcher.Commands
 
             if (result ?? false)
             {
-                this.model.SourceItems.Add(new SourceItemData() { LocalPath = model.Input0Text });
+                this.model.SourceItems.Add(new SourceItem(model.Input0Text));
             }
         }
 

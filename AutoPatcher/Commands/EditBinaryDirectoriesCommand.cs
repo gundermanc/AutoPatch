@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using AutoPatcher.Abstractions;
-using AutoPatcher.Config;
 using AutoPatcher.Models;
 using AutoPatcher.Properties;
 using AutoPatcher.Views;
@@ -11,16 +9,14 @@ namespace AutoPatcher.Commands
 {
     internal sealed class EditBinaryDirectoriesCommand : ICommand
     {
-        private readonly IErrorDialogs errDialogs;
-        private readonly IFileDialogs dialogs;
+        private readonly IAbstraction abstraction;
         private readonly MainWindowModel model;
 
         public EditBinaryDirectoriesCommand(
-            IErrorDialogs errDialogs,
-            IFileDialogs dialogs,
+            IAbstraction abstraction,
             MainWindowModel model)
         {
-            this.dialogs = dialogs;
+            this.abstraction = abstraction;
             this.model = model;
             this.model.PropertyChanged += Model_PropertyChanged;
         }
@@ -36,29 +32,24 @@ namespace AutoPatcher.Commands
 
         public void Execute(object parameter)
         {
-            this.model.AppConfig.AccessReference((config) =>
+            var model = new PathInputModel(
+                this.abstraction,
+                Resources.StringEditBinaryDirectoriesDialogTitle,
+                Resources.StringLocalBinariesDirectoryContent,
+                Resources.StringRemoteBinariesDirectoryContent,
+                openFolderInsteadOfFile: true)
             {
-                var model = new PathInputModel(
-                    this.dialogs,
-                    Resources.StringEditBinaryDirectoriesDialogTitle,
-                    Resources.StringLocalBinariesDirectoryContent,
-                    Resources.StringRemoteBinariesDirectoryContent,
-                    openFolderInsteadOfFile: true)
-                {
-                    Input0Text = config.Configuration.LocalBinRoot,
-                    Input1Text = config.Configuration.RemoteBinRoot
-                };
+                Input0Text = this.model.State.Repository.LocalBinRoot,
+                Input1Text = this.model.State.CurrentRemoteBinRoot
+            };
 
-                if (new PathInputWindow() { DataContext = model }.ShowDialog() ?? false)
-                {
-                    config.Configuration.LocalBinRoot = model.Input0Text;
-                    config.Configuration.RemoteBinRoot = model.Input1Text;
+            if (new PathInputWindow() { DataContext = model }.ShowDialog() ?? false)
+            {
+                this.model.State.Repository.LocalBinRoot = model.Input0Text;
+                this.model.State.CurrentRemoteBinRoot = model.Input1Text;
 
-                    Task.Run(() => AppConfigurationLoader.WriteAppConfiguration(this.errDialogs, config));
-                }
-
-                return config;
-            });
+                this.model.SaveRepository();
+            }
         }
 
         private void Model_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)

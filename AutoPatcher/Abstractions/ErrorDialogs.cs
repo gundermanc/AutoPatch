@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using AutoPatcher.Engine.Abstractions;
 using AutoPatcher.Properties;
 
 namespace AutoPatcher.Abstractions

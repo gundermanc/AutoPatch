@@ -151,31 +151,6 @@ namespace AutoPatcher.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unable to initialize application from {0} due to error:
-        ///    
-        ///{1}
-        ///    
-        ///Please correct the configuration error, or delete the configuration file and restart to generate a new template..
-        /// </summary>
-        public static string StringConfigurationLoadFailure {
-            get {
-                return ResourceManager.GetString("StringConfigurationLoadFailure", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Unable to write configuration to {0} due to error:
-        ///
-        ///{1}
-        ///    .
-        /// </summary>
-        public static string StringConfigurationWriteFailure {
-            get {
-                return ResourceManager.GetString("StringConfigurationWriteFailure", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Edit Binary Directories.
         /// </summary>
         public static string StringEditBinaryDirectories {

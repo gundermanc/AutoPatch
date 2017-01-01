@@ -117,136 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="StringAboutContent" xml:space="preserve">
-    <value>About</value>
-  </data>
-  <data name="StringAboutMessage" xml:space="preserve">
-    <value>AutoPatcher, by Christian Gunderman</value>
-  </data>
-  <data name="StringAddBuildArtifactTitle" xml:space="preserve">
-    <value>AutoPatcher Build Artifact</value>
-  </data>
-  <data name="StringAddContent" xml:space="preserve">
-    <value>Add</value>
-  </data>
-  <data name="StringAddSourceItemTitle" xml:space="preserve">
-    <value>AutoPatcher Source Item</value>
-  </data>
-  <data name="StringBuildArtifactContent" xml:space="preserve">
-    <value>Build Artifact</value>
-  </data>
-  <data name="StringBuildArtifactsContent" xml:space="preserve">
-    <value>Build Artifacts</value>
-  </data>
-  <data name="StringCancelContent" xml:space="preserve">
-    <value>Cancel</value>
-  </data>
-  <data name="StringCloseRepoContent" xml:space="preserve">
-    <value>Close Repo</value>
-  </data>
-  <data name="StringConfigurationContent" xml:space="preserve">
-    <value>Configuration</value>
-  </data>
-  <data name="StringEditBinaryDirectoriesDialogTitle" xml:space="preserve">
-    <value>AutoPatcher Edit Binary Directories</value>
-  </data>
-  <data name="StringEditBinaryDirectories" xml:space="preserve">
-    <value>Edit Binary Directories</value>
-  </data>
-  <data name="StringEditContent" xml:space="preserve">
-    <value>Edit</value>
-  </data>
-  <data name="StringEditPatchSchemeContent" xml:space="preserve">
-    <value>Edit Patch Scheme</value>
-  </data>
-  <data name="StringErrorDialogTitle" xml:space="preserve">
-    <value>AutoPatcher Error</value>
-  </data>
-  <data name="StringExitContent" xml:space="preserve">
-    <value>Exit</value>
-  </data>
-  <data name="StringFileContent" xml:space="preserve">
-    <value>File</value>
-  </data>
-  <data name="StringFilePatchFailure" xml:space="preserve">
-    <value>Unable to patch file {0} due to error:
+  <data name="StringConfigurationLoadFailure" xml:space="preserve">
+    <value>Unable to initialize application from {0} due to error:
     
-{1}</value>
+{1}
+    
+Please correct the configuration error, or delete the configuration file and restart to generate a new template.</value>
   </data>
-  <data name="StringHelpContent" xml:space="preserve">
-    <value>Help</value>
-  </data>
-  <data name="StringInformationDialogTitle" xml:space="preserve">
-    <value>AutoPatcher Information</value>
-  </data>
-  <data name="StringLocalPathContent" xml:space="preserve">
-    <value>Local Path</value>
-  </data>
-  <data name="StringMainWindowTitle" xml:space="preserve">
-    <value>AutoPatcher</value>
-    <comment>String similar to 'AutoPatcher'</comment>
-  </data>
-  <data name="StringNewRepoContent" xml:space="preserve">
-    <value>New Repo</value>
-  </data>
-  <data name="StringNewRepoDialogTitle" xml:space="preserve">
-    <value>New Repo Configuration</value>
-  </data>
-  <data name="StringOkContent" xml:space="preserve">
-    <value>Ok</value>
-  </data>
-  <data name="StringOpenRepoContent" xml:space="preserve">
-    <value>Open Repo</value>
-  </data>
-  <data name="StringOpenRepoDialogTitle" xml:space="preserve">
-    <value>Open Repo Configuration</value>
-  </data>
-  <data name="StringPatchEditorTitle" xml:space="preserve">
-    <value>AutoPatcher Editor</value>
-  </data>
-  <data name="StringPatchSelectedContent" xml:space="preserve">
-    <value>Patch Selected Files</value>
-  </data>
-  <data name="StringPathButtonContent" xml:space="preserve">
-    <value>. . .</value>
-  </data>
-  <data name="StringQuestionDialogTitle" xml:space="preserve">
-    <value>AutoPatcher Prompt</value>
-  </data>
-  <data name="StringRemotePathContent" xml:space="preserve">
-    <value>Remote Path</value>
-  </data>
-  <data name="StringRemoveContent" xml:space="preserve">
-    <value>Remove</value>
-  </data>
-  <data name="StringRemoveEntryPrompt" xml:space="preserve">
-    <value>Are you sure that you want to remove the selected entry?</value>
-  </data>
-  <data name="StringRepoNewInvalidFileName" xml:space="preserve">
-    <value>Unable to create configuration file. File name must be {0}.</value>
-  </data>
-  <data name="StringRepoPathLabelContent" xml:space="preserve">
-    <value>Repo Path: </value>
-  </data>
-  <data name="StringRepoPathNoneContent" xml:space="preserve">
-    <value>No repo loaded</value>
-  </data>
-  <data name="StringSourceItemsContent" xml:space="preserve">
-    <value>Source Items</value>
-  </data>
-  <data name="StringStatusBarReady" xml:space="preserve">
-    <value>Ready</value>
-  </data>
-  <data name="StringStatusBarWorking" xml:space="preserve">
-    <value>Working</value>
-  </data>
-  <data name="StringWarningDialogTitle" xml:space="preserve">
-    <value>AutoPatcher Warning</value>
-  </data>
-  <data name="StringLocalBinariesDirectoryContent" xml:space="preserve">
-    <value>Local Binaries Directory</value>
-  </data>
-  <data name="StringRemoteBinariesDirectoryContent" xml:space="preserve">
-    <value>Remote Binaries Directory</value>
+  <data name="StringConfigurationWriteFailure" xml:space="preserve">
+    <value>Unable to write configuration to {0} due to error:
+
+{1}
+    </value>
   </data>
 </root>

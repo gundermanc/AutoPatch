@@ -9,12 +9,12 @@ namespace AutoPatcher.Commands
 {
     internal sealed class PatchSelectedCommand : ICommand
     {
-        private readonly IErrorDialogs dialogs;
+        private readonly IAbstraction abstraction;
         private readonly MainWindowModel model;
 
-        public PatchSelectedCommand(IErrorDialogs dialogs, MainWindowModel model)
+        public PatchSelectedCommand(IAbstraction abstraction, MainWindowModel model)
         {
-            this.dialogs = dialogs;
+            this.abstraction = abstraction;
             this.model = model;
             this.model.PropertyChanged += Model_PropertyChanged;
         }
@@ -61,7 +61,7 @@ namespace AutoPatcher.Commands
 
                 if (ioException != null)
                 {
-                    dialogs.ErrorDialog(
+                    this.abstraction.ErrorDialogs.ErrorDialog(
                         string.Format(
                             Resources.StringFilePatchFailure,
                             file.RemotePath,

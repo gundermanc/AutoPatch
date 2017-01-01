@@ -1,6 +1,6 @@
-﻿namespace AutoPatcher.Abstractions
+﻿namespace AutoPatcher.Engine.Abstractions
 {
-    internal interface IErrorDialogs
+    public interface IErrorDialogs
     {
         void WarningDialog(string message);
 

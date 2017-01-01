@@ -1,21 +1,21 @@
-﻿using System.Windows.Input;
+﻿using System.Diagnostics;
+using System.Windows.Input;
 using AutoPatcher.Abstractions;
 using AutoPatcher.Commands;
-using System.Diagnostics;
 
 namespace AutoPatcher.Models
 {
     internal sealed class PathInputModel : ModelBase
     {
-        private readonly IFileDialogs dialogs;
+        private readonly IAbstraction abstraction;
         private string input0Text;
         private string input1Text;
 
-        public PathInputModel(IFileDialogs dialogs, string title, string input0Label, string input1Label = null, bool openFolderInsteadOfFile = false)
+        public PathInputModel(IAbstraction abstraction, string title, string input0Label, string input1Label = null, bool openFolderInsteadOfFile = false)
         {
-            Debug.Assert(dialogs != null);
+            Debug.Assert(abstraction != null);
 
-            this.dialogs = dialogs;
+            this.abstraction = abstraction;
 
             this.Title = title;
             this.Input0Label = input0Label;
@@ -23,8 +23,8 @@ namespace AutoPatcher.Models
             this.IsInput1Enabled = input1Label != null;
             this.OpenFolderInsteadOfFile = openFolderInsteadOfFile;
 
-            this.Input0PathCommand = new Input0PathCommand(this.dialogs, this);
-            this.Input1PathCommand = new Input1PathCommand(this.dialogs, this);
+            this.Input0PathCommand = new Input0PathCommand(this.abstraction, this);
+            this.Input1PathCommand = new Input1PathCommand(this.abstraction, this);
         }
 
         public string Title { get; }

@@ -1,5 +1,5 @@
 ﻿using System.Windows;
-using AutoPatcher.Config;
+using AutoPatcher.Engine.Repository;
 using AutoPatcher.Models;
 
 namespace AutoPatcher.Views
@@ -23,7 +23,7 @@ namespace AutoPatcher.Views
 
             foreach (var selection in this.BuildArtifactsListBox.SelectedItems)
             {
-                selectedArtifacts.Add((BuildArtifactData)selection);
+                selectedArtifacts.Add((BuildArtifact)selection);
             }
         }
     }

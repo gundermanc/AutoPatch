@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using AutoPatcher.Models;
 
@@ -24,7 +23,7 @@ namespace AutoPatcher.Commands
 
         public void Execute(object parameter)
         {
-            Task.Run(() => this.model.UnloadAppConfigurationAsync());
+            this.model.UnloadRepository();
         }
 
         private void Model_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)

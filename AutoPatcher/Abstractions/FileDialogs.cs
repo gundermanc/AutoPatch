@@ -1,4 +1,5 @@
 ﻿using Microsoft.Win32;
+using AutoPatcher.Engine.Abstractions;
 
 namespace AutoPatcher.Abstractions
 {

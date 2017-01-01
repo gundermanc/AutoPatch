@@ -1,22 +1,20 @@
 ﻿using System;
 using System.Windows.Input;
 using AutoPatcher.Abstractions;
-using AutoPatcher.Config;
+using AutoPatcher.Engine.Util;
 using AutoPatcher.Models;
-using AutoPatcher.Util;
 using AutoPatcher.Views;
-using System.Threading.Tasks;
 
 namespace AutoPatcher.Commands
 {
     internal sealed class EditPatchSchemeCommand : ICommand
     {
-        private readonly IErrorDialogs dialogs;
+        private readonly IAbstraction abstraction;
         private readonly MainWindowModel model;
 
-        public EditPatchSchemeCommand(IErrorDialogs dialogs, MainWindowModel model)
+        public EditPatchSchemeCommand(IAbstraction abstraction, MainWindowModel model)
         {
-            this.dialogs = dialogs;
+            this.abstraction = abstraction;
             this.model = model;
             this.model.PropertyChanged += Model_PropertyChanged;
         }
@@ -30,31 +28,21 @@ namespace AutoPatcher.Commands
 
         public void Execute(object parameter)
         {
-            this.model.AppConfig.AccessReference((config) =>
+            var model = new PatchEditorModel(
+                this.abstraction,
+                this.model.State.Repository.BuildArtifacts.Clone());
+
+            if (new PatchEditorWindow() { DataContext = model }.ShowDialog() ?? false)
             {
-                var model = new PatchEditorModel(
-                    this.model.ErrorDialogs,
-                    this.model.FileDialogs,
-                    config.Configuration.BuildArtifacts.Clone());
+                var repo = this.model.State.Repository;
 
-                if (new PatchEditorWindow() { DataContext = model }.ShowDialog() ?? false)
-                {
-                    config.Configuration.BuildArtifacts.Clear();
-                    config.Configuration.BuildArtifacts.AddRange(model.BuildArtifacts);
+                repo.BuildArtifacts.Clear();
+                repo.AddBuildArtifactsRange(model.BuildArtifacts);
 
-                    // Persist configuration changes.
-                    AppConfigurationLoader.WriteAppConfiguration(this.dialogs, config);
-
-                    // Reload settings.
-                    Task.Run(async () =>
-                    {
-                        await this.model.UnloadAppConfigurationAsync();
-                        await this.model.LoadAppConfigurationAsync(config.FilePath);
-                    });
-                }
-
-                return config;
-            });
+                this.model.SaveRepository();
+                this.model.DispatchRepositoryPropertiesChanged();
+                this.model.RefreshBuildArtifacts();
+            }
         }
 
         private void Model_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)

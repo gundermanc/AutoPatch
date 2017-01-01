@@ -1,8 +1,6 @@
-﻿using System.Windows;
-
-namespace AutoPatcher.Abstractions
+﻿namespace AutoPatcher.Engine.Abstractions
 {
-    internal interface IFileDialogs
+    public interface IFileDialogs
     {
         string NewFileDialog(string title, string filter, string fileName);
 
