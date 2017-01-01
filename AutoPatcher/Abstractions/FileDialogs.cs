@@ -5,7 +5,7 @@ namespace AutoPatcher.Abstractions
 {
     internal sealed class FileDialogs : IFileDialogs
     {
-        public string NewFileDialog(string title, string filter, string fileName)
+        public string NewFileDialog(string title, string filter, string initialDirectory)
         {
             var sfd = new SaveFileDialog()
             {
@@ -15,24 +15,25 @@ namespace AutoPatcher.Abstractions
                 DereferenceLinks = true,
                 ValidateNames = true,
                 RestoreDirectory = true,
-                FileName = fileName
+                InitialDirectory = initialDirectory
             };
 
             // Why on earth is this Nullable<bool>?? Assume failure if null.
             return (sfd.ShowDialog(null) ?? false) ? sfd.FileName : null;
         }
 
-        public string OpenFileDialog(string title, string filter)
+        public string OpenFileDialog(string title, string filter, string initialDirectory, bool ensureExists)
         {
             var ofd = new OpenFileDialog()
             {
                 Title = title,
                 Filter = filter,
-                CheckFileExists = true,
+                CheckFileExists = ensureExists,
                 Multiselect = false,
                 DereferenceLinks = true,
                 ValidateNames = true,
-                RestoreDirectory = true
+                RestoreDirectory = true,
+                InitialDirectory = initialDirectory
             };
 
             // Why on earth is this Nullable<bool>?? Assume failure if null.

@@ -33,7 +33,8 @@ namespace AutoPatcher.Commands
             var model = new PathInputModel(
                 this.abstraction,
                 Resources.StringAddBuildArtifactTitle,
-                Resources.StringLocalPathContent);
+                Resources.StringLocalPathContent,
+                input0RelativePathPrefix: null); // TODO: update to initially open to source directory root.
 
             var result = new PathInputWindow() { DataContext = model }.ShowDialog();
 

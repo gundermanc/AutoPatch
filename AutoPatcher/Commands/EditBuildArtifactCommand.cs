@@ -33,18 +33,17 @@ namespace AutoPatcher.Commands
                 this.abstraction,
                 Resources.StringAddBuildArtifactTitle,
                 Resources.StringLocalPathContent,
-                Resources.StringRemotePathContent)
+                Resources.StringRemotePathContent,
+                this.model.State.Repository.LocalBinRoot,
+                this.model.State.CurrentRemoteBinRoot,
+                input0EnsureExists: false,
+                input1EnsureExists: false)
             {
                 Input0Text = this.model.SelectedBuildArtifact.LocalPath,
                 Input1Text = this.model.SelectedBuildArtifact.RemotePath
             };
 
-            var result = new PathInputWindow()
-            {
-                DataContext = model
-            }.ShowDialog();
-
-            if (result ?? false)
+            if (new PathInputWindow() { DataContext = model }.ShowDialog() ?? false)
             {
                 int index = this.model.BuildArtifacts.IndexOf(this.model.SelectedBuildArtifact);
 

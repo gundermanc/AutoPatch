@@ -245,6 +245,9 @@
     <value>Remote Binaries Directory</value>
   </data>
   <data name="StringRevertSelectedContent" xml:space="preserve">
-    <value>Revert Selected</value>
+    <value>Revert Selected Files</value>
+  </data>
+  <data name="StringPathInputPathMustBeRelative" xml:space="preserve">
+    <value>Invalid path, path must be relative to repo root.</value>
   </data>
 </root>

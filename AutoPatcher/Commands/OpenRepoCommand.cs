@@ -14,7 +14,9 @@ namespace AutoPatcher.Commands
         {
             var repoPath = model.Abstraction.FileDialogs.OpenFileDialog(
                 Resources.StringOpenRepoDialogTitle,
-                Repository.ConfigurationFileFilter);
+                Repository.ConfigurationFileFilter,
+                null,
+                true);
 
             if (repoPath != null)
             {

@@ -14,7 +14,6 @@ namespace AutoPatcher.Engine
     public sealed class State : IState
     {
         private const string CurrentRemoteBinPathRootSettingKey = "AutoPatch_Engine_CurrentRemoteBinPathRoot";
-        private const string EmptyFileRevisionContents = "EMPTY";
         private const string EmptyRevisionSuffix = ".empty";
         private const string StockRevisionSuffix = ".stockrevision";
         private string currentRemoteBinRoot;
@@ -173,8 +172,8 @@ namespace AutoPatcher.Engine
                     else
                     {
                         // If no file normally exists, create a special marker stock revision as an indicator
-                        // that the file should be deleted on patch revert. ASCII so that the size is equal to the strlen.
-                        File.WriteAllText(emptyRevisionFilePath, EmptyFileRevisionContents, Encoding.ASCII);
+                        // that the file should be deleted on patch revert.
+                        File.WriteAllText(emptyRevisionFilePath, string.Empty);
                         File.SetAttributes(emptyRevisionFilePath, FileAttributes.Hidden);
                     }
                 }

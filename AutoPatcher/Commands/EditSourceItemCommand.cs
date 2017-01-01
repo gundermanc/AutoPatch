@@ -33,7 +33,8 @@ namespace AutoPatcher.Commands
             var model = new PathInputModel(
                 this.abstraction,
                 Resources.StringAddSourceItemTitle,
-                Resources.StringLocalPathContent)
+                Resources.StringLocalPathContent,
+                input0RelativePathPrefix: null) // TODO: update to initially open to source directory root.
             {
                 Input0Text = this.model.SelectedSourceItem.LocalPath
             };

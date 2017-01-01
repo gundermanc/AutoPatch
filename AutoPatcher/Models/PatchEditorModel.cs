@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Windows.Input;
 using AutoPatcher.Abstractions;
 using AutoPatcher.Commands;
+using AutoPatcher.Engine;
 using AutoPatcher.Engine.Repository;
 
 namespace AutoPatcher.Models
@@ -18,9 +19,11 @@ namespace AutoPatcher.Models
 
         public PatchEditorModel(
             IAbstraction abstraction,
+            IState state,
             IEnumerable<BuildArtifact> buildArtifacts)
         {
             this.abstraction = abstraction;
+            this.State = state;
             this.BuildArtifacts = new ObservableCollection<BuildArtifact>(buildArtifacts);
 
             this.AddBuildArtifactCommand = new AddBuildArtifactCommand(this.abstraction, this);
@@ -45,6 +48,8 @@ namespace AutoPatcher.Models
         public ICommand EditSourceItemCommand { get; }
 
         public ICommand RemoveSourceItemCommand { get; }
+
+        public IState State { get; }
 
         public ObservableCollection<BuildArtifact> BuildArtifacts { get; }
 

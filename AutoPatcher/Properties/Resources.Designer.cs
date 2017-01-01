@@ -331,6 +331,15 @@ namespace AutoPatcher.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid path, path must be relative to repo root..
+        /// </summary>
+        public static string StringPathInputPathMustBeRelative {
+            get {
+                return ResourceManager.GetString("StringPathInputPathMustBeRelative", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to AutoPatcher Prompt.
         /// </summary>
         public static string StringQuestionDialogTitle {
@@ -403,7 +412,7 @@ namespace AutoPatcher.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Revert Selected.
+        ///   Looks up a localized string similar to Revert Selected Files.
         /// </summary>
         public static string StringRevertSelectedContent {
             get {

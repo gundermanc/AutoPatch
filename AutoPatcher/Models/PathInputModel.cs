@@ -11,7 +11,16 @@ namespace AutoPatcher.Models
         private string input0Text;
         private string input1Text;
 
-        public PathInputModel(IAbstraction abstraction, string title, string input0Label, string input1Label = null, bool openFolderInsteadOfFile = false)
+        public PathInputModel(
+            IAbstraction abstraction,
+            string title,
+            string input0Label,
+            string input1Label = null,
+            string input0RelativePathPrefix = null,
+            string input1RelativePathPrefix = null,
+            bool input0EnsureExists = true,
+            bool input1EnsureExists = true,
+            bool openFolderInsteadOfFile = false)
         {
             Debug.Assert(abstraction != null);
 
@@ -20,6 +29,10 @@ namespace AutoPatcher.Models
             this.Title = title;
             this.Input0Label = input0Label;
             this.Input1Label = input1Label;
+            this.Input0RelativePathPrefix = input0RelativePathPrefix;
+            this.Input1RelativePathPrefix = input1RelativePathPrefix;
+            this.Input0EnsureExists = input0EnsureExists;
+            this.Input1EnsureExists = input1EnsureExists;
             this.IsInput1Enabled = input1Label != null;
             this.OpenFolderInsteadOfFile = openFolderInsteadOfFile;
 
@@ -47,6 +60,14 @@ namespace AutoPatcher.Models
                 }
             }
         }
+
+        public string Input0RelativePathPrefix { get; }
+
+        public string Input1RelativePathPrefix { get; }
+
+        public bool Input0EnsureExists { get; }
+
+        public bool Input1EnsureExists { get; }
 
         public bool IsInput1Enabled { get; }
 

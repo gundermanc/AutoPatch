@@ -30,6 +30,7 @@ namespace AutoPatcher.Commands
         {
             var model = new PatchEditorModel(
                 this.abstraction,
+                this.model.State,
                 this.model.State.Repository.BuildArtifacts.Clone());
 
             if (new PatchEditorWindow() { DataContext = model }.ShowDialog() ?? false)
