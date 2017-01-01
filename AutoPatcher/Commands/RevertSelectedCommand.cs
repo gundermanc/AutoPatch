@@ -5,12 +5,12 @@ using AutoPatcher.Models;
 
 namespace AutoPatcher.Commands
 {
-    internal sealed class PatchSelectedCommand : ICommand
+    internal sealed class RevertSelectedCommand : ICommand
     {
         private readonly IAbstraction abstraction;
         private readonly MainWindowModel model;
 
-        public PatchSelectedCommand(IAbstraction abstraction, MainWindowModel model)
+        public RevertSelectedCommand(IAbstraction abstraction, MainWindowModel model)
         {
             this.abstraction = abstraction;
             this.model = model;
@@ -26,7 +26,7 @@ namespace AutoPatcher.Commands
 
         public void Execute(object parameter)
         {
-            this.model.State.PatchBuildArtifacts(this.model.SelectedBuildArtifacts);
+            this.model.State.RevertBuildArtifacts(this.model.SelectedBuildArtifacts);
         }
 
         private void Model_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)

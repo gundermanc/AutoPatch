@@ -30,6 +30,7 @@ namespace AutoPatcher.Models
             this.AboutCommand = new AboutCommand(this.Abstraction);
             this.EditPatchSchemeCommand = new EditPatchSchemeCommand(this.Abstraction, this);
             this.PatchSelectedCommand = new PatchSelectedCommand(this.Abstraction, this);
+            this.RevertSelectedCommand = new RevertSelectedCommand(this.Abstraction, this);
             this.EditBinaryDirectoriesCommand = new EditBinaryDirectoriesCommand(this.Abstraction, this);
 
             this.State = new State(
@@ -61,6 +62,8 @@ namespace AutoPatcher.Models
         public ICommand EditPatchSchemeCommand { get; }
 
         public ICommand PatchSelectedCommand { get; }
+
+        public ICommand RevertSelectedCommand { get; }
 
         public ICommand EditBinaryDirectoriesCommand { get; }
 

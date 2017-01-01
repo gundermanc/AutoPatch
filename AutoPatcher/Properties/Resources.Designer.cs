@@ -214,17 +214,6 @@ namespace AutoPatcher.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unable to patch file {0} due to error:
-        ///    
-        ///{1}.
-        /// </summary>
-        public static string StringFilePatchFailure {
-            get {
-                return ResourceManager.GetString("StringFilePatchFailure", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Help.
         /// </summary>
         public static string StringHelpContent {
@@ -410,6 +399,15 @@ namespace AutoPatcher.Properties {
         public static string StringRepoPathNoneContent {
             get {
                 return ResourceManager.GetString("StringRepoPathNoneContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Revert Selected.
+        /// </summary>
+        public static string StringRevertSelectedContent {
+            get {
+                return ResourceManager.GetString("StringRevertSelectedContent", resourceCulture);
             }
         }
         

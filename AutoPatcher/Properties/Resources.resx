@@ -168,11 +168,6 @@
   <data name="StringFileContent" xml:space="preserve">
     <value>File</value>
   </data>
-  <data name="StringFilePatchFailure" xml:space="preserve">
-    <value>Unable to patch file {0} due to error:
-    
-{1}</value>
-  </data>
   <data name="StringHelpContent" xml:space="preserve">
     <value>Help</value>
   </data>
@@ -248,5 +243,8 @@
   </data>
   <data name="StringRemoteBinariesDirectoryContent" xml:space="preserve">
     <value>Remote Binaries Directory</value>
+  </data>
+  <data name="StringRevertSelectedContent" xml:space="preserve">
+    <value>Revert Selected</value>
   </data>
 </root>

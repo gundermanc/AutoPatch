@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using AutoPatcher.Engine.Repository;
+using System.Collections.Generic;
 
 namespace AutoPatcher.Engine
 {
@@ -16,5 +17,9 @@ namespace AutoPatcher.Engine
         Task SaveRepositoryAsync();
 
         void UnloadRepository();
+
+        void PatchBuildArtifacts(IEnumerable<BuildArtifact> buildArtifacts);
+
+        void RevertBuildArtifacts(IEnumerable<BuildArtifact> buildArtifacts);
     }
 }

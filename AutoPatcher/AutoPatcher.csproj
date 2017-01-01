@@ -81,6 +81,7 @@
     <Compile Include="Abstractions\ErrorDialogs.cs" />
     <Compile Include="Commands\ExitCommand.cs" />
     <Compile Include="Abstractions\FileDialogs.cs" />
+    <Compile Include="Commands\RevertSelectedCommand.cs" />
     <Compile Include="Models\ModelBase.cs" />
     <Compile Include="Models\PathInputModel.cs" />
     <Compile Include="Properties\Settings.Designer.cs">

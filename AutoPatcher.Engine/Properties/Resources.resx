@@ -130,4 +130,15 @@ Please correct the configuration error, or delete the configuration file and res
 {1}
     </value>
   </data>
+  <data name="StringPatchFailureGeneral" xml:space="preserve">
+    <value>Unable to patch file {0} due to error:
+    
+{1}</value>
+  </data>
+  <data name="StringPatchFailureInvalidLocalBinRoot" xml:space="preserve">
+    <value>Unable to patch build artifacts due to invalid Local Binaries Root path {0}.</value>
+  </data>
+  <data name="StringPatchFailureInvalidRemoteBinRoot" xml:space="preserve">
+    <value>Unable to patch build artifact due to invalid Remote Binaries Root path {0}.</value>
+  </data>
 </root>

@@ -84,5 +84,34 @@ namespace AutoPatcher.Engine.Properties {
                 return ResourceManager.GetString("StringConfigurationWriteFailure", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to patch file {0} due to error:
+        ///    
+        ///{1}.
+        /// </summary>
+        internal static string StringPatchFailureGeneral {
+            get {
+                return ResourceManager.GetString("StringPatchFailureGeneral", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to patch build artifacts due to invalid Local Binaries Root path {0}..
+        /// </summary>
+        internal static string StringPatchFailureInvalidLocalBinRoot {
+            get {
+                return ResourceManager.GetString("StringPatchFailureInvalidLocalBinRoot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to patch build artifact due to invalid Remote Binaries Root path {0}..
+        /// </summary>
+        internal static string StringPatchFailureInvalidRemoteBinRoot {
+            get {
+                return ResourceManager.GetString("StringPatchFailureInvalidRemoteBinRoot", resourceCulture);
+            }
+        }
     }
 }
