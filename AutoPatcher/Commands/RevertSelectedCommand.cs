@@ -27,6 +27,7 @@ namespace AutoPatcher.Commands
         public void Execute(object parameter)
         {
             this.model.State.RevertBuildArtifacts(this.model.SelectedBuildArtifacts);
+            this.model.RefreshBuildArtifacts();
         }
 
         private void Model_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)

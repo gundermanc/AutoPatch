@@ -11,7 +11,5 @@ namespace AutoPatcher.Engine.Repository
         string SourceItemsRoot { get; set; }
 
         ISet<BuildArtifact> BuildArtifacts { get; }
-
-        void AddBuildArtifactsRange(IEnumerable<BuildArtifact> range);
     }
 }

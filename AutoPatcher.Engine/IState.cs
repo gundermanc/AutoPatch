@@ -1,6 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using AutoPatcher.Engine.Repository;
-using System.Collections.Generic;
+
 
 namespace AutoPatcher.Engine
 {
@@ -21,5 +22,9 @@ namespace AutoPatcher.Engine
         void PatchBuildArtifacts(IEnumerable<BuildArtifact> buildArtifacts);
 
         void RevertBuildArtifacts(IEnumerable<BuildArtifact> buildArtifacts);
+
+        void ClearBuildArtifacts();
+
+        void AddBuildArtifactsRange(IEnumerable<BuildArtifact> buildArtifact);
     }
 }

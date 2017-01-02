@@ -35,11 +35,8 @@ namespace AutoPatcher.Commands
 
             if (new PatchEditorWindow() { DataContext = model }.ShowDialog() ?? false)
             {
-                var repo = this.model.State.Repository;
-
-                repo.BuildArtifacts.Clear();
-                repo.AddBuildArtifactsRange(model.BuildArtifacts);
-
+                this.model.State.ClearBuildArtifacts();
+                this.model.State.AddBuildArtifactsRange(model.BuildArtifacts);
                 this.model.SaveRepository();
                 this.model.DispatchRepositoryPropertiesChanged();
                 this.model.RefreshBuildArtifacts();

@@ -250,6 +250,15 @@ namespace AutoPatcher.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Is Patched.
+        /// </summary>
+        public static string StringIsPatchedContent {
+            get {
+                return ResourceManager.GetString("StringIsPatchedContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Local Binaries Directory.
         /// </summary>
         public static string StringLocalBinariesDirectoryContent {

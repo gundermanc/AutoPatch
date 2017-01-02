@@ -12,10 +12,13 @@ namespace AutoPatcher.Engine.Repository
             Verify.IsNotNullOrWhiteSpace(remotePath, nameof(remotePath));
             Verify.IsNotNull(sourceItems, nameof(sourceItems));
 
+            this.IsPatched = false;
             this.LocalPath = localPath;
             this.RemotePath = remotePath;
             this.SourceItems = new HashSet<SourceItem>(sourceItems);
         }
+
+        public bool IsPatched { get; set; }
 
         public string LocalPath { get; }
 
