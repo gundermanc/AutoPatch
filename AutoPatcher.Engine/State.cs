@@ -150,10 +150,9 @@ namespace AutoPatcher.Engine
             foreach (var buildArtifact in buildArtifacts)
             {
                 string stockRevisionFilePath = Path.Combine(this.CurrentRemoteBinRoot, buildArtifact.RemotePath + StockRevisionSuffix);
-                string remoteFilePath = Path.Combine(this.CurrentRemoteBinRoot, buildArtifact.RemotePath);
                 string emptyRevisionFilePath = stockRevisionFilePath + EmptyRevisionSuffix;
 
-                if (File.Exists(remoteFilePath) || File.Exists(emptyRevisionFilePath))
+                if (File.Exists(stockRevisionFilePath) || File.Exists(emptyRevisionFilePath))
                 {
                     buildArtifact.IsPatched = true;
                 }

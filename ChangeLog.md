@@ -1,3 +1,8 @@
+# 0.6.2.0 (2017-1-1):
+
+### Bug Fixes:
+* Corrected invalid "True" in Is Patched column when file already exists.
+
 # 0.6.1.0 (2017-1-1):
 
 ### Enhancements
