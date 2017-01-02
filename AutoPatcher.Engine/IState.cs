@@ -26,5 +26,7 @@ namespace AutoPatcher.Engine
         void ClearBuildArtifacts();
 
         void AddBuildArtifactsRange(IEnumerable<BuildArtifact> buildArtifact);
+
+        void RefreshBuildArtifactStates();
     }
 }

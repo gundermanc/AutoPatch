@@ -136,6 +136,16 @@ namespace AutoPatcher.Engine
             }
         }
 
+        public void RefreshBuildArtifactStates()
+        {
+            if (this.Repository == null)
+            {
+                throw new InvalidOperationException("No repository loaded");
+            }
+
+            this.RefreshBuildArtifactStates(this.Repository.BuildArtifacts);
+        }
+
         private void RefreshBuildArtifactStates(IEnumerable<BuildArtifact> buildArtifacts)
         {
             foreach (var buildArtifact in buildArtifacts)
