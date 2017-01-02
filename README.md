@@ -1,7 +1,7 @@
 # AutoPatch
 A lightweight tool for patching installed products with compiled bits
 
-(C) 2014-2016 Christian Gunderman
+(C) 2016-2017 Christian Gunderman
 Contact Email: gundermanc@gmail.com
 
 ## Introduction
