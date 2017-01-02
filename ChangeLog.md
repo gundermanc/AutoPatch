@@ -6,6 +6,7 @@
 ### Bug Fixes:
 * Corrected invalid "True" in Is Patched column when file already exists.
 * Isolated leaked IRepository internals.
+* "Is Patched" column is restyled as a Check Box.
 
 # 0.6.1.0 (2017-1-1):
 
