@@ -25,6 +25,8 @@
                 <MenuItem Header="{x:Static p:Resources.StringExitContent}" Command="{Binding ExitCommand}"/>
             </MenuItem>
             <MenuItem Header="{x:Static p:Resources.StringConfigurationContent}">
+                <MenuItem Header="{x:Static p:Resources.StringEditBinaryDirectoriesContent}" Command="{Binding EditBinaryDirectoriesCommand}"/>
+                <MenuItem Header="{x:Static p:Resources.StringEditSourceDirectoryContent}" Command="{Binding EditSourceDirectoryCommand}"/>
                 <MenuItem Header="{x:Static p:Resources.StringEditPatchSchemeContent}" Command="{Binding EditPatchSchemeCommand}"/>
             </MenuItem>
             <MenuItem Header="{x:Static p:Resources.StringHelpContent}">
@@ -67,11 +69,18 @@
                     <DataGridTextColumn Header="{x:Static p:Resources.StringBuildArtifactContent}" Binding="{Binding LocalPath}" />
                 </DataGrid.Columns>
             </DataGrid>
-            <Button Grid.Row="1"
-                    HorizontalAlignment="Left"
-                    Margin="10.0,0.0,10.0,10.0"
+            <StackPanel Grid.Row="1"
+                        Orientation="Horizontal">
+                <Button HorizontalAlignment="Left"
+                    Margin="10.0,0.0,0.0,10.0"
                     Content="{x:Static p:Resources.StringPatchSelectedContent}"
                     Command="{Binding PatchSelectedCommand}"/>
+                <Button Grid.Row="1"
+                    HorizontalAlignment="Left"
+                    Margin="10.0,0.0,0.0,10.0"
+                    Content="{x:Static p:Resources.StringRevertSelectedContent}"
+                    Command="{Binding RevertSelectedCommand}"/>
+            </StackPanel>
         </Grid>
     </DockPanel>
 </Window>

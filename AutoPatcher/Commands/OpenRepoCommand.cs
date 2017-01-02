@@ -1,8 +1,6 @@
-﻿using AutoPatcher.Config;
+﻿using AutoPatcher.Engine.Repository;
 using AutoPatcher.Models;
 using AutoPatcher.Properties;
-using System.Threading.Tasks;
-using System.Windows;
 
 namespace AutoPatcher.Commands
 {
@@ -14,13 +12,15 @@ namespace AutoPatcher.Commands
 
         public override void Execute(object parameter)
         {
-            var configPath = model.FileDialogs.OpenFileDialog(
+            var repoPath = model.Abstraction.FileDialogs.OpenFileDialog(
                 Resources.StringOpenRepoDialogTitle,
-                AppConfigurationLoader.ConfigurationFileFilter);
+                Repository.ConfigurationFileFilter,
+                null,
+                true);
 
-            if (configPath != null)
+            if (repoPath != null)
             {
-                Task.Run(() => model.LoadAppConfigurationAsync(configPath));
+                model.LoadRepository(repoPath);
             }
         }
     }

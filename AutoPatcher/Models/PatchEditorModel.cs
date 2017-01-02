@@ -3,36 +3,36 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Input;
 using AutoPatcher.Abstractions;
-using AutoPatcher.Config;
 using AutoPatcher.Commands;
+using AutoPatcher.Engine;
+using AutoPatcher.Engine.Repository;
 
 namespace AutoPatcher.Models
 {
     internal sealed class PatchEditorModel : ModelBase
     {
-        private readonly IErrorDialogs errDialogs;
-        private readonly IFileDialogs dialogs;
-        private ObservableCollection<SourceItemData> sourceItems;
-        private BuildArtifactData previouslySelectedBuildArtifact;
-        private BuildArtifactData selectedBuildArtifact;
-        private SourceItemData selectedSourceItem;
+        private readonly IAbstraction abstraction;
+        private ObservableCollection<SourceItem> sourceItems;
+        private BuildArtifact previouslySelectedBuildArtifact;
+        private BuildArtifact selectedBuildArtifact;
+        private SourceItem selectedSourceItem;
 
         public PatchEditorModel(
-            IErrorDialogs errDialogs,
-            IFileDialogs dialogs,
-            IEnumerable<BuildArtifactData> buildArtifacts)
+            IAbstraction abstraction,
+            IState state,
+            IEnumerable<BuildArtifact> buildArtifacts)
         {
-            this.errDialogs = errDialogs;
-            this.dialogs = dialogs;
-            this.BuildArtifacts = new ObservableCollection<BuildArtifactData>(buildArtifacts);
+            this.abstraction = abstraction;
+            this.State = state;
+            this.BuildArtifacts = new ObservableCollection<BuildArtifact>(buildArtifacts);
 
-            this.AddBuildArtifactCommand = new AddBuildArtifactCommand(this.dialogs, this);
-            this.EditBuildArtifactCommand = new EditBuildArtifactCommand(this.dialogs, this);
-            this.RemoveBuildArtifactCommand = new RemoveBuildArtifactCommand(this.errDialogs, this);
+            this.AddBuildArtifactCommand = new AddBuildArtifactCommand(this.abstraction, this);
+            this.EditBuildArtifactCommand = new EditBuildArtifactCommand(this.abstraction, this);
+            this.RemoveBuildArtifactCommand = new RemoveBuildArtifactCommand(this.abstraction, this);
 
-            this.AddSourceItemCommand = new AddSourceItemCommand(this.dialogs, this);
-            this.EditSourceItemCommand = new EditSourceItemCommand(this.dialogs, this);
-            this.RemoveSourceItemCommand = new RemoveSourceItemCommand(this.errDialogs, this);
+            this.AddSourceItemCommand = new AddSourceItemCommand(this.abstraction, this);
+            this.EditSourceItemCommand = new EditSourceItemCommand(this.abstraction, this);
+            this.RemoveSourceItemCommand = new RemoveSourceItemCommand(this.abstraction, this);
 
             this.PropertyChanged += PatchEditorModel_PropertyChanged;
         }
@@ -49,9 +49,11 @@ namespace AutoPatcher.Models
 
         public ICommand RemoveSourceItemCommand { get; }
 
-        public ObservableCollection<BuildArtifactData> BuildArtifacts { get; }
+        public IState State { get; }
 
-        public ObservableCollection<SourceItemData> SourceItems
+        public ObservableCollection<BuildArtifact> BuildArtifacts { get; }
+
+        public ObservableCollection<SourceItem> SourceItems
         {
             get
             {
@@ -68,7 +70,7 @@ namespace AutoPatcher.Models
             }
         }
 
-        public BuildArtifactData SelectedBuildArtifact
+        public BuildArtifact SelectedBuildArtifact
         {
             get
             {
@@ -85,7 +87,7 @@ namespace AutoPatcher.Models
             }
         }
 
-        public SourceItemData SelectedSourceItem
+        public SourceItem SelectedSourceItem
         {
             get
             {
@@ -112,7 +114,7 @@ namespace AutoPatcher.Models
 
                 if (this.SelectedBuildArtifact != null && this.SelectedBuildArtifact.SourceItems != null)
                 {
-                    this.SourceItems = new ObservableCollection<SourceItemData>(this.SelectedBuildArtifact.SourceItems);
+                    this.SourceItems = new ObservableCollection<SourceItem>(this.SelectedBuildArtifact.SourceItems);
                 }
                 else
                 {
@@ -127,7 +129,11 @@ namespace AutoPatcher.Models
             if (this.previouslySelectedBuildArtifact != null && this.SourceItems != null)
             {
                 this.previouslySelectedBuildArtifact.SourceItems.Clear();
-                this.previouslySelectedBuildArtifact.SourceItems.AddRange(this.SourceItems);
+
+                foreach (var item in this.SourceItems)
+                {
+                    this.previouslySelectedBuildArtifact.SourceItems.Add(item);
+                }
             }
         }
     }

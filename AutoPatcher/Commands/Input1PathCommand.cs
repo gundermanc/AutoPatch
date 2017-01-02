@@ -1,37 +1,19 @@
-﻿using System;
-using System.Windows;
-using System.Windows.Input;
-using AutoPatcher.Abstractions;
+﻿using AutoPatcher.Abstractions;
 using AutoPatcher.Models;
-using AutoPatcher.Properties;
 
 namespace AutoPatcher.Commands
 {
-    internal sealed class Input1PathCommand : ICommand
+    internal sealed class Input1PathCommand : InputPathCommandBase
     {
-        private readonly IFileDialogs dialogs;
-        private readonly PathInputModel model;
+        public Input1PathCommand(IAbstraction abstraction, PathInputModel model) : base(abstraction, model) { }
 
-        public Input1PathCommand(IFileDialogs dialogs, PathInputModel model)
+        public override void Execute(object parameter)
         {
-            this.dialogs = dialogs;
-            this.model = model;
-        }
+            string inputText = base.model.Input1Text;
 
-#pragma warning disable 0067
-        public event EventHandler CanExecuteChanged;
-#pragma warning restore 0067
+            this.ExecuteForInput(ref inputText, base.model.Input1RelativePathPrefix, base.model.Input1EnsureExists);
 
-        public bool CanExecute(object parameter)
-        {
-            return this.model.IsInput1Enabled;
-        }
-
-        public void Execute(object parameter)
-        {
-            this.model.Input1Text = this.dialogs.OpenFileDialog(
-                Resources.StringMainWindowTitle,
-                null);
+            base.model.Input1Text = inputText;
         }
     }
 }

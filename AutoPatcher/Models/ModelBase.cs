@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Diagnostics;
+using System.Windows;
 
 namespace AutoPatcher.Models
 {
@@ -13,10 +14,9 @@ namespace AutoPatcher.Models
         {
             Debug.Assert(propertyName != null);
 
-            if (this.PropertyChanged != null)
-            {
-                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
+            // Marshall all to the UI thread.
+            Application.Current.Dispatcher.Invoke(
+                () => this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName)));
         }
 
         #endregion

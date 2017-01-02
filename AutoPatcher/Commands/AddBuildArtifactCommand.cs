@@ -1,21 +1,22 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Input;
-using AutoPatcher.Config;
+using AutoPatcher.Abstractions;
+using AutoPatcher.Engine.Repository;
 using AutoPatcher.Models;
 using AutoPatcher.Properties;
 using AutoPatcher.Views;
-using AutoPatcher.Abstractions;
 
 namespace AutoPatcher.Commands
 {
     internal sealed class AddBuildArtifactCommand : ICommand
     {
-        private readonly IFileDialogs dialogs;
+        private readonly IAbstraction abstraction;
         private readonly PatchEditorModel model;
 
-        public AddBuildArtifactCommand(IFileDialogs dialogs, PatchEditorModel model)
+        public AddBuildArtifactCommand(IAbstraction abstraction, PatchEditorModel model)
         {
-            this.dialogs = dialogs;
+            this.abstraction = abstraction;
             this.model = model;
         }
 
@@ -31,24 +32,22 @@ namespace AutoPatcher.Commands
         public void Execute(object parameter)
         {
             var model = new PathInputModel(
-                this.dialogs,
+                this.abstraction,
                 Resources.StringAddBuildArtifactTitle,
                 Resources.StringLocalPathContent,
-                Resources.StringRemotePathContent);
+                Resources.StringRemotePathContent,
+                this.model.State.Repository.LocalBinRoot,
+                this.model.State.CurrentRemoteBinRoot,
+                input0EnsureExists: false,
+                input1EnsureExists: false);
 
-            var result = new InputWindow()
-            {
-                DataContext = model
-            }.ShowDialog();
-
-            if (result ?? false)
+            if (new PathInputWindow() { DataContext = model }.ShowDialog() ?? false)
             {
                 this.model.BuildArtifacts.Add(
-                    new BuildArtifactData()
-                    {
-                        LocalPath = model.Input0Text,
-                        RemotePath = model.Input1Text
-                    });
+                    new BuildArtifact(
+                        model.Input0Text,
+                        model.Input1Text,
+                        Enumerable.Empty<SourceItem>()));
             }
         }
     }

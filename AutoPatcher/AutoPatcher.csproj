@@ -37,7 +37,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -64,28 +64,33 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="Abstractions\Abstraction.cs" />
+    <Compile Include="Abstractions\IAbstraction.cs" />
+    <Compile Include="Abstractions\SettingsManager.cs" />
     <Compile Include="Commands\AboutCommand.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Commands\CloseRepoCommand.cs" />
+    <Compile Include="Commands\EditBinaryDirectoriesCommand.cs" />
     <Compile Include="Commands\EditPatchSchemeCommand.cs" />
+    <Compile Include="Commands\EditSourceDirectoryCommand.cs" />
     <Compile Include="Commands\Input1PathCommand.cs" />
     <Compile Include="Commands\Input0PathCommand.cs" />
+    <Compile Include="Commands\InputCommandBase.cs" />
     <Compile Include="Commands\PatchSelectedCommand.cs" />
-    <Compile Include="Config\AppConfiguration.cs" />
-    <Compile Include="Config\AppConfigurationLoader.cs" />
-    <Compile Include="Config\BuildArtifactData.cs" />
-    <Compile Include="Config\ConfigurationData.cs" />
     <Compile Include="Abstractions\ErrorDialogs.cs" />
     <Compile Include="Commands\ExitCommand.cs" />
-    <Compile Include="Abstractions\IErrorDialogs.cs" />
     <Compile Include="Abstractions\FileDialogs.cs" />
-    <Compile Include="Abstractions\IFileDialogs.cs" />
-    <Compile Include="Config\SourceItemData.cs" />
+    <Compile Include="Commands\RevertSelectedCommand.cs" />
     <Compile Include="Models\ModelBase.cs" />
     <Compile Include="Models\PathInputModel.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="Views\PathInputWindow.xaml.cs">
       <DependentUpon>PathInputWindow.xaml</DependentUpon>
     </Compile>
@@ -99,8 +104,6 @@
     <Compile Include="Commands\EditBuildArtifactCommand.cs" />
     <Compile Include="Commands\RemoveSourceItemCommand.cs" />
     <Compile Include="Commands\RemoveBuildArtifactCommand.cs" />
-    <Compile Include="Util\LinqExtensions.cs" />
-    <Compile Include="Util\LockedReference.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -112,7 +115,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\MainWindowModel.cs" />
-    <Compile Include="Models\MainWindowModelBase.cs" />
     <Compile Include="Commands\ModifyRepoStateCommandBase.cs" />
     <Compile Include="Commands\NewRepoCommand.cs" />
     <Compile Include="Commands\OpenRepoCommand.cs" />
@@ -132,9 +134,23 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\AutoPatcher.Engine\AutoPatcher.Engine.csproj">
+      <Project>{22d61251-0146-4bbb-81f8-a69a93f0e609}</Project>
+      <Name>AutoPatcher.Engine</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Util\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

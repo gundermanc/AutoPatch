@@ -8,12 +8,12 @@ namespace AutoPatcher.Commands
 {
     internal sealed class RemoveSourceItemCommand : ICommand
     {
-        private readonly IErrorDialogs dialogs;
+        private readonly IAbstraction abstraction;
         private readonly PatchEditorModel model;
 
-        public RemoveSourceItemCommand(IErrorDialogs dialogs, PatchEditorModel model)
+        public RemoveSourceItemCommand(IAbstraction abstraction, PatchEditorModel model)
         {
-            this.dialogs = dialogs;
+            this.abstraction = abstraction;
             this.model = model;
             this.model.PropertyChanged += Model_PropertyChanged;
         }
@@ -28,7 +28,7 @@ namespace AutoPatcher.Commands
 
         public void Execute(object parameter)
         {
-            if (this.dialogs.QuestionDialog(Resources.StringRemoveEntryPrompt))
+            if (this.abstraction.ErrorDialogs.QuestionDialog(Resources.StringRemoveEntryPrompt))
             {
                 this.model.SourceItems.Remove(this.model.SelectedSourceItem);
             }

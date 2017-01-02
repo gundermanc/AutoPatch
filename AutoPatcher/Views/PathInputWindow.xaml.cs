@@ -5,9 +5,9 @@ namespace AutoPatcher.Views
     /// <summary>
     /// Interaction logic for InputWindow.xaml
     /// </summary>
-    public partial class InputWindow : Window
+    public partial class PathInputWindow : Window
     {
-        public InputWindow()
+        public PathInputWindow()
         {
             InitializeComponent();
         }

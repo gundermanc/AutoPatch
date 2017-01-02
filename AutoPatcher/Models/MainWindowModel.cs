@@ -1,22 +1,24 @@
-﻿using System.Diagnostics;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Threading.Tasks;
-using System.Windows;
+using System.Diagnostics;
 using System.Windows.Input;
 using AutoPatcher.Abstractions;
 using AutoPatcher.Commands;
-using AutoPatcher.Config;
-using AutoPatcher.Util;
+using AutoPatcher.Engine;
+using AutoPatcher.Engine.Repository;
+using AutoPatcher.Properties;
 
 namespace AutoPatcher.Models
 {
-    internal sealed class MainWindowModel : MainWindowModelBase
+    internal sealed class MainWindowModel : ModelBase
     {
         #region Private fields
 
-        private ObservableCollection<BuildArtifactData> buildArtifacts;
-        private bool isLoadingAppConfiguration = false;
+        private bool isBusy = false;
+        private Cursor cursor = Cursors.Arrow;
+        private string statusBarText = Resources.StringStatusBarReady;
+        private bool isLoadingAppConfiguration;
+        private ObservableCollection<BuildArtifact> buildArtifacts;
 
         #endregion
 
@@ -25,20 +27,24 @@ namespace AutoPatcher.Models
             this.OpenRepoCommand = new OpenRepoCommand(this);
             this.NewRepoCommand = new NewRepoCommand(this);
             this.CloseRepoCommand = new CloseRepoCommand(this);
-            this.AboutCommand = new AboutCommand(this.ErrorDialogs);
-            this.EditPatchSchemeCommand = new EditPatchSchemeCommand(this.ErrorDialogs, this);
-            this.PatchSelectedCommand = new PatchSelectedCommand(this.ErrorDialogs, this);
+            this.AboutCommand = new AboutCommand(this.Abstraction);
+            this.EditPatchSchemeCommand = new EditPatchSchemeCommand(this.Abstraction, this);
+            this.PatchSelectedCommand = new PatchSelectedCommand(this.Abstraction, this);
+            this.RevertSelectedCommand = new RevertSelectedCommand(this.Abstraction, this);
+            this.EditBinaryDirectoriesCommand = new EditBinaryDirectoriesCommand(this.Abstraction, this);
+            this.EditSourceDirectoryCommand = new EditSourceDirectoryCommand(this.Abstraction, this);
+
+            this.State = new State(
+                this.Abstraction.ErrorDialogs,
+                this.Abstraction.FileDialogs,
+                this.Abstraction.SettingsManager);
         }
 
         #region App Submodels
 
-        public IErrorDialogs ErrorDialogs { get; } = new ErrorDialogs();
+        public IAbstraction Abstraction = new Abstraction();
 
-        public IFileDialogs FileDialogs { get; } = new FileDialogs();
-
-        // Locked reference is my lazy solution to the concurrency issues that arise here..
-        // be sure not to allow the reference to escape the lambda.
-        public LockedReference<AppConfiguration> AppConfig { get; } = new LockedReference<AppConfiguration>();
+        public IState State { get; }
 
         #endregion
 
@@ -58,11 +64,38 @@ namespace AutoPatcher.Models
 
         public ICommand PatchSelectedCommand { get; }
 
+        public ICommand RevertSelectedCommand { get; }
+
+        public ICommand EditBinaryDirectoriesCommand { get; }
+
+        public ICommand EditSourceDirectoryCommand { get; }
+
         #endregion
 
-        #region App Model Concepts
+        #region App Model Properties
 
-        public ObservableCollection<BuildArtifactData> BuildArtifacts
+        public bool IsBusy
+        {
+            get
+            {
+                return this.isBusy;
+            }
+
+            set
+            {
+                if (value != this.isBusy)
+                {
+                    this.isBusy = value;
+                    DispatchPropertyChanged(nameof(this.IsBusy));
+
+                    this.Cursor = this.IsBusy ? Cursors.Wait : Cursors.Arrow;
+                    this.StatusBarText = this.IsBusy ? Resources.StringStatusBarWorking : Resources.StringStatusBarReady;
+                }
+            }
+        }
+
+
+        public ObservableCollection<BuildArtifact> BuildArtifacts
         {
             get
             {
@@ -79,7 +112,7 @@ namespace AutoPatcher.Models
             }
         }
 
-        public IList<BuildArtifactData> SelectedBuildArtifacts { get; } = new List<BuildArtifactData>();
+        public IList<BuildArtifact> SelectedBuildArtifacts { get; } = new List<BuildArtifact>();
 
         public bool IsModifyingLoadedAppConfiguration
         {
@@ -100,107 +133,127 @@ namespace AutoPatcher.Models
             }
         }
 
+        public string RepoConfigPath => this.State.Repository?.RepositoryConfigurationFilePath;
+
+        public string LocalBinRoot => this.State.Repository?.LocalBinRoot;
+
+        public string RemoteBinRoot => this.State?.CurrentRemoteBinRoot;
+
         #endregion
 
-        public async Task CreateAndLoadAppConfigurationAsync(string filePath)
+        #region App Model Methods
+
+        public void CreateAndLoadRepository(string filePath)
         {
             // Assert only because this is verified by the command.
             Debug.Assert(!this.IsModifyingLoadedAppConfiguration);
 
-            bool isLoaded = false;
+            this.IsModifyingLoadedAppConfiguration = true;
 
-            Application.Current.Dispatcher.Invoke(() => this.IsModifyingLoadedAppConfiguration = true);
-
-            await UnloadAppConfigurationAsync();
-
-            await Task.Run(() =>
+            this.State.CreateAndLoadRepositoryAsync(filePath).ContinueWith((task) =>
             {
-                this.AppConfig.AccessReference((config) =>
+                if (this.State.Repository != null)
                 {
-                    var newConfig = AppConfiguration.Create(filePath);
-
-                    AppConfigurationLoader.WriteAppConfiguration(this.ErrorDialogs, newConfig);
-
-                    isLoaded = newConfig != null;
-
-                    // Update reference to new app configuration.
-                    return newConfig;
-                });
-            });
-            
-            Application.Current.Dispatcher.Invoke(() =>
-            {
-                this.IsModifyingLoadedAppConfiguration = false;
-
-                if (isLoaded)
-                {
-                    this.RepoConfigPath = filePath;
-                    this.BuildArtifacts = new ObservableCollection<BuildArtifactData>();
+                    this.BuildArtifacts = new ObservableCollection<BuildArtifact>();
+                    DispatchRepositoryPropertiesChanged();
                 }
+
+                this.IsModifyingLoadedAppConfiguration = false;
             });
         }
 
-        public async Task LoadAppConfigurationAsync(string filePath)
+        public void LoadRepository(string filePath)
         {
             // Assert only because this is verified by the command.
             Debug.Assert(!this.IsModifyingLoadedAppConfiguration);
 
-            bool isLoaded = false;
+            this.IsModifyingLoadedAppConfiguration = true;
 
-            Application.Current.Dispatcher.Invoke(() => this.IsModifyingLoadedAppConfiguration = true);
-
-            await Task.Run(() =>
+            this.State.LoadRepositoryAsync(filePath).ContinueWith((task) =>
             {
-                this.AppConfig.AccessReference((config) =>
+                if (this.State.Repository != null)
                 {
-                    var newConfig = AppConfigurationLoader.CreateAppConfigurationFromFile(this.ErrorDialogs, filePath);
-
-                    isLoaded = newConfig != null;
-
-                    if (isLoaded)
-                    {
-                        this.BuildArtifacts = new ObservableCollection<BuildArtifactData>(newConfig.Configuration.BuildArtifacts);
-                    }
-
-                    return newConfig;
-                });
-            });
-
-            Application.Current.Dispatcher.Invoke(() =>
-            {
-                this.IsModifyingLoadedAppConfiguration = false;
-
-                if (isLoaded)
-                {
-                    this.RepoConfigPath = filePath;
+                    RefreshBuildArtifacts();
+                    DispatchRepositoryPropertiesChanged();
                 }
-            });
-        }
 
-        public async Task UnloadAppConfigurationAsync()
-        {
-            Application.Current.Dispatcher.Invoke(() => this.IsModifyingLoadedAppConfiguration = true);
-
-            await Task.Run(() =>
-            {
-                this.AppConfig.AccessReference((config) =>
-                {
-                    if (config != null)
-                    {
-                        AppConfigurationLoader.WriteAppConfiguration(this.ErrorDialogs, config);
-                    }
-
-                    // Update reference to null.
-                    return null;
-                });
-            });
-
-            Application.Current.Dispatcher.Invoke(() =>
-            {
                 this.IsModifyingLoadedAppConfiguration = false;
-                this.RepoConfigPath = null;
-                this.BuildArtifacts = null;
             });
         }
+
+        public void UnloadRepository()
+        {
+            // Assert only because this is verified by the command.
+            Debug.Assert(!this.IsModifyingLoadedAppConfiguration);
+
+            this.IsModifyingLoadedAppConfiguration = true;
+
+            this.State.UnloadRepository();
+
+            this.BuildArtifacts = null;
+            DispatchRepositoryPropertiesChanged();
+            this.IsModifyingLoadedAppConfiguration = false;
+        }
+
+        public void SaveRepository()
+        {
+            Debug.Assert(!this.IsModifyingLoadedAppConfiguration);
+
+            this.IsModifyingLoadedAppConfiguration = true;
+
+            this.State.SaveRepositoryAsync().ContinueWith((task) => { this.IsModifyingLoadedAppConfiguration = false; });
+        }
+
+        public void DispatchRepositoryPropertiesChanged()
+        {
+            this.DispatchPropertyChanged(nameof(this.RepoConfigPath));
+            this.DispatchPropertyChanged(nameof(this.LocalBinRoot));
+            this.DispatchPropertyChanged(nameof(this.RemoteBinRoot));
+        }
+
+        public void RefreshBuildArtifacts()
+        {
+            this.BuildArtifacts = new ObservableCollection<BuildArtifact>(this.State.Repository.BuildArtifacts);
+        }
+
+        #endregion
+
+        #region Window Properties and Events
+
+        public Cursor Cursor
+        {
+            get
+            {
+                return this.cursor;
+            }
+
+            set
+            {
+                if (this.cursor != value)
+                {
+                    cursor = value;
+                    DispatchPropertyChanged(nameof(this.Cursor));
+                }
+            }
+        }
+
+        public string StatusBarText
+        {
+            get
+            {
+                return this.statusBarText;
+            }
+
+            set
+            {
+                if (this.statusBarText != value)
+                {
+                    this.statusBarText = value;
+                    DispatchPropertyChanged(nameof(this.StatusBarText));
+                }
+            }
+        }
+
+        #endregion
     }
 }

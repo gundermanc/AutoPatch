@@ -1,20 +1,18 @@
 ﻿using System;
-using System.IO;
 using System.Windows.Input;
 using AutoPatcher.Abstractions;
 using AutoPatcher.Models;
-using AutoPatcher.Properties;
 
 namespace AutoPatcher.Commands
 {
     internal sealed class PatchSelectedCommand : ICommand
     {
-        private readonly IErrorDialogs dialogs;
+        private readonly IAbstraction abstraction;
         private readonly MainWindowModel model;
 
-        public PatchSelectedCommand(IErrorDialogs dialogs, MainWindowModel model)
+        public PatchSelectedCommand(IAbstraction abstraction, MainWindowModel model)
         {
-            this.dialogs = dialogs;
+            this.abstraction = abstraction;
             this.model = model;
             this.model.PropertyChanged += Model_PropertyChanged;
         }
@@ -28,41 +26,7 @@ namespace AutoPatcher.Commands
 
         public void Execute(object parameter)
         {
-            foreach (var file in this.model.SelectedBuildArtifacts)
-            {
-                Exception ioException = null;
-
-                try
-                {
-                    string newOldFileName = file.RemotePath;
-
-                    if (File.Exists(newOldFileName))
-                    {
-                        newOldFileName = newOldFileName + ".old.ticks-" + DateTime.Now.Ticks;
-                        File.Move(file.RemotePath, newOldFileName);
-                        File.SetAttributes(newOldFileName, FileAttributes.Hidden);
-                    }
-
-                    File.Copy(file.LocalPath, file.RemotePath);
-                }
-                catch (IOException ex)
-                {
-                    ioException = ex;
-                }
-                catch (UnauthorizedAccessException ex)
-                {
-                    ioException = ex;
-                }
-
-                if (ioException != null)
-                {
-                    dialogs.ErrorDialog(
-                        string.Format(
-                            Resources.StringFilePatchFailure,
-                            file.RemotePath,
-                            ioException.Message));
-                }
-            }
+            this.model.State.PatchBuildArtifacts(this.model.SelectedBuildArtifacts);
         }
 
         private void Model_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)

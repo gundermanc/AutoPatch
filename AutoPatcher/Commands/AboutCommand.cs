@@ -1,17 +1,18 @@
 ﻿using System;
 using System.Windows.Input;
 using AutoPatcher.Abstractions;
+using AutoPatcher.Engine.Abstractions;
 using AutoPatcher.Properties;
 
 namespace AutoPatcher.Commands
 {
     internal sealed class AboutCommand : ICommand
     {
-        private readonly IErrorDialogs dialogs;
+        private readonly IAbstraction abstraction;
 
-        public AboutCommand(IErrorDialogs dialogs)
+        public AboutCommand(IAbstraction abstraction)
         {
-            this.dialogs = dialogs;
+            this.abstraction = abstraction;
         }
 
 #pragma warning disable CS0067
@@ -26,7 +27,10 @@ namespace AutoPatcher.Commands
         public void Execute(object parameter)
         {
             // TODO: better dialog and version info.
-            this.dialogs.InformationDialog(Resources.StringAboutMessage);
+            this.abstraction.ErrorDialogs.InformationDialog(
+                string.Format(
+                    Resources.StringAboutMessage,
+                    typeof(AboutCommand).Assembly.GetName().Version));
         }
     }
 }

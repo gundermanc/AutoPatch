@@ -70,7 +70,7 @@ namespace AutoPatcher.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AutoPatcher, by Christian Gunderman.
+        ///   Looks up a localized string similar to AutoPatcher {0}, by Christian Gunderman.
         /// </summary>
         public static string StringAboutMessage {
             get {
@@ -151,27 +151,20 @@ namespace AutoPatcher.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unable to initialize application from {0} due to error:
-        ///    
-        ///{1}
-        ///    
-        ///Please correct the configuration error, or delete the configuration file and restart to generate a new template..
+        ///   Looks up a localized string similar to Edit Binary Directories.
         /// </summary>
-        public static string StringConfigurationLoadFailure {
+        public static string StringEditBinaryDirectoriesContent {
             get {
-                return ResourceManager.GetString("StringConfigurationLoadFailure", resourceCulture);
+                return ResourceManager.GetString("StringEditBinaryDirectoriesContent", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unable to write configuration to {0} due to error:
-        ///
-        ///{1}
-        ///    .
+        ///   Looks up a localized string similar to AutoPatcher Edit Binary Directories.
         /// </summary>
-        public static string StringConfigurationWriteFailure {
+        public static string StringEditBinaryDirectoriesDialogTitle {
             get {
-                return ResourceManager.GetString("StringConfigurationWriteFailure", resourceCulture);
+                return ResourceManager.GetString("StringEditBinaryDirectoriesDialogTitle", resourceCulture);
             }
         }
         
@@ -190,6 +183,24 @@ namespace AutoPatcher.Properties {
         public static string StringEditPatchSchemeContent {
             get {
                 return ResourceManager.GetString("StringEditPatchSchemeContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Source Directory.
+        /// </summary>
+        public static string StringEditSourceDirectoryContent {
+            get {
+                return ResourceManager.GetString("StringEditSourceDirectoryContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AutoPatcher Edit Sources Directory.
+        /// </summary>
+        public static string StringEditSourcesDirectoryDialogTitle {
+            get {
+                return ResourceManager.GetString("StringEditSourcesDirectoryDialogTitle", resourceCulture);
             }
         }
         
@@ -221,17 +232,6 @@ namespace AutoPatcher.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unable to patch file {0} due to error:
-        ///    
-        ///{1}.
-        /// </summary>
-        public static string StringFilePatchFailure {
-            get {
-                return ResourceManager.GetString("StringFilePatchFailure", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Help.
         /// </summary>
         public static string StringHelpContent {
@@ -250,11 +250,29 @@ namespace AutoPatcher.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Local Binaries Directory.
+        /// </summary>
+        public static string StringLocalBinariesDirectoryContent {
+            get {
+                return ResourceManager.GetString("StringLocalBinariesDirectoryContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Local Path.
         /// </summary>
         public static string StringLocalPathContent {
             get {
                 return ResourceManager.GetString("StringLocalPathContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Local Sources Directory.
+        /// </summary>
+        public static string StringLocalSourcesDirectoryContent {
+            get {
+                return ResourceManager.GetString("StringLocalSourcesDirectoryContent", resourceCulture);
             }
         }
         
@@ -340,11 +358,29 @@ namespace AutoPatcher.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid path, path must be relative to local binary, remote binary, or source root, respectively..
+        /// </summary>
+        public static string StringPathInputPathMustBeRelative {
+            get {
+                return ResourceManager.GetString("StringPathInputPathMustBeRelative", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to AutoPatcher Prompt.
         /// </summary>
         public static string StringQuestionDialogTitle {
             get {
                 return ResourceManager.GetString("StringQuestionDialogTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remote Binaries Directory.
+        /// </summary>
+        public static string StringRemoteBinariesDirectoryContent {
+            get {
+                return ResourceManager.GetString("StringRemoteBinariesDirectoryContent", resourceCulture);
             }
         }
         
@@ -399,6 +435,15 @@ namespace AutoPatcher.Properties {
         public static string StringRepoPathNoneContent {
             get {
                 return ResourceManager.GetString("StringRepoPathNoneContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Revert Selected Files.
+        /// </summary>
+        public static string StringRevertSelectedContent {
+            get {
+                return ResourceManager.GetString("StringRevertSelectedContent", resourceCulture);
             }
         }
         

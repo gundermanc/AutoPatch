@@ -1,18 +1,16 @@
 ﻿using System;
 using System.Windows.Input;
 using AutoPatcher.Abstractions;
-using AutoPatcher.Engine.Util;
 using AutoPatcher.Models;
-using AutoPatcher.Views;
 
 namespace AutoPatcher.Commands
 {
-    internal sealed class EditPatchSchemeCommand : ICommand
+    internal sealed class RevertSelectedCommand : ICommand
     {
         private readonly IAbstraction abstraction;
         private readonly MainWindowModel model;
 
-        public EditPatchSchemeCommand(IAbstraction abstraction, MainWindowModel model)
+        public RevertSelectedCommand(IAbstraction abstraction, MainWindowModel model)
         {
             this.abstraction = abstraction;
             this.model = model;
@@ -28,22 +26,7 @@ namespace AutoPatcher.Commands
 
         public void Execute(object parameter)
         {
-            var model = new PatchEditorModel(
-                this.abstraction,
-                this.model.State,
-                this.model.State.Repository.BuildArtifacts.Clone());
-
-            if (new PatchEditorWindow() { DataContext = model }.ShowDialog() ?? false)
-            {
-                var repo = this.model.State.Repository;
-
-                repo.BuildArtifacts.Clear();
-                repo.AddBuildArtifactsRange(model.BuildArtifacts);
-
-                this.model.SaveRepository();
-                this.model.DispatchRepositoryPropertiesChanged();
-                this.model.RefreshBuildArtifacts();
-            }
+            this.model.State.RevertBuildArtifacts(this.model.SelectedBuildArtifacts);
         }
 
         private void Model_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)

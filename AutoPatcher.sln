@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoPatcher", "AutoPatcher\AutoPatcher.csproj", "{D42E0AA9-6CDF-4D1F-9343-596138A10372}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoPatcher.Engine", "AutoPatcher.Engine\AutoPatcher.Engine.csproj", "{22D61251-0146-4BBB-81F8-A69A93F0E609}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{D42E0AA9-6CDF-4D1F-9343-596138A10372}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D42E0AA9-6CDF-4D1F-9343-596138A10372}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D42E0AA9-6CDF-4D1F-9343-596138A10372}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22D61251-0146-4BBB-81F8-A69A93F0E609}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22D61251-0146-4BBB-81F8-A69A93F0E609}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22D61251-0146-4BBB-81F8-A69A93F0E609}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22D61251-0146-4BBB-81F8-A69A93F0E609}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
