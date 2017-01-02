@@ -11,6 +11,20 @@
         Title="{x:Static p:Resources.StringMainWindowTitle}"
         Height="350"
         Width="525">
+    <Window.Resources>
+        <Style x:Key="IsPatchedCellStyle" TargetType="DataGridCell" BasedOn="{StaticResource {x:Type DataGridCell}}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsPatched}" Value="True">
+                    <Setter Property="FontWeight" Value="Bold" />
+                    <Setter Property="Foreground" Value="Green" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsPatched}" Value="False">
+                    <Setter Property="FontWeight" Value="Bold" />
+                    <Setter Property="Foreground" Value="Red" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
     <DockPanel>
         <Menu Background="LightGray"
               DockPanel.Dock="Top"
@@ -67,6 +81,7 @@
                  SelectionMode="Extended">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="{x:Static p:Resources.StringBuildArtifactContent}" Binding="{Binding LocalPath}" />
+                    <DataGridTextColumn Header="{x:Static p:Resources.StringIsPatchedContent}" Binding="{Binding IsPatched}" CellStyle="{StaticResource IsPatchedCellStyle}" />
                 </DataGrid.Columns>
             </DataGrid>
             <StackPanel Grid.Row="1"

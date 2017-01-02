@@ -211,10 +211,8 @@ namespace AutoPatcher.Models
             this.DispatchPropertyChanged(nameof(this.RemoteBinRoot));
         }
 
-        public void RefreshBuildArtifacts()
-        {
+        public void RefreshBuildArtifacts() =>
             this.BuildArtifacts = new ObservableCollection<BuildArtifact>(this.State.Repository.BuildArtifacts);
-        }
 
         #endregion
 

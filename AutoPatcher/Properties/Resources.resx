@@ -259,4 +259,7 @@
   <data name="StringEditSourceDirectoryContent" xml:space="preserve">
     <value>Edit Source Directory</value>
   </data>
+  <data name="StringIsPatchedContent" xml:space="preserve">
+    <value>Is Patched</value>
+  </data>
 </root>

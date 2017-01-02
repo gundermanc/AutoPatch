@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Text;
 using System.Threading.Tasks;
 using AutoPatcher.Engine.Abstractions;
 using AutoPatcher.Engine.Properties;
@@ -70,6 +69,8 @@ namespace AutoPatcher.Engine
         {
             this.UnloadRepository();
             this.Repository = await Task.Run(() => RepositoryLoader.CreateFromFile(this.ErrorDialogs, filePath));
+
+            RefreshBuildArtifactStates(this.Repository.BuildArtifacts);
         }
 
         public async Task SaveRepositoryAsync()
@@ -117,6 +118,49 @@ namespace AutoPatcher.Engine
             foreach (var artifact in buildArtifacts)
             {
                 RevertBuildArtifact(artifact);
+            }
+        }
+
+        public void ClearBuildArtifacts() => this.Repository.BuildArtifacts.Clear();
+
+        public void AddBuildArtifactsRange(IEnumerable<BuildArtifact> buildArtifacts)
+        {
+            Verify.IsNotNull(buildArtifacts, nameof(buildArtifacts));
+
+            this.RefreshBuildArtifactStates(buildArtifacts);
+
+            foreach (var buildArtifact in buildArtifacts)
+            {
+                this.Repository.BuildArtifacts.Add(buildArtifact);
+            }
+        }
+
+        public void RefreshBuildArtifactStates()
+        {
+            if (this.Repository == null)
+            {
+                throw new InvalidOperationException("No repository loaded");
+            }
+
+            this.RefreshBuildArtifactStates(this.Repository.BuildArtifacts);
+        }
+
+        private void RefreshBuildArtifactStates(IEnumerable<BuildArtifact> buildArtifacts)
+        {
+            foreach (var buildArtifact in buildArtifacts)
+            {
+                string stockRevisionFilePath = Path.Combine(this.CurrentRemoteBinRoot, buildArtifact.RemotePath + StockRevisionSuffix);
+                string remoteFilePath = Path.Combine(this.CurrentRemoteBinRoot, buildArtifact.RemotePath);
+                string emptyRevisionFilePath = stockRevisionFilePath + EmptyRevisionSuffix;
+
+                if (File.Exists(remoteFilePath) || File.Exists(emptyRevisionFilePath))
+                {
+                    buildArtifact.IsPatched = true;
+                }
+                else
+                {
+                    buildArtifact.IsPatched = false;
+                }
             }
         }
 
@@ -179,6 +223,7 @@ namespace AutoPatcher.Engine
                 }
 
                 File.Copy(localFilePath, remoteFilePath, true);
+                buildArtifact.IsPatched = true;
             }
             catch (Exception ex)
             {
@@ -208,6 +253,7 @@ namespace AutoPatcher.Engine
                 {
                     File.Delete(remoteFilePath);
                     File.Delete(emptyRevisionFilePath);
+                    buildArtifact.IsPatched = false;
                     return;
                 }
 
@@ -219,6 +265,7 @@ namespace AutoPatcher.Engine
                     }
 
                     File.Move(stockRevisionFilePath, remoteFilePath);
+                    buildArtifact.IsPatched = false;
                 }
             }
             catch (Exception ex)

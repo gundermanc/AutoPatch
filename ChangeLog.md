@@ -1,3 +1,8 @@
+# 0.6.1.0 (2017-1-1):
+
+### Enhancements
+* "Is Patched" column in GUI.
+
 # 0.6.0.0 (2017-1-1):
 
 ### Enhancements

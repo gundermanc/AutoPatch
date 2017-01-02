@@ -48,6 +48,9 @@ namespace AutoPatcher.Commands
                 this.model.State.Repository.LocalBinRoot = model.Input0Text;
                 this.model.State.CurrentRemoteBinRoot = model.Input1Text;
 
+                this.model.State.RefreshBuildArtifactStates();
+                this.model.RefreshBuildArtifacts();
+
                 this.model.SaveRepository();
             }
         }
