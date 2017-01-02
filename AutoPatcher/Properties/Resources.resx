@@ -262,4 +262,7 @@
   <data name="StringIsPatchedContent" xml:space="preserve">
     <value>Is Patched</value>
   </data>
+  <data name="StringSelectDirtyContent" xml:space="preserve">
+    <value>Select Artifacts With Dirty Sources</value>
+  </data>
 </root>

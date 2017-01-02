@@ -457,6 +457,15 @@ namespace AutoPatcher.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select Artifacts With Dirty Sources.
+        /// </summary>
+        public static string StringSelectDirtyContent {
+            get {
+                return ResourceManager.GetString("StringSelectDirtyContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Source Items.
         /// </summary>
         public static string StringSourceItemsContent {

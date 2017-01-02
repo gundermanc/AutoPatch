@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Windows.Input;
 using AutoPatcher.Abstractions;
 using AutoPatcher.Models;
@@ -35,6 +36,8 @@ namespace AutoPatcher.Commands
         {
             if (this.model.OpenFolderInsteadOfFile)
             {
+                // TODO: relative paths for directories. Currently unsupported as this isn't used anywhere.
+                Debug.Assert(inputRelativePathPrefix == null);
                 inputText = this.abstraction.FileDialogs.OpenFolderDialog() ?? inputText;
             }
             else
@@ -47,14 +50,20 @@ namespace AutoPatcher.Commands
 
                 if (absolutePath != null)
                 {
-                    if ((inputRelativePathPrefix != null) &&
-                        !absolutePath.StartsWith(inputRelativePathPrefix))
+                    if (inputRelativePathPrefix != null)
                     {
-                        this.abstraction.ErrorDialogs.WarningDialog(Resources.StringPathInputPathMustBeRelative);
-                        return;
-                    }
+                        if (!absolutePath.StartsWith(inputRelativePathPrefix))
+                        {
+                            this.abstraction.ErrorDialogs.WarningDialog(Resources.StringPathInputPathMustBeRelative);
+                            return;
+                        }
 
-                    inputText = absolutePath.Substring(inputRelativePathPrefix.Length).TrimStart('\\');
+                        inputText = absolutePath.Substring(inputRelativePathPrefix.Length).TrimStart('\\');
+                    }
+                    else
+                    {
+                        inputText = absolutePath;
+                    }
                 }
             }
         }

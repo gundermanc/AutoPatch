@@ -11,7 +11,7 @@ namespace AutoPatcher.Engine.Repository
 {
     internal static class RepositoryLoader
     {
-        public static IRepository CreateEmptyFile(IErrorDialogs dialogs, string filePath)
+        public static IRepositoryInternal CreateEmptyFile(IErrorDialogs dialogs, string filePath)
         {
             Verify.IsNotNull(dialogs, nameof(dialogs));
             Verify.IsNotNullOrWhiteSpace(filePath, nameof(filePath));
@@ -23,7 +23,7 @@ namespace AutoPatcher.Engine.Repository
             return repo;
         }
 
-        public static IRepository CreateFromFile(IErrorDialogs dialogs, string filePath)
+        public static IRepositoryInternal CreateFromFile(IErrorDialogs dialogs, string filePath)
         {
             Verify.IsNotNull(dialogs, nameof(dialogs));
             Verify.IsNotNullOrWhiteSpace(filePath, nameof(filePath));
@@ -97,7 +97,7 @@ namespace AutoPatcher.Engine.Repository
             };
         }
 
-        private static IRepository RepositoryFromConfiguration(string filePath, RepositoryConfigurationData config)
+        private static IRepositoryInternal RepositoryFromConfiguration(string filePath, RepositoryConfigurationData config)
         {
             Debug.Assert(!string.IsNullOrWhiteSpace(filePath));
             Debug.Assert(config != null);

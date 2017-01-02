@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using AutoPatcher.Engine.Repository;
 
-
 namespace AutoPatcher.Engine
 {
     public interface IState
@@ -28,5 +27,7 @@ namespace AutoPatcher.Engine
         void AddBuildArtifactsRange(IEnumerable<BuildArtifact> buildArtifact);
 
         void RefreshBuildArtifactStates();
+
+        Task<IEnumerable<BuildArtifact>> GetDirtyBuildArtifactsAsync();
     }
 }

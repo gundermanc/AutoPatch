@@ -8,9 +8,12 @@
         mc:Ignorable="d"
         Background="LightBlue"
         Cursor="{Binding Cursor}"
+        Loaded="Window_Loaded"
         Title="{x:Static p:Resources.StringMainWindowTitle}"
         Height="350"
-        Width="525">
+        Width="525"
+        MinHeight="350"
+        MinWidth="525">
     <Window.Resources>
         <Style x:Key="IsPatchedCellStyle" TargetType="DataGridCell" BasedOn="{StaticResource {x:Type DataGridCell}}">
             <Style.Triggers>
@@ -87,14 +90,17 @@
             <StackPanel Grid.Row="1"
                         Orientation="Horizontal">
                 <Button HorizontalAlignment="Left"
-                    Margin="10.0,0.0,0.0,10.0"
-                    Content="{x:Static p:Resources.StringPatchSelectedContent}"
-                    Command="{Binding PatchSelectedCommand}"/>
-                <Button Grid.Row="1"
-                    HorizontalAlignment="Left"
-                    Margin="10.0,0.0,0.0,10.0"
-                    Content="{x:Static p:Resources.StringRevertSelectedContent}"
-                    Command="{Binding RevertSelectedCommand}"/>
+                        Margin="10.0,0.0,0.0,10.0"
+                        Content="{x:Static p:Resources.StringPatchSelectedContent}"
+                        Command="{Binding PatchSelectedCommand}"/>
+                <Button HorizontalAlignment="Left"
+                        Margin="10.0,0.0,0.0,10.0"
+                        Content="{x:Static p:Resources.StringRevertSelectedContent}"
+                        Command="{Binding RevertSelectedCommand}"/>
+                <Button HorizontalAlignment="Left"
+                        Margin="10.0,0.0,0.0,10.0"
+                        Content="{x:Static p:Resources.StringSelectDirtyContent}"
+                        Command="{Binding SelectDirtyCommand}"/>
             </StackPanel>
         </Grid>
     </DockPanel>

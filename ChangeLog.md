@@ -1,7 +1,11 @@
-# 0.6.2.0 (2017-1-1):
+# 0.6.5.0 (2017-1-2):
+
+### Enhancements
+* Added super slick "Select Artifacts with Dirty Sources" button that highlights all binaries that have source files that have been modified since the last Git commit.
 
 ### Bug Fixes:
 * Corrected invalid "True" in Is Patched column when file already exists.
+* Isolated leaked IRepository internals.
 
 # 0.6.1.0 (2017-1-1):
 

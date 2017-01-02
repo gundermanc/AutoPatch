@@ -1,4 +1,6 @@
-﻿using AutoPatcher.Abstractions;
+﻿using System.Linq;
+using AutoPatcher.Abstractions;
+using AutoPatcher.Engine.Repository;
 using AutoPatcher.Models;
 
 namespace AutoPatcher.Commands
@@ -14,7 +16,7 @@ namespace AutoPatcher.Commands
 
         public override void Execute(object parameter)
         {
-            this.model.State.PatchBuildArtifacts(this.model.SelectedBuildArtifacts);
+            this.model.State.PatchBuildArtifacts(this.model.Selected.Cast<BuildArtifact>());
             this.model.RefreshBuildArtifacts();
         }
     }

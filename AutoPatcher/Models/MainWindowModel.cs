@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Windows.Input;
@@ -10,7 +11,7 @@ using AutoPatcher.Properties;
 
 namespace AutoPatcher.Models
 {
-    internal sealed class MainWindowModel : ModelBase
+    internal sealed class MainWindowModel : ModelBase, IMultiSelectable
     {
         #region Private fields
 
@@ -33,6 +34,7 @@ namespace AutoPatcher.Models
             this.RevertSelectedCommand = new RevertSelectedCommand(this.Abstraction, this);
             this.EditBinaryDirectoriesCommand = new EditBinaryDirectoriesCommand(this.Abstraction, this);
             this.EditSourceDirectoryCommand = new EditSourceDirectoryCommand(this.Abstraction, this);
+            this.SelectDirtyCommand = new SelectDirtyCommand(this.Abstraction, this);
 
             this.State = new State(
                 this.Abstraction.ErrorDialogs,
@@ -43,6 +45,8 @@ namespace AutoPatcher.Models
         #region App Submodels
 
         public IAbstraction Abstraction = new Abstraction();
+
+        public event EventHandler ModelChangedSelection;
 
         public IState State { get; }
 
@@ -69,6 +73,8 @@ namespace AutoPatcher.Models
         public ICommand EditBinaryDirectoriesCommand { get; }
 
         public ICommand EditSourceDirectoryCommand { get; }
+
+        public ICommand SelectDirtyCommand { get; }
 
         #endregion
 
@@ -111,8 +117,6 @@ namespace AutoPatcher.Models
                 }
             }
         }
-
-        public IList<BuildArtifact> SelectedBuildArtifacts { get; } = new List<BuildArtifact>();
 
         public bool IsModifyingLoadedAppConfiguration
         {
@@ -214,6 +218,14 @@ namespace AutoPatcher.Models
         public void RefreshBuildArtifacts() =>
             this.BuildArtifacts = new ObservableCollection<BuildArtifact>(this.State.Repository.BuildArtifacts);
 
+        public void RaiseModelChangedSelectionEvent()
+        {
+            if (this.ModelChangedSelection != null)
+            {
+                this.ModelChangedSelection(this, EventArgs.Empty);
+            }
+        }
+
         #endregion
 
         #region Window Properties and Events
@@ -251,6 +263,8 @@ namespace AutoPatcher.Models
                 }
             }
         }
+
+        public IList<object> Selected { get; } = new List<object>();
 
         #endregion
     }

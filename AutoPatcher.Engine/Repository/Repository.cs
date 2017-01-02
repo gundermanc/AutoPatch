@@ -3,7 +3,7 @@ using AutoPatcher.Engine.Util;
 
 namespace AutoPatcher.Engine.Repository
 {
-    public sealed class Repository : IRepository
+    public sealed class Repository : IRepositoryInternal
     {
         public const string ConfigurationFileFilter = "AutoPatcher Configuration|*.apconfig";
 
@@ -19,8 +19,10 @@ namespace AutoPatcher.Engine.Repository
             this.RepositoryConfigurationFilePath = repositoryConfigurationFilePath;
             this.LocalBinRoot = localBinRoot;
             this.SourceItemsRoot = sourceItemsRoot;
-            this.BuildArtifacts = new HashSet<BuildArtifact>(buildArtifacts);
+            this.MutableBuildArtifacts = new List<BuildArtifact>(buildArtifacts);
         }
+
+        #region IRepository Members
 
         public string RepositoryConfigurationFilePath { get; }
 
@@ -28,14 +30,19 @@ namespace AutoPatcher.Engine.Repository
 
         public string SourceItemsRoot { get; set; }
 
-        public ISet<BuildArtifact> BuildArtifacts { get; }
+        public IReadOnlyList<BuildArtifact> BuildArtifacts => this.MutableBuildArtifacts;
 
-        public void AddBuildArtifactsRange(IEnumerable<BuildArtifact> range)
-        {
-            foreach (var item in range)
-            {
-                this.BuildArtifacts.Add(item);
-            }
-        }
+        #endregion
+
+        #region IRepository Internal Members
+
+        internal List<BuildArtifact> MutableBuildArtifacts { get; }
+
+        public void AddBuildArtifactsRange(IEnumerable<BuildArtifact> buildArtifacts)
+            => this.MutableBuildArtifacts.AddRange(buildArtifacts);
+
+        public void ClearBuildArtifacts() => this.MutableBuildArtifacts.Clear();
+
+        #endregion
     }
 }

@@ -130,15 +130,24 @@ Please correct the configuration error, or delete the configuration file and res
 {1}
     </value>
   </data>
+  <data name="StringFailureGeneral" xml:space="preserve">
+    <value>Unable to perform operation due to error: {0}</value>
+  </data>
+  <data name="StringFailureInvalidLocalBinRoot" xml:space="preserve">
+    <value>Unable to perform operation due to invalid Local Binaries Root path {0}.</value>
+  </data>
+  <data name="StringFailureInvalidRemoteBinRoot" xml:space="preserve">
+    <value>Unable to perform operation due to invalid Remote Binaries Root path {0}.</value>
+  </data>
+  <data name="StringFailureInvalidSourceItemsRoot" xml:space="preserve">
+    <value>Unable to perform operation due to invalid Source Items Root path {0}.</value>
+  </data>
   <data name="StringPatchFailureGeneral" xml:space="preserve">
     <value>Unable to patch file {0} due to error:
     
 {1}</value>
   </data>
-  <data name="StringPatchFailureInvalidLocalBinRoot" xml:space="preserve">
-    <value>Unable to patch build artifacts due to invalid Local Binaries Root path {0}.</value>
-  </data>
-  <data name="StringPatchFailureInvalidRemoteBinRoot" xml:space="preserve">
-    <value>Unable to patch build artifact due to invalid Remote Binaries Root path {0}.</value>
+  <data name="StringUnmappedFile" xml:space="preserve">
+    <value>Unmapped Source Item: {0}</value>
   </data>
 </root>

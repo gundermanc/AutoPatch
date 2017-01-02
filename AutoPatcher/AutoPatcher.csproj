@@ -85,6 +85,8 @@
     <Compile Include="Abstractions\FileDialogs.cs" />
     <Compile Include="Commands\RequiresRepoOpenCommandBase.cs" />
     <Compile Include="Commands\RevertSelectedCommand.cs" />
+    <Compile Include="Commands\SelectDirtyCommand.cs" />
+    <Compile Include="Models\IMultiSelectable.cs" />
     <Compile Include="Models\ModelBase.cs" />
     <Compile Include="Models\PathInputModel.cs" />
     <Compile Include="Properties\Settings.Designer.cs">

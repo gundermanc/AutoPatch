@@ -10,6 +10,6 @@ namespace AutoPatcher.Engine.Repository
 
         string SourceItemsRoot { get; set; }
 
-        ISet<BuildArtifact> BuildArtifacts { get; }
+        IReadOnlyList<BuildArtifact> BuildArtifacts { get; }
     }
 }

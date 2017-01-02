@@ -86,6 +86,42 @@ namespace AutoPatcher.Engine.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unable to perform operation due to error: {0}.
+        /// </summary>
+        internal static string StringFailureGeneral {
+            get {
+                return ResourceManager.GetString("StringFailureGeneral", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to perform operation due to invalid Local Binaries Root path {0}..
+        /// </summary>
+        internal static string StringFailureInvalidLocalBinRoot {
+            get {
+                return ResourceManager.GetString("StringFailureInvalidLocalBinRoot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to perform operation due to invalid Remote Binaries Root path {0}..
+        /// </summary>
+        internal static string StringFailureInvalidRemoteBinRoot {
+            get {
+                return ResourceManager.GetString("StringFailureInvalidRemoteBinRoot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to perform operation due to invalid Source Items Root path {0}..
+        /// </summary>
+        internal static string StringFailureInvalidSourceItemsRoot {
+            get {
+                return ResourceManager.GetString("StringFailureInvalidSourceItemsRoot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unable to patch file {0} due to error:
         ///    
         ///{1}.
@@ -97,20 +133,11 @@ namespace AutoPatcher.Engine.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unable to patch build artifacts due to invalid Local Binaries Root path {0}..
+        ///   Looks up a localized string similar to Unmapped Source Item: {0}.
         /// </summary>
-        internal static string StringPatchFailureInvalidLocalBinRoot {
+        internal static string StringUnmappedFile {
             get {
-                return ResourceManager.GetString("StringPatchFailureInvalidLocalBinRoot", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Unable to patch build artifact due to invalid Remote Binaries Root path {0}..
-        /// </summary>
-        internal static string StringPatchFailureInvalidRemoteBinRoot {
-            get {
-                return ResourceManager.GetString("StringPatchFailureInvalidRemoteBinRoot", resourceCulture);
+                return ResourceManager.GetString("StringUnmappedFile", resourceCulture);
             }
         }
     }
