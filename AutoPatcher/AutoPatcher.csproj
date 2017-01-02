@@ -78,7 +78,7 @@
     <Compile Include="Commands\EditSourceDirectoryCommand.cs" />
     <Compile Include="Commands\Input1PathCommand.cs" />
     <Compile Include="Commands\Input0PathCommand.cs" />
-    <Compile Include="Commands\InputCommandBase.cs" />
+    <Compile Include="Commands\InputPathCommandBase.cs" />
     <Compile Include="Commands\PatchSelectedCommand.cs" />
     <Compile Include="Abstractions\ErrorDialogs.cs" />
     <Compile Include="Commands\ExitCommand.cs" />
