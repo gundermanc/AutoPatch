@@ -1,7 +1,9 @@
-# 0.6.5.0 (2017-1-2):
+# 0.7.0.0 (2017-1-17):
 
 ### Enhancements
+* Added configuration import via MSBuild project scraping.
 * Added super slick "Select Artifacts with Dirty Sources" button that highlights all binaries that have source files that have been modified since the last Git commit.
+* Added MSBuild Importer
 
 ### Bug Fixes:
 * Corrected invalid "True" in Is Patched column when file already exists.

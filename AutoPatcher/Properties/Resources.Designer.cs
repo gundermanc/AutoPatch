@@ -241,6 +241,24 @@ namespace AutoPatcher.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Import from MSBuild Project.
+        /// </summary>
+        public static string StringImportFromMSBuildContent {
+            get {
+                return ResourceManager.GetString("StringImportFromMSBuildContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AutoPatcher MSBuild Artifact Import.
+        /// </summary>
+        public static string StringImportMSBuildTitle {
+            get {
+                return ResourceManager.GetString("StringImportMSBuildTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to AutoPatcher Information.
         /// </summary>
         public static string StringInformationDialogTitle {
@@ -363,15 +381,6 @@ namespace AutoPatcher.Properties {
         public static string StringPathButtonContent {
             get {
                 return ResourceManager.GetString("StringPathButtonContent", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Invalid path, path must be relative to local binary, remote binary, or source root, respectively..
-        /// </summary>
-        public static string StringPathInputPathMustBeRelative {
-            get {
-                return ResourceManager.GetString("StringPathInputPathMustBeRelative", resourceCulture);
             }
         }
         

@@ -247,9 +247,6 @@
   <data name="StringRevertSelectedContent" xml:space="preserve">
     <value>Revert Selected Files</value>
   </data>
-  <data name="StringPathInputPathMustBeRelative" xml:space="preserve">
-    <value>Invalid path, path must be relative to local binary, remote binary, or source root, respectively.</value>
-  </data>
   <data name="StringLocalSourcesDirectoryContent" xml:space="preserve">
     <value>Local Sources Directory</value>
   </data>
@@ -264,5 +261,11 @@
   </data>
   <data name="StringSelectDirtyContent" xml:space="preserve">
     <value>Select Artifacts With Dirty Sources</value>
+  </data>
+  <data name="StringImportFromMSBuildContent" xml:space="preserve">
+    <value>Import from MSBuild Project</value>
+  </data>
+  <data name="StringImportMSBuildTitle" xml:space="preserve">
+    <value>AutoPatcher MSBuild Artifact Import</value>
   </data>
 </root>

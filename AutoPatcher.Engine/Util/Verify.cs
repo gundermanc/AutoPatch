@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace AutoPatcher.Engine.Util
 {
@@ -8,7 +10,7 @@ namespace AutoPatcher.Engine.Util
         {
             if (string.IsNullOrWhiteSpace(str))
             {
-                throw new ArgumentException("Null or whitespace parameter {0}", nameof(name));
+                throw new ArgumentException("Null or whitespace parameter", name);
             }
         }
 
@@ -16,7 +18,15 @@ namespace AutoPatcher.Engine.Util
         {
             if (val == null)
             {
-                throw new ArgumentNullException(nameof(name));
+                throw new ArgumentNullException(name);
+            }
+        }
+
+        public static void IsNotEmpty<TItem>(IEnumerable<TItem> val, string name)
+        {
+            if (!val.Any())
+            {
+                throw new ArgumentException("Expected non empty collection", name);
             }
         }
     }

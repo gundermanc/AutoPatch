@@ -51,9 +51,18 @@
     <Compile Include="Abstractions\IErrorDialogs.cs" />
     <Compile Include="Abstractions\IFileDialogs.cs" />
     <Compile Include="Abstractions\ISettingsManager.cs" />
+    <Compile Include="ArtifactLocator\ArtifactLocatorException.cs" />
+    <Compile Include="ArtifactLocator\DllArtifactTypeMatcher.cs" />
+    <Compile Include="ArtifactLocator\ExeArtifactTypeMatcher.cs" />
+    <Compile Include="ArtifactLocator\FileEnumArtifactLocator.cs" />
+    <Compile Include="ArtifactLocator\IArtifactTypeMatcher.cs" />
+    <Compile Include="ArtifactLocator\IArtifactLocator.cs" />
+    <Compile Include="ArtifactLocator\RegExArtifactTypeMatcherBase.cs" />
     <Compile Include="Config\BuildArtifactData.cs" />
     <Compile Include="Config\RepositoryConfigurationData.cs" />
     <Compile Include="Config\RepositoryConfigurationDataLoader.cs" />
+    <Compile Include="MSBuild\MSBuildArtifactImporter.cs" />
+    <Compile Include="MSBuild\MSBuildImportException.cs" />
     <Compile Include="Repository\IRepositoryInternal.cs" />
     <Compile Include="Repository\RepositoryLoader.cs" />
     <Compile Include="Repository\SourceItem.cs" />
@@ -70,6 +79,7 @@
     <Compile Include="Repository\BuildArtifact.cs" />
     <Compile Include="State.cs" />
     <Compile Include="Util\LinqExtensions.cs" />
+    <Compile Include="Util\PathUtil.cs" />
     <Compile Include="Util\Verify.cs" />
   </ItemGroup>
   <ItemGroup>

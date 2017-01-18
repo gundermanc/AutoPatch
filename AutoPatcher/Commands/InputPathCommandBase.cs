@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Windows.Input;
 using AutoPatcher.Abstractions;
+using AutoPatcher.Engine.Util;
 using AutoPatcher.Models;
 using AutoPatcher.Properties;
 
@@ -52,13 +53,15 @@ namespace AutoPatcher.Commands
                 {
                     if (inputRelativePathPrefix != null)
                     {
-                        if (!absolutePath.StartsWith(inputRelativePathPrefix))
+                        try
                         {
-                            this.abstraction.ErrorDialogs.WarningDialog(Resources.StringPathInputPathMustBeRelative);
+                            inputText = PathUtil.PathRelativeToDirectory(absolutePath, inputRelativePathPrefix);
+                        }
+                        catch (Exception ex)
+                        {
+                            this.abstraction.ErrorDialogs.WarningDialog(ex.Message);
                             return;
                         }
-
-                        inputText = absolutePath.Substring(inputRelativePathPrefix.Length).TrimStart('\\');
                     }
                     else
                     {

@@ -76,6 +76,7 @@
     <Compile Include="Commands\EditBinaryDirectoriesCommand.cs" />
     <Compile Include="Commands\EditPatchSchemeCommand.cs" />
     <Compile Include="Commands\EditSourceDirectoryCommand.cs" />
+    <Compile Include="Commands\ImportFromMSBuildCommand.cs" />
     <Compile Include="Commands\Input1PathCommand.cs" />
     <Compile Include="Commands\Input0PathCommand.cs" />
     <Compile Include="Commands\InputPathCommandBase.cs" />

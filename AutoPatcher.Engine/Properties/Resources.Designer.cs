@@ -61,6 +61,15 @@ namespace AutoPatcher.Engine.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unable to find artifact {0}..
+        /// </summary>
+        internal static string StringArtifactLocatorArtifactNotFoundFailure {
+            get {
+                return ResourceManager.GetString("StringArtifactLocatorArtifactNotFoundFailure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unable to initialize application from {0} due to error:
         ///    
         ///{1}
@@ -122,6 +131,24 @@ namespace AutoPatcher.Engine.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unable to scrape file {0} due to error: {1}.
+        /// </summary>
+        internal static string StringMSBuildScrapeFailure {
+            get {
+                return ResourceManager.GetString("StringMSBuildScrapeFailure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot find &quot;AssemblyName&quot;..
+        /// </summary>
+        internal static string StringMSBuildScrapeMissingAssemblyName {
+            get {
+                return ResourceManager.GetString("StringMSBuildScrapeMissingAssemblyName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unable to patch file {0} due to error:
         ///    
         ///{1}.
@@ -129,6 +156,15 @@ namespace AutoPatcher.Engine.Properties {
         internal static string StringPatchFailureGeneral {
             get {
                 return ResourceManager.GetString("StringPatchFailureGeneral", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid path, path must be relative to local binary, remote binary, or source root, respectively..
+        /// </summary>
+        internal static string StringPathInputPathMustBeRelative {
+            get {
+                return ResourceManager.GetString("StringPathInputPathMustBeRelative", resourceCulture);
             }
         }
         

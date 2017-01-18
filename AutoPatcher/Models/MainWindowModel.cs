@@ -30,6 +30,7 @@ namespace AutoPatcher.Models
             this.CloseRepoCommand = new CloseRepoCommand(this);
             this.AboutCommand = new AboutCommand(this.Abstraction);
             this.EditPatchSchemeCommand = new EditPatchSchemeCommand(this.Abstraction, this);
+            this.ImportFromMSBuildCommand = new ImportFromMSBuildCommand(this.Abstraction, this);
             this.PatchSelectedCommand = new PatchSelectedCommand(this.Abstraction, this);
             this.RevertSelectedCommand = new RevertSelectedCommand(this.Abstraction, this);
             this.EditBinaryDirectoriesCommand = new EditBinaryDirectoriesCommand(this.Abstraction, this);
@@ -65,6 +66,8 @@ namespace AutoPatcher.Models
         public ICommand AboutCommand { get; }
 
         public ICommand EditPatchSchemeCommand { get; }
+
+        public ICommand ImportFromMSBuildCommand { get; }
 
         public ICommand PatchSelectedCommand { get; }
 

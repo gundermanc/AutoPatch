@@ -31,6 +31,7 @@
                 <MenuItem Header="{x:Static p:Resources.StringEditBinaryDirectoriesContent}" Command="{Binding EditBinaryDirectoriesCommand}"/>
                 <MenuItem Header="{x:Static p:Resources.StringEditSourceDirectoryContent}" Command="{Binding EditSourceDirectoryCommand}"/>
                 <MenuItem Header="{x:Static p:Resources.StringEditPatchSchemeContent}" Command="{Binding EditPatchSchemeCommand}"/>
+                <MenuItem Header="{x:Static p:Resources.StringImportFromMSBuildContent}" Command="{Binding ImportFromMSBuildCommand}"/>
             </MenuItem>
             <MenuItem Header="{x:Static p:Resources.StringHelpContent}">
                 <MenuItem Header="{x:Static p:Resources.StringAboutContent}" Command="{Binding AboutCommand}"/>
