@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 using AutoPatcher.Engine.Abstractions;
 using AutoPatcher.Engine.Properties;
@@ -262,7 +261,7 @@ namespace AutoPatcher.Engine
             }
         }
 
-        private bool IsInActionableState(bool isRevert = false, bool isSourceOp = false)
+        public bool IsInActionableState(bool isRevert = false, bool isSourceOp = false)
         {
             if (this.Repository == null)
             {

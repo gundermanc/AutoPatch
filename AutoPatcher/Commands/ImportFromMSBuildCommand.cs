@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows.Input;
+﻿using System.Threading.Tasks;
 using AutoPatcher.Abstractions;
 using AutoPatcher.Engine.ArtifactLocator;
 using AutoPatcher.Engine.MSBuild;
@@ -8,27 +7,16 @@ using AutoPatcher.Properties;
 
 namespace AutoPatcher.Commands
 {
-    internal sealed class ImportFromMSBuildCommand : ICommand
+    internal sealed class ImportFromMSBuildCommand : RequiresRepoOpenCommandBase
     {
         private readonly IAbstraction abstraction;
-        private readonly MainWindowModel model;
 
-        public ImportFromMSBuildCommand(IAbstraction abstraction, MainWindowModel model)
+        public ImportFromMSBuildCommand(IAbstraction abstraction, MainWindowModel model) : base(model)
         {
             this.abstraction = abstraction;
-            this.model = model;
         }
 
-#pragma warning disable 0067
-        public event EventHandler CanExecuteChanged;
-#pragma warning restore 0067
-
-        public bool CanExecute(object parameter)
-        {
-            return true;
-        }
-
-        public void Execute(object parameter)
+        public async override void Execute(object parameter)
         {
             var filePath = this.abstraction.FileDialogs.OpenFileDialog(
                 Resources.StringImportMSBuildTitle,
@@ -40,7 +28,7 @@ namespace AutoPatcher.Commands
             {
                 this.model.IsBusy = true;
 
-                MSBuildArtifactImporter.Import(
+                await Task.Run(() => MSBuildArtifactImporter.Import(
                     errorDialog: this.model.Abstraction.ErrorDialogs,
                     state: this.model.State,
                     localBinLocator: new FileEnumArtifactLocator(
@@ -51,7 +39,11 @@ namespace AutoPatcher.Commands
                         this.model.State.CurrentRemoteBinRoot,
                         new ExeArtifactTypeMatcher(),
                         new DllArtifactTypeMatcher()),
-                    fileName: filePath);
+                    fileName: filePath));
+
+                this.model.SaveRepository();
+                this.model.DispatchRepositoryPropertiesChanged();
+                this.model.RefreshBuildArtifacts();
 
                 this.model.IsBusy = false;
             }

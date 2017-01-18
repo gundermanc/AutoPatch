@@ -149,6 +149,15 @@ namespace AutoPatcher.Engine.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unable to locate the following referenced project files: {0}.
+        /// </summary>
+        internal static string StringMSBuildScrapeMissingFiles {
+            get {
+                return ResourceManager.GetString("StringMSBuildScrapeMissingFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unable to patch file {0} due to error:
         ///    
         ///{1}.

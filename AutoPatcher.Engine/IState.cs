@@ -29,5 +29,7 @@ namespace AutoPatcher.Engine
         void RefreshBuildArtifactStates();
 
         Task<IEnumerable<BuildArtifact>> GetDirtyBuildArtifactsAsync();
+
+        bool IsInActionableState(bool isRevert = false, bool isSourceOp = false);
     }
 }

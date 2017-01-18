@@ -151,6 +151,9 @@ Please correct the configuration error, or delete the configuration file and res
   <data name="StringMSBuildScrapeMissingAssemblyName" xml:space="preserve">
     <value>Cannot find "AssemblyName".</value>
   </data>
+  <data name="StringMSBuildScrapeMissingFiles" xml:space="preserve">
+    <value>Unable to locate the following referenced project files: {0}</value>
+  </data>
   <data name="StringPatchFailureGeneral" xml:space="preserve">
     <value>Unable to patch file {0} due to error:
     

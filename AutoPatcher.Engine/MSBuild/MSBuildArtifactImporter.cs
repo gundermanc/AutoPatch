@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-// using System.Linq;
-// using System.Xml.Linq;
+using System.Threading.Tasks;
 using System.Xml.Linq;
 using AutoPatcher.Engine.Abstractions;
 using AutoPatcher.Engine.ArtifactLocator;
@@ -24,6 +23,11 @@ namespace AutoPatcher.Engine.MSBuild
             IArtifactLocator remoteBinLocator,
             string fileName)
         {
+            if (!state.IsInActionableState(isSourceOp: true))
+            {
+                return;
+            }
+
             try
             {
                 var doc = XElement.Load(fileName);
@@ -62,6 +66,14 @@ namespace AutoPatcher.Engine.MSBuild
                     localArtifactPath,
                     remoteArtifactPath,
                     sourcePathsList.Select(i => new SourceItem(i)));
+
+                if (errorPathsList.Count > 0)
+                {
+                    errorDialog.WarningDialog(
+                        string.Format(
+                        Resources.StringMSBuildScrapeMissingFiles,
+                        string.Join(", ", errorPathsList)));
+                }
 
                 state.AddBuildArtifactsRange(Enumerable.Repeat(buildArtifact, 1));
             }
