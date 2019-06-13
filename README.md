@@ -1,3 +1,9 @@
+### Deprecated
+
+This attempt at the problem focused too much on UX and not enough on the problems with patching, backups, and graceful recovery after updates.
+
+A more robust patching tool can be found in my scripts repo https://github.com/gundermanc/tools
+
 # AutoPatch
 A lightweight tool for patching installed products with compiled bits
 
